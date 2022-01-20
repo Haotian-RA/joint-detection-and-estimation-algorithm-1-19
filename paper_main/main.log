@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  17 DEC 2021 07:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  20 JAN 2022 01:57
 entering extended mode
-**c:/Users/kobez/OneDrive/Desktop/paper/main/main.tex
-(c:/Users/kobez/OneDrive/Desktop/paper/main/main.tex
+**c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex
+(c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> xparse <2020-03-03> (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
 Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
@@ -552,10 +552,7 @@ Package pdftex.def Info: ../main_matlab_figures//signal_acquisition_chain.png  u
  [1{C:/Users/kobez/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 
 
-]) (detection.tex
-Underfull \vbox (badness 1533) has occurred while \output is active []
-
- [2 <../main_matlab_figures//signal_acquisition_chain.png>]) (freq_est.tex [3] [4]) (simulations.tex
+]) (detection.tex [2 <../main_matlab_figures//signal_acquisition_chain.png>]) (freq_est.tex [3] [4]) (simulations.tex
 <../main_matlab_figures//generalized_correlation.png, id=31, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//generalized_correlation.png Graphic file (type png)
 <use ../main_matlab_figures//generalized_correlation.png>
@@ -576,37 +573,30 @@ File: ../main_matlab_figures//accuracy_NM_SD.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_SD.png>
 Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SD.png  used on input line 53.
 (pdftex.def)             Requested size: 245.71754pt x 184.29105pt.
- [5 <../main_matlab_figures//generalized_correlation.png (PNG copy)> <../main_matlab_figures//receiver_operating_characteristics.png (PNG copy)> <../main_matlab_figures//false_alarm_and_detection_probability.png (PNG copy)>]
-<../main_matlab_figures//accuracy_NM_traditional.png, id=38, 526.96875pt x 395.22656pt>
+<../main_matlab_figures//accuracy_NM_traditional.png, id=35, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//accuracy_NM_traditional.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_traditional.png>
 Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_traditional.png  used on input line 59.
 (pdftex.def)             Requested size: 245.71754pt x 184.29105pt.
-<../main_matlab_figures//freq_NM_with_different_size.png, id=39, 526.96875pt x 395.22656pt>
+<../main_matlab_figures//freq_NM_with_different_size.png, id=36, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//freq_NM_with_different_size.png Graphic file (type png)
 <use ../main_matlab_figures//freq_NM_with_different_size.png>
 Package pdftex.def Info: ../main_matlab_figures//freq_NM_with_different_size.png  used on input line 65.
 (pdftex.def)             Requested size: 245.71754pt x 184.29105pt.
-<../main_matlab_figures//phi_NM_with_different_size.png, id=40, 526.96875pt x 395.22656pt>
+<../main_matlab_figures//phi_NM_with_different_size.png, id=37, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//phi_NM_with_different_size.png Graphic file (type png)
 <use ../main_matlab_figures//phi_NM_with_different_size.png>
 Package pdftex.def Info: ../main_matlab_figures//phi_NM_with_different_size.png  used on input line 71.
 (pdftex.def)             Requested size: 245.71754pt x 184.29105pt.
-<../main_matlab_figures//SDR_receiver.png, id=41, 765.45975pt x 351.714pt>
+<../main_matlab_figures//SDR_receiver.png, id=38, 765.45975pt x 351.714pt>
 File: ../main_matlab_figures//SDR_receiver.png Graphic file (type png)
 <use ../main_matlab_figures//SDR_receiver.png>
 Package pdftex.def Info: ../main_matlab_figures//SDR_receiver.png  used on input line 77.
 (pdftex.def)             Requested size: 469.75499pt x 215.84398pt.
-)
-Underfull \vbox (badness 3168) has occurred while \output is active []
+ [5 <../main_matlab_figures//generalized_correlation.png (PNG copy)> <../main_matlab_figures//receiver_operating_characteristics.png (PNG copy)>]) [6 <../main_matlab_figures//false_alarm_and_detection_probability.png (PNG copy)> <../main_matlab_figures//accuracy_NM_SD.png (PNG copy)> <../main_matlab_figures//accuracy_NM_traditional.png (PNG copy)> <../main_matlab_figures//freq_NM_with_different_size.png (PNG copy)>] (real_implementation.tex [7 <../main_matlab_figures//phi_NM_with_different_size.png (PNG copy)>]) (appendices.tex
+Underfull \vbox (badness 1596) has occurred while \output is active []
 
- [6 <../main_matlab_figures//accuracy_NM_SD.png (PNG copy)> <../main_matlab_figures//accuracy_NM_traditional.png (PNG copy)> <../main_matlab_figures//freq_NM_with_different_size.png (PNG copy)> <../main_matlab_figures//phi_NM_with_different_size.png (PNG copy)>] (real_implementation.tex
-Underfull \vbox (badness 1215) has occurred while \output is active []
-
- [7 <../main_matlab_figures//SDR_receiver.png>]) (appendices.tex
-Underfull \vbox (badness 6944) has occurred while \output is active []
-
- [8] [9]) (main.bbl)
+ [8 <../main_matlab_figures//SDR_receiver.png>] [9]) (main.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -620,15 +610,15 @@ Before submitting the final camera ready copy, remember to:
 
 [10] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 10225 strings out of 479334
- 178789 string characters out of 2857084
- 475226 words of memory out of 3000000
- 27444 multiletter control sequences out of 15000+200000
+ 10226 strings out of 479334
+ 179487 string characters out of 2857084
+ 475923 words of memory out of 3000000
+ 27445 multiletter control sequences out of 15000+200000
  601420 words of font info for 296 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,13n,75p,473b,751s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,13n,75p,518b,751s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXBMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI5.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsya.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsyb.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on main.pdf (10 pages, 783840 bytes).
+Output written on main.pdf (10 pages, 784489 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -10,7 +10,7 @@ It is worth emphasizing that time and carrier synchronization are coupled proble
 coherent methods for detecting the signal require accurate frequency and phase estimates while
 data-aided frequency and phase estimation requires that the location of the training sequence is available.
 % this can explain we start with carrier synchronization by assuming timing offset is perfectly known.
-Thus, joint signal detection and carrier synchronization algorithms play a vital role in any communication system;
+Thus, joint signal detection and carrier synchronization algorithms play a vital role in any communication system, especially at low SNR;
 both accuracy and computational complexity of the algorithms must be considered.
 
 Clearly, the signal acquisition problem has been considered widely. 
@@ -41,7 +41,7 @@ With these considerations in mind, this paper seeks to make the following contri
 in the length of the reference sequence.
 \item We offer new closed-form expressions for the distribution of the frequency estimate in the proposed algorithm; these are believed
 to be useful beyond this paper.
-\item The complete acquisition chain, including time and carrier synchronization, is analylzed and implemented in software-defined radio (SDR).
+\item The signal acquisition chain, including delay estimation and carrier synchronization, is analyzed and implemented on software-defined radio (SDR).
 \end{itemize}
 
 This paper first specifies our assumptions about the signal
