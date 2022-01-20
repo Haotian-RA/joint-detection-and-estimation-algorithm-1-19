@@ -1,0 +1,237 @@
+\begin{appendices}
+
+\section{Derivation of distribution for the SD estimator, proof of (\ref{eq:sol_pdf_W})}
+\label{AL}
+
+To prove the distribution of $\arg\{W(k)\}$, where $W(k)$ is a complex Gaussian 
+random variable, we assume $W=X+jY$, $X$ and $Y$ are two Gaussian random 
+variables with distributions $X {\sim} \n(\mu_x,\sigma^2)$ 
+and $Y {\sim} \n(\mu_y,\sigma^2)$. Here, $W$, $X$, $Y$, $\mu_x$, $\mu_y$ 
+and $\sigma^2$ all depends on $k$, we just write those for notation simplicity. 
+We further assume $\mu_w$ to be the mean of $W$. The probability density function 
+of $W$ is given by
+
+\begin{equation}
+    \label{eq:AL1}
+    \begin{aligned}
+    &f_W(w) \\
+    &{=}f_{X,Y}(x,y){=}\frac{1}{2\pi \sigma^2}\exp\bigg({-}\frac{(x-\mu_x)^2+(y-\mu_y)^2}{2\sigma^2}\bigg).
+    \end{aligned}
+\end{equation}
+Let $x=r\cos\theta$, $y=r\sin\theta$,~\eqref{eq:AL1} can be transformed into polar coordinate,
+
+\begin{equation}
+    \label{eq:AL2}
+    \begin{aligned}
+    &f_W(w){=} f_{R,\Theta}(r,\theta) \\
+    &{=}\frac{r}{2\pi \sigma^2}\exp\bigg({-}\frac{(r\cos\theta-\mu_x)^2+(r\sin\theta-\mu_y)^2}{2\sigma^2}\bigg) \\
+    &{=}\frac{r}{2\pi \sigma^2}\exp\bigg({-}\frac{r^2{+}\mu_x^2{+}\mu_y^2}{2\sigma^2}\bigg)\exp\bigg(\frac{r}{\sigma^2}(\mu_x\cos\theta{+}\mu_y\sin\theta)\bigg)
+    \end{aligned}
+\end{equation}
+Plugging $\mu_x=|\mu_w|\cos(\angle\mu_w)$, $\mu_y=|\mu_w|\sin(\angle\mu_w)$ yields
+
+\begin{equation}
+    \label{eq:AL3}
+    \begin{aligned}
+    &f_{R,\Theta}(r,\theta) \\
+    &{=}\frac{r}{2\pi \sigma^2}\exp\bigg({-}\frac{r^2+|\mu_w|^2}{2\sigma^2}\bigg)\exp\bigg(\frac{r|\mu_w|}{\sigma^2}\cos(\theta{-}\angle\mu_w)\bigg).
+    \end{aligned}
+\end{equation}
+Note that $\theta=\arg\{W(k)\}$. Thus, we turn our attention to mar\-ginal PDF of $\theta$, 
+
+\begin{equation}
+    \label{eq:AL4}
+    \begin{aligned}
+    &f_\Theta(\theta) {=}\int_{0}^{\infty}\frac{r}{2\pi  \sigma^2}\exp\bigg({-}\frac{r^2{-}2r|\mu_w|\cos(\theta{-}\angle\mu_w){+}|\mu_w|^2}{2\sigma^2}\bigg)dr \\
+    &{=}\int_{0}^{\infty}\frac{r}{2\pi\sigma^2} \cdot\\
+    &\exp\bigg({-}\frac{(r{-}|\mu_w|\cos(\theta{-}\angle{\mu_w}))^2{+}|\mu_w|^2(1{-}\cos^2(\theta{-}\angle\mu_w))}{2\sigma^2}\bigg)dr \\
+    &{=}\frac{1}{2\pi}\exp\bigg({-}\frac{|\mu_w|^2(1{-}\cos^2(\theta-\angle\mu_w))}{2\sigma^2}\bigg) \cdot \\
+    &\int_{0}^{\infty}\frac{r}{\sigma^2}\exp\bigg({-}\frac{(r{-}|\mu_w|\cos(\theta{-}\angle{\mu_w}))^2}{2\sigma^
+    2}\bigg)dr.
+    \end{aligned}
+\end{equation}
+By assuming
+
+\begin{equation*}
+\begin{aligned}
+    &\alpha{=}|\mu_w|\sin(\theta{-}\angle\mu_w) \\
+    &\beta{=}|\mu_w|\cos(\theta{-}\angle\mu_w) \\
+    &u{=}\frac{r{-}|\mu_w|\cos(\theta{-}\angle\mu_w)}{\sigma},
+    \end{aligned}
+\end{equation*}
+\eqref{eq:AL4} can be simplified as
+
+\begin{equation}
+    \label{eq:AL5}
+    \begin{aligned}
+    f_\Theta(\theta) &{=}\frac{1}{2\pi}\exp\bigg({-}\frac{\alpha^2}{2\sigma^2}\bigg)\int_{{-}\frac{\beta}{\alpha}}^{\infty}\bigg(u{+}\frac{\beta}{\alpha}\bigg)\exp\bigg({-}\frac{u^2}{2}\bigg)du \\
+    &{=}\frac{1}{2\pi}\exp\bigg({-}\frac{\alpha^2}{2\sigma^2}\bigg)\bigg(\int_{{-}\frac{\beta}{\alpha}}^{\infty}ue^{{-}\frac{u^2}{2}}du+\int_{{-}\frac{\beta}{\alpha}}^{\infty}\frac{\beta}{\alpha}e^{{-}\frac{u^2}{2}}du\bigg) \\
+    &{=}\frac{1}{2\pi}\exp\bigg({-}\frac{\alpha^2{+}\beta^2}{2\sigma^2}\bigg){+}\frac{\beta}{\sqrt{2\pi}\sigma}\exp\bigg({-}\frac{\alpha^2}{2\sigma^2}\bigg)\Q\bigg({-}\frac{\beta}{\alpha}\bigg) \\
+    &{=}\frac{1}{2\pi}\exp\bigg({-}\frac{|\mu_w|^2}{2\sigma^2}\bigg){+}\frac{|\mu_w|\cos(\theta{-}\angle\mu_w)}{\sqrt{2\pi}\sigma} \cdot \\
+    &\exp\bigg({-}\frac{|\mu_w|^2\sin^2(\theta{-}\angle\mu_w)}{2\sigma^2}\bigg)\Q\bigg({-}\frac{|\mu_w|}{\sigma}\cos(\theta{-}\angle\mu_w)\bigg)
+    \end{aligned}
+\end{equation}
+where $\Q(\cdot)$ is the $\Q$ function and~\eqref{eq:AL5} gives the explicit 
+mar\-ginal PDF for $\theta$. Note that $|\mu_w|=(N-k)(\frac{E_s}{T})^2$ 
+from~\eqref{eq:ori_pdf_W}. Thus, at relatively high SNR, i.e., $|\mu_w|\gg\sigma$,
+~\eqref{eq:AL5} can be approximated by
+
+\begin{equation}
+    \label{eq:AL6}
+    \begin{aligned} 
+    &f_\Theta(\theta) \approx \frac{1}{2\pi}\exp\bigg({-}\frac{|\mu_w|^2}{2\sigma^2}\bigg)\\
+    &+\frac{|\mu_w|\cos(\theta{-}\angle\mu_w)}{\sqrt{2\pi}\sigma} 
+    \exp\bigg({-}\frac{|\mu_w|^2\sin^2(\theta{-}\angle\mu_w)}{2\sigma^2}\bigg) \cdot \\
+    &\bigg(1{-}\frac{\sigma}{\sqrt{2\pi}|\mu_w|\cos(\theta{-}\angle\mu_w)}\exp\bigg({-}\frac{|\mu_w|^2\cos^2(\theta{-}\angle\mu_w)}{2\sigma^2}\bigg)\bigg) \\
+    &=\frac{|\mu_w|\cos(\theta{-}\angle\mu_w)}{\sqrt{2\pi}\sigma}\exp\bigg({-}\frac{|\mu_w|^2\sin^2(\theta{-}\angle\mu_w)}{2\sigma^2}\bigg)
+    \end{aligned}
+\end{equation}
+The approximation holds because of the property of $\Q$ function 
+$Q(x) \approx\frac{1}{\sqrt{2\pi x}}\exp\big({-}\frac{x^2}{2}\big)$ 
+for $x\gg 0$. Then, we only need to look at $f_\Theta(\theta)$ where 
+$\theta \approx \angle\mu_w$, i.e.,
+
+\begin{equation}
+    \label{eq:AL7}
+    f_\Theta(\theta) \approx \frac{|\mu_w|}{\sqrt{2\pi}\sigma}\exp\bigg({-}\frac{|\mu_w|^2}{2\sigma^2}(\theta{-}\angle\mu_w)^2\bigg)
+\end{equation}
+Thus, $\theta$ is approximately Gaussian with the distribution 
+$\theta \sim \n \big(\angle \mu_{W},\frac{\sigma^2}{|\mu_{W}|^2}\big)$, 
+which is equivalent to~\eqref{eq:sol_pdf_W}.
+
+\section{Derivation of the CRVB for frequency and phase estimate, 
+proof of~\eqref{eq:CRVB_freql} and~\eqref{eq:CRVB_phi}}
+
+\label{BL}
+
+In order to derive the CRVB for joint estimation of phase and frequency 
+offset, We define a parameter vector $\bm{\theta}{\triangleq}\begin{bmatrix} \delta&\phi \end{bmatrix}$ 
+to include the two parameters that we want to estimate. 
+The first step towards the derivation of the CRVB is to compute 
+the Fisher Information Matrix (FIM, $\bm{I}(\bm{\theta})$). 
+The calculation of $\bm{I}(\bm{\theta})$ is based on log-likelihood 
+function ($\ln\Lambda$), which is carried out in \cite[Ch.~4]{VanTrees_vol1}
+
+\begin{equation}
+\label{eq:log_likelihood_func}
+\ln\Lambda[r(t),\bm{\theta}]{=}\frac{2}{N_{0}}\int_{0}^{T_{0}}r(t)s'^{*}(t,\bm{\theta})dt{-}\frac{1}{N_{0}}\int_{0}^{T_{0}}|s'(t,\bm{\theta})|^{2}dt
+\end{equation}
+where 
+
+\begin{equation}
+\label{eq:log_lik_func_comp}
+s'(t,\bm{\theta})=Ae^{j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}g(t-iT),
+\end{equation}
+and $T_{0}$ is the observation length. Taking the second derivative with respect to each element of the parameter vector $\theta_{i}$, $\theta_{j}$ yields
+
+\begin{equation}
+\begin{aligned}
+\label{eq:double_derivative_theta}
+&\frac{\partial^2\ln\Lambda}{\partial\theta_{i}\partial\theta_{j}} \\
+&{=}\frac{2}{N_{0}}\int_{0}^{T_{0}}r(t)\frac{\partial^2 s'^{*}(t,\bm{\theta})}{\partial \theta_{i}\partial \theta_{j}}dt
+-\frac{2}{N_{0}}\int_{0}^{T_{0}}\frac{\partial s'^{*}(t,\bm{\theta})}{\partial \theta_{i}}\frac{\partial s'(t,\bm{\theta})}{\partial \theta_{j}}dt \\
+&-\frac{2}{N_{0}}\int_{0}^{T_{0}}s'(t,\bm{\theta})\frac{\partial^2 s'^{*}(t,\bm{\theta})}{\partial \theta_{i}\partial \theta_{j}}dt.
+\end{aligned}
+\end{equation}
+Taking the negative expectation of (\ref{eq:double_derivative_theta}), the elements of FIM are given by
+
+\begin{equation}
+\label{eq:FIM}
+\bm{I}(\bm{\theta})_{ij}=-\E\left[\frac{\partial^2 \ln\Lambda}{\partial \theta_{i}\partial \theta_{j}}\right]=\frac{2}{N_{0}}\int_{0}^{T_{0}}\frac{\partial s'^{*}(t,\bm{\theta})}{\partial \theta_{i}}\frac{\partial s'(t,\bm{\theta})}{\partial \theta_{j}}dt.
+\end{equation}
+By plugging $s'(t,\bm{\theta})$ from (\ref{eq:log_lik_func_comp}) into (\ref{eq:FIM}) 
+and replacing $\theta_{i}$, $\theta_{j}$ with $\delta,\delta$, 
+the first element of FIM ($\bm{I}(\bm{\theta})_{11}$) yields
+
+\begin{equation}
+\label{eq:FIM_delta_delta}
+\begin{aligned}
+\bm{I}(\bm{\theta})_{11}&=\frac{2}{N_{0}}\int_{0}^{T_{0}}\frac{\partial Ae^{j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)}{\partial \delta} \cdot \\
+&\frac{\partial Ae^{-j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}^{*}g^{*}(t{-}iT)}{\partial \delta}dt \\
+&=\frac{2}{N_{0}}\int_{0}^{T_{0}}A^{2}4\pi^{2}t^{2}\left|\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)\right|^{2}dt.
+\end{aligned}
+\end{equation}
+Note that the averaged symbol energy of transmitted signal is calculated by
+\begin{equation}
+\label{eq:avg_symbol_energy}
+\begin{aligned}
+E_{s}&=\int_{0}^{T}\left|A\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)\right|^{2}dt \\
+&\approx\sum_{k=0}^{M-1}\left|A\sum_{i=0}^{L_{0}-1}c_{i}g(kT_s-iT)\right|^{2}T_{s} \\
+&\approx T\left|A\sum_{i=0}^{L_{0}-1}c_{i}g(t-iT)\right|^{2},
+\end{aligned}
+\end{equation}
+or,
+
+\begin{equation}
+\label{eq:avg_symbol_energy_deriv}
+A^{2}\left|\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)\right|^{2}{\approx}\frac{E_{s}}{T}.
+\end{equation}
+where $M=\text{int}(T/T_{s})$. The first approximation in~\eqref{eq:avg_symbol_energy} 
+is based on Riemann sum theory. $\bm{I}(\bm{\theta})_{11}$ finally results in
+
+\begin{equation}
+\label{eq:FIM_delta_delta_result}
+\bm{I}(\bm{\theta})_{11}=\frac{8\pi E_{s}T_{0}^2L_{0}}{3N_{0}}.
+\end{equation}
+Similarly, $\bm{I}(\bm{\theta})_{12}$ can be calculated by plugging $s'(t,\bm{\theta})$ from (\ref{eq:log_lik_func_comp}) into (\ref{eq:FIM}) and replacing $\theta_{i}$, $\theta_{j}$ with $\delta,\phi$, which is given by
+
+\begin{equation}
+\label{eq:FIM_delta_phi}
+\begin{aligned}
+\bm{I}(\bm{\theta})_{12}&=\frac{2}{N_{0}}\int_{0}^{T_{0}}\frac{\partial Ae^{j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)}{\partial \delta} \cdot \\
+&\frac{\partial Ae^{-j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}^{*}g^{*}(t{-}iT)}{\partial \phi}dt.
+\end{aligned}
+\end{equation}
+Following the same steps as deriving $\bm{I}(\bm{\theta})_{11}$, $\bm{I}(\bm{\theta})_{12}$ can be finally reduced to
+\begin{equation}
+\label{eq:FIM_delta_phi_result}
+\bm{I}(\bm{\theta})_{12}=\frac{2\pi E_{s}T_{0}L_{0}}{N_{0}}.
+\end{equation}
+$\bm{I}(\bm{\theta})_{22}$ can be calculated by plugging $s'(t,\bm{\theta})$ from (\ref{eq:log_lik_func_comp}) into (\ref{eq:FIM}) and replacing $\theta_{i}$, $\theta_{j}$ with $\phi,\phi$, which is given by
+
+\begin{equation}
+\label{eq:FIM_phi_phi}
+\begin{aligned}
+\bm{I}(\bm{\theta})_{22}&=\frac{2}{N_{0}}\int_{0}^{T_{0}}\frac{\partial Ae^{j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}g(t{-}iT)}{\partial \phi} \cdot \\
+&\frac{\partial Ae^{-j(2\pi\delta t+\phi)}\sum_{i=0}^{L_{0}-1}c_{i}^{*}g^{*}(t{-}iT)}{\partial \phi}dt.
+\end{aligned}
+\end{equation}
+$\bm{I}(\bm{\theta})_{22}$ can be finally reduced to
+
+\begin{equation}
+\label{eq:FIM_phi_phi_result}
+\bm{I}(\bm{\theta})_{22}=\frac{2E_{s}L_{0}}{N_{0}}.
+\end{equation}
+Then, $\bm{I}(\bm{\theta})_{11}$, $\bm{I}(\bm{\theta})_{12}$ and 
+$\bm{I}(\bm{\theta})_{22}$ form the FIM
+
+\begin{equation}
+\label{eq:FIM_result}
+\bm{I}(\bm{\theta})=
+\begin{bmatrix}
+\frac{8\pi E_{s}T_{0}^2L_{0}}{3N_{0}} & \frac{2\pi E_{s}T_{0}L_{0}}{N_{0}} \\
+\frac{2\pi E_{s}T_{0}L_{0}}{N_{0}} & \frac{2E_{s}L_{0}}{N_{0}} \\
+\end{bmatrix},
+\end{equation}
+and the inverse FIM is given by
+\begin{equation}
+\label{eq:inverse_FIM_result}
+\bm{I}^{-1}(\bm{\theta})=
+\begin{bmatrix}
+\frac{3}{2\pi^{2}L_{0}T_{0}^2E_{s}/N_{0}} & \frac{-3}{2\pi L_{0}T_{0}E_{s}/N_{0}} \\
+\frac{-3}{2\pi L_{0}T_{0}E_{s}/N_{0}} & \frac{2}{L_{0}E_{s}/N_{0}} \\
+\end{bmatrix}.
+\end{equation}
+Thus, the CRVB for the frequency and phase estimates are
+
+\begin{equation}
+\label{eq:derivation_CRVB_from_FIM}
+\begin{aligned}
+&\text{CRVB}(\delta) \geq \frac{3}{2\pi^{2}L_{0}T_{0}^{2}E_s/N_{0}} \\
+&\text{CRVB}(\phi) \geq \frac{2}{L_{0}E_s/N_{0}},
+\end{aligned}
+\end{equation}
+which are equivalent to~\eqref{eq:CRVB_freql} and~\eqref{eq:CRVB_phi} respectively by replacing $T_0$ with $N$.
+
+\end{appendices}
+    

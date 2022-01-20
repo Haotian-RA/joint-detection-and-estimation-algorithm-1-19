@@ -1,0 +1,70 @@
+\section{Detection and Time Synchronization}
+\label{sec:detection}
+
+As illustrated in Figure~\ref{fig:sig_acquis_chain}, the first step to analyze
+the signal acquisition chain is to formulate the detector.
+The algorithm proceeds sequentially and each step a window of length $N$ (the number of samples in the preamble) received samples with 
+$N-1$ overlapped samples is considered. The sequential detection problem solved 
+in this paper is fundamentally equivalent to sequential frame synchronization~\cite{Massey_72,Lui_Tan_86,Scholtz_80}.
+
+The detection algorithm is based on a Generalized Likelihood Ratio Test (GLRT): 
+Let $H_0$ be the null hypothesis that the preamble is not completely in the obeservation window against the alternative 
+$H_1$ that it does. We further define $\Delta$ to be the distance between the current sample instant $p_c$ and the true position of preamble $p$, 
+i.e., $\Delta=p-p_c$. Thus, we can translate $H_0$ as when $\Delta \neq 0$ while $H_1$ as when $\Delta=0$.
+The likelihood ratio test between $H_0$ and $H_1$ is given by
+
+\begin{equation}
+    \label{eq:likelihood ratio}
+    \begin{aligned}
+    \Lambda(R)=\frac{p_{R|H_1}(r|H_1)}{p_{R|H_0}(r|H_0)}&= 
+    \frac{\displaystyle \prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}\exp(-\frac{1}{2}\frac{|r_n-s_nSb^n|^2}{N_0/2})}
+    {\displaystyle \prod_{n=\Delta}^{N-1}\frac{1}{\sqrt{\pi N_0}}\exp(-\frac{1}{2}\frac{|r_n{-}s_{n-\Delta}Sb^n|^2}{N_0/2})} \cdot\\
+    &\frac{1}{\displaystyle \prod_{n=0}^{\Delta-1}\frac{1}{\sqrt{\pi N_0}}\exp(-\frac{1}{2}\frac{|r_n|^2}{N_0/2})}
+    \LRT{H_1}{H_0} \eta,
+    \end{aligned}
+\end{equation}
+where we define $S=Ae^{j\phi}$, $b=e^{j2\pi \delta}$ for notation simplicity.
+Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio} is reduced to
+
+\begin{equation}
+    \label{eq:log likelihood}
+    \begin{aligned}
+    \Re\{\sum_{n=0}^{N-1}r_ns^*_nS^*b^{-n}-
+    \sum_{n=\Delta}^{N-1}r_ns^*_{n-\Delta}S^*b^{-n}\}
+    \LRT{H_1}{H_0} \frac{N_0}{2}&\ln\eta+ \\
+    &\frac{A^2}{2}\sum_{n=N-\Delta}^{N-1}|s_n|^2.
+    \end{aligned}
+\end{equation}
+The minuend of left hand side of~\eqref{eq:log likelihood} points to the inner product of the overlap between
+the observed (partial) preamble and the true preamble. 
+By plugging $r_n$ of hypothesis $H_1$, i.e., $r_n=s_nSb^n+w_n$, the minuend simplified as
+
+\begin{equation}
+    \label{eq:partial ACF of the preamble}
+    \sigma(\Delta)=A^2\sum_{n=\Delta}^{N-1}s_ns^*_{n-\Delta}+\sum_{n=\Delta}^{N-1}w_ns^*_{n-\Delta}S^*b^{-n}
+\end{equation}
+is a Gaussian random variable with mean as a "partial" auto-correlation function (ACF) of the preamble at lag $\Delta$.
+In order to quantify~\eqref{eq:partial ACF of the preamble}, the symbol sequence of the preamble should be chosen with a good autocorrelation property,
+such as Gold sequence, that the partial ACF is approximately equal to zero for all $\Delta \neq 0$. 
+Thus, after some proper scaling of~\eqref{eq:log likelihood}, the GLRT finally reduces to 
+a function with respect to the current time instant $p$,
+
+\begin{equation}
+    \label{eq:generalized_corr}
+    \frac{\Re\{\langle
+      \bm{r}_p,\hat{\bm{s}}\rangle\}}
+    {||\bm{r}_p||\cdot||\hat{\bm{s}}||} \LRT{H_1}{H_0} \gamma
+  \end{equation}
+where $\hat{\bm{s}}$ denote the carrier-estimate corrected reference samples, i.e., $\hat{s}_{n}~{=}~s_{n}Ae^{j(2\pi\hat{\delta}n+\hat{\phi})}$ for $n=0,\ldots,N{-}1$.
+$r_p$ are the current observed received samples.
+Thus, we can intepret~\eqref{eq:generalized_corr} as the generalized correlation between current observed burst and carrier-estimates corrected reference sequence.
+$\gamma$ is the detection threshold which lies on the range of $[0,1]$.
+
+We see that building the GLRT detector of~\eqref{eq:generalized_corr} relies on the frequency and phase estimates (carrier synchronization) first.
+Furthermore, since the sequential detection proceeds at every time instant, to make it work in practice, the complexity of the carrier estimates becomes
+much crucial. A low computational-complexity estimator should be derived for detection purpose.
+
+%
+% \subsection{Fractional Delay}
+% don't know we should talk about the fractional delay or not for the time being. Just ignore it for a second.
+% 
