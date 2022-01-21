@@ -6,11 +6,11 @@ Examples include time-slotted random access systems. Each active user transmits 
 in the same frequency band and in non-overlapping time intervals~\cite{Falconer_95}. 
 A fundamental prerequisite for successful coherent demodulation is that the receiver can
 detect the beginning of the data stream and estimate accurately the phase and frequency offset of the carrier.
-It is worth emphasizing that time and carrier synchronization are coupled problems:
+It is worth emphasizing that time and carrier synchronization are coupled problems, especially at low SNR:
 coherent methods for detecting the signal require accurate frequency and phase estimates while
 data-aided frequency and phase estimation requires that the location of the training sequence is available.
 % this can explain we start with carrier synchronization by assuming timing offset is perfectly known.
-Thus, joint signal detection and carrier synchronization algorithms play a vital role in any communication system, especially at low SNR;
+Thus, joint signal detection and carrier synchronization algorithms play a vital role in any communication system;
 both accuracy and computational complexity of the algorithms must be considered.
 
 Clearly, the signal acquisition problem has been considered widely. 

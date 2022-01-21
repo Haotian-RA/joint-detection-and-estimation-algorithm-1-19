@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1642660589 "main.aux" "main.bbl" "main" 1642661843
+["bibtex main"] 1642742267 "main.aux" "main.bbl" "main" 1642742413
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1642661843 8105 f4ce9c358b3e78f09126981bfb7f9ece "pdflatex"
+  "main.aux" 1642742345 8108 78142ff2f8b21e9ba7896267db607864 "pdflatex"
   "ref.bib" 1638824722 8849 983ebcbc23161d980f1c4a489fb820fd ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1642661840 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1642661843
+["pdflatex"] 1642742342 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1642742413
   "../main_matlab_figures//SDR_receiver.png" 1639635815 66729 ca52ee618ba7741c793b9ea8680dc967 ""
   "../main_matlab_figures//accuracy_NM_SD.png" 1639432254 57863 85bf8004e273087744070142c7b458bc ""
   "../main_matlab_figures//accuracy_NM_traditional.png" 1639417545 54090 d4226028c75c80afa4e3ed0dd79bc2ae ""
@@ -174,16 +174,16 @@
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1606298686 4902 efb3d66683a2da2a232f71e3a571a899 ""
   "appendices.tex" 1639698015 11739 14fc625e69e172876b1d7d8df5d9f409 ""
   "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
-  "detection.tex" 1639636362 4297 2bf3a483c34eb192e032db016115d61f ""
+  "detection.tex" 1642742412 6238 5ed78bd98ba7bb09e6afb61df97e0b61 ""
   "freq_est.tex" 1639445086 12012 62ed0f755dab5a578c67365ef14a5e5d ""
-  "introduction.tex" 1642661840 4357 c311f5ca65b53920f42eeea750d64b0e ""
-  "main.aux" 1642661843 8105 f4ce9c358b3e78f09126981bfb7f9ece "pdflatex"
-  "main.bbl" 1642660590 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
+  "introduction.tex" 1642741704 4357 93ac756f9a2690445912d77a78980083 ""
+  "main.aux" 1642742345 8108 78142ff2f8b21e9ba7896267db607864 "pdflatex"
+  "main.bbl" 1642742268 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
   "main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
-  "model.tex" 1642661602 4236 ad3ef833068df3b57bd4a98cd1d48087 ""
+  "model.tex" 1642741871 4301 c12b904c0fe552cc5f587c183176f487 ""
   "real_implementation.tex" 1639743909 5819 d805a3262555848aae7054ea451462ef ""
   "simulations.tex" 1639693258 7764 9cf3612bc8e2686e83424fd84ea037b9 ""
   (generated)
-  "main.log"
-  "main.aux"
   "main.pdf"
+  "main.aux"
+  "main.log"

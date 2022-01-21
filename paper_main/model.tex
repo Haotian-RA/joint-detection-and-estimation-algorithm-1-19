@@ -1,6 +1,7 @@
 \section{Signal Model}
 \label{sec:model}
 
+% figure 1 should be revisit.
 \begin{figure*}[t]
   \centerline{\includegraphics[width=6.5in]{signal_acquisition_chain.png}}
   \caption{Block diagram for analysis of the complete signal acquistion chain}
@@ -60,10 +61,10 @@ Besides that, $E_s/N_0$ represents the ratio of signal energy to noise power spe
 Specifically, $E_s$ is the averaged symbol energy of the received signal over the length of the preamble.
 
 % estension to reviewer 3, comment 3
-The rest of paper is seperated in two parts. The first part (Section~\ref{sec:detection} and~\ref{sec:freq_est}) focus on analyzing the complete
+The rest of paper is seperated into two main sections. The first main section (Section~\ref{sec:detection} and~\ref{sec:freq_est}) focus on analyzing the complete
 signal acquisition chain, which basically includes delay estimation of the preamble (detection) and
-carrier synchronization. The process is shown in Figure~\ref{fig:sig_acquis_chain}.
-The simulation section (Section~\ref{sec:simulations}) then illustrates the performance of the proposed algorithm in the first part.
-The second part (Section~\ref{sec:real_implementation}) moves attention on implementing the proposed algorithm 
-in software-defined radio (SDR). Some steps (equations) of the proposed algorithm are computed more efficiently to achieve the best throughput.
+carrier synchronization. The process in general is shown in Figure~\ref{fig:sig_acquis_chain}.
+The simulation section (Section~\ref{sec:simulations}) then illustrates the performance of the proposed algorithm in first section.
+The second section (Section~\ref{sec:real_implementation}) moves attention on implementing the algorithm 
+on software-defined radio (SDR). Some steps (equations) of the algorithm in the first section are computed more efficiently to achieve the best throughput.
 
