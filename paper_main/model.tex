@@ -51,7 +51,10 @@ the sampling frequency. Moreover, the sampled received reference sequence, inclu
   \label{eq:l_ref_sig_discrete}
   s_n^{(\Delta p)} = \sum_{i=0}^{L_0-1} c_i g(nTs-iT-\Delta p) \quad \text{for}~n=0,\ldots,N-1,
 \end{equation}
-where $N=ML_0$ is the number of samples in the preamble. When $\Delta p=0$, $s_n^{(\Delta p)}$ is simply denoted as $s_n$.
+where $N=ML_0$ is the number of samples in the preamble. 
+From~\eqref{eq:l_ref_sig_discrete}, it can be seen the value of $\Delta p$ will affect (degrade) the performance of both detection and estimation 
+because of the mismatching between received preamble and the reference preamble.
+When $\Delta p=0$, $s_n^{(\Delta p)}$ is simply denoted as $s_n$.
 
 In~\eqref{eq:model}, $\delta$ denotes the normalized frequency offset $\delta=f_dT_s$. This normalized offset
 will be estimated and is of relevance for the demodulator. However, for comparing estimation accuracy for different
@@ -66,5 +69,5 @@ signal acquisition chain, which basically includes delay estimation of the pream
 carrier synchronization. The process in general is shown in Figure~\ref{fig:sig_acquis_chain}.
 The simulation section (Section~\ref{sec:simulations}) then illustrates the performance of the proposed algorithm in first section.
 The second section (Section~\ref{sec:real_implementation}) moves attention on implementing the algorithm 
-on software-defined radio (SDR). Some steps (equations) of the algorithm in the first section are computed more efficiently to achieve the best throughput.
+on software-defined radio (SDR). Some steps (equations) of joint detection and estimation algorithm in the first section are computed more efficiently to achieve the best throughput.
 

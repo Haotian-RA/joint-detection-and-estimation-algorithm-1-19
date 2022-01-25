@@ -1,11 +1,14 @@
 \section{Frequency and Phase Estimation}%
 \label{sec:freq_est}
 
-Frequency and phase estimation (carrier synchronization) is the next step after detection for coherent demodulation.
+Frequency and phase estimation, also called carrier synchronization, is the next step after detection for coherent demodulation.
 In this section, we discuss the estimation algorithm by assuming the time synchronization of the preamble is perfect, i.e., 
-the current observation window contains the complete preamble.
+the observation window contains the complete preamble. For the same reason as in the detection section, we first derive the estimator
+by assuming the effect of the fractional delay in signal model~\eqref{eq:model} is neglected.
+In simulation section, we will discuss how much the value of fractional delay degrades the estimating accuracy of estimators by
+comparing with different sampling rate.
 
-For estimating frequency offset $\delta$ and the phasor $S=Ae^{j\phi}$, the maximum likelihood (ML) estimate of~\eqref{eq:model} is given by
+For estimating frequency offset $\delta$ and the phasor $S=Ae^{j\phi}$, the maximum likelihood (ML) estimate of the parameters in~\eqref{eq:model} is given by
 
 \begin{equation}
 \label{eq:ML_f_S}
@@ -17,44 +20,54 @@ closed form for the estimated phasor $\hat{S}$ is readily derived,
 
 \begin{equation}
     \label{eq:opt_S}
-    \hat{S}=\frac{\sum_{n=0}^{N-1}{r_{n}s_n^{*}e^{-j2\pi\delta n}}}{\sum_{n=0}^{N-1}|s_{n}|^2},
+    \hat{S}=\frac{\sum_{n=0}^{N-1}{r_{n}s_n^{*}e^{-j2\pi\hat{\delta} n}}}{\sum_{n=0}^{N-1}|s_{n}|^2},
   \end{equation}
-so that $\hat{\phi}=\arg\{S\}$.
+and $\hat{\phi}=\arg\{S\}$. We see the estimate of phasor $\hat{S}$ relies on the estimate of frequency $\hat{\delta}$ at $\bar{p}$.
+It is shown later the derivation of $\hat{\delta}$ also plugs in the expression of phasor estimate in~\eqref{eq:opt_S}. Thus, the estimators for frequency and phasor are
+joint estimators. Moreover, by plugging~\eqref{eq:opt_S} in~\eqref{eq:generalized_corr}, the GLRT based detector finally reduces to
+
+\begin{equation}
+  \label{eq:reduced_GLRT_detector}
+  \rho(p)=
+  \frac{|\hat{S}_p|}
+  {||\bm{r}_{p}||\cdot||\bm{s}||} \LRT{H_1}{H_0} \gamma
+\end{equation}
+where $||\bm{s}||$ denotes Euclidean norm of the preamble. The most benefit of~\eqref{eq:reduced_GLRT_detector} against to
+~\eqref{eq:generalized_corr} is the greatly decrease of compu-tational complexity.
 
 % extension to reviewer 1, comment 3, reviewer 3, comment 4
-The frequency estimate $\hat{\delta}$ is obtained similarly as the zero of the
-derivative of~\eqref{eq:ML_f_S} and plugging the optimal
-phasor~\eqref{eq:opt_S} into the resulting expression,
+The frequency estimate is obtained similarly as the zero of the
+derivative of~\eqref{eq:ML_f_S},
 
 \begin{equation}
     \label{eq:intm_neces_cond1}
-    \sum_{n=0}^{N-1}{(r_{n}s_n^{*}S^{*}ne^{-j2\pi \hat{\delta} n}-s_ns_n^{*}n)=0}.
+    \sum_{n=0}^{N-1}{(r_{n}s_n^{*}S^{*}ne^{-j2\pi \delta n}-s_ns_n^{*}n)=0}.
     \end{equation}
 Note $\sum_{n=0}^{N-1}{s_ns_n^{*}n}$ is real
-valued, which results the imaginary part of left hand side of~\eqref{eq:intm_neces_cond1} be zero;
-By putting the estimate for $S$ in~\eqref{eq:intm_neces_cond1} and rearranging the order of indexes, yields
+valued, which results in the imaginary part of left hand side of~\eqref{eq:intm_neces_cond1} be zero;
+By plugging the estimate for $S$ of~\eqref{eq:opt_S} into~\eqref{eq:intm_neces_cond1} and rearranging the order of indexes, yields
 
 \begin{equation}
     \label{eq:intm_neces_cond2}
-    \Im\bigg\{\sum_{m=0}^{N-1}{\sum_{n=0}^{N-1}{nr_{n}r_{m}^{*}s_n^{*}s_me^{j2\pi\hat{\delta}(m-n)}}}\bigg\} = 0.
+    \Im\bigg\{\sum_{m=0}^{N-1}{\sum_{n=0}^{N-1}{nr_{n}r_{m}^{*}s_n^{*}s_me^{j2\pi \delta(m-n)}}}\bigg\} = 0.
   \end{equation}
 A change of variables lets us focus on the difference between sampling instances $m$ and $n$.
-Let $k=m-n$,~\eqref{eq:intm_neces_cond2} becomes
+With $k=m-n$,~\eqref{eq:intm_neces_cond2} becomes
 
 \begin{equation}
     \label{eq:intm_neces_cond3}
-    \Im\bigg\{\sum_{m=0}^{N-1}{\sum_{k{=}m-(N-1)}^{m}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi \hat{\delta} k}}}\bigg\}=0.
+    \Im\bigg\{\sum_{m=0}^{N-1}{\sum_{k{=}m-(N-1)}^{m}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi \delta k}}}\bigg\}=0.
   \end{equation}
 Reversing the order of summation in~\eqref{eq:intm_neces_cond3}, we get
 
 \begin{equation}
     \begin{aligned}
     \label{eq:intm_neces_cond4}
-    \Im\bigg\{&\sum_{k=-(N-1)}^{0}\sum_{m=0}^{N-1+k}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi\hat{\delta}k}+}\\
-    &\sum_{k=1}^{N-1}\sum_{m=k}^{N-1}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi\hat{\delta}k}}\bigg\}= 0.
+    \Im\bigg\{&\sum_{k=-(N-1)}^{0}\sum_{m=0}^{N-1+k}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi \delta k}+}\\
+    &\sum_{k=1}^{N-1}\sum_{m=k}^{N-1}{(m{-}k)r_{m-k}r_{m}^{*}s_{m-k}^{*}s_me^{j2\pi \delta k}}\bigg\}= 0.
     \end{aligned}
   \end{equation}
-It is self-explanatory~\eqref{eq:intm_neces_cond4} for $k=0$ can be eliminated because of real-valued. For $k \neq 0$, the positive and negative index $k$ are symmetry. 
+The term for $k{=}0$ in~\eqref{eq:intm_neces_cond4} can be eliminated since it is real-valued. For $k \neq 0$, the positive and negative indices $k$ are symmetric. 
 After grouping terms appropriately, the necessary condition for $\hat{\delta}$ is given by
 
 \begin{equation}
@@ -83,7 +96,7 @@ A second solution is used to improve the estimation accuracy for coherent demodu
 
 The first estimator is rooted in the insight that at high SNR environment, every lag $k$ in~\eqref{eq:delta} can be used to
 approximate the true frequency offset $\bar{\delta}$. Assume noise is very small, i.e.,
-$r_m \approx s_mAe^{j(2\pi \bar{\delta} m+\phi)}$.~\eqref{eq:delta} can be expanded to
+$r_m \approx s_mAe^{j(2\pi \bar{\delta} m+\phi)}$, and~\eqref{eq:delta} can be expanded to
 
 \begin{equation}
     \label{eq:delta_extens_no_noise}
@@ -101,7 +114,7 @@ For one lag $k$, the SD estimator is given by
 \end{equation}
 
 \subsubsection{Choice of lag $k$}
-At low (or normal) SNR environment, i.e., noise effect cannot be ignored, the argument of numerator in~\eqref{eq:delta_SD} can be extended to 
+In low (or moderate) SNR environment, i.e., noise effect cannot be ignored, the argument of numerator in~\eqref{eq:delta_SD} can be extended to 
 
 \begin{equation}
     \label{eq:delta_extens_w_noise}
@@ -117,7 +130,8 @@ The last term can be neglected even at moderate SNR since the
 factors in the product are uncorrelated (as long as $k \neq 0$).
 The two middle terms yield a zero-mean, complex Gaussian random variable.
 If we denote the expression in~\eqref{eq:delta_extens_w_noise} as random variable $W(k)$,
-then these observations can be summarized as 
+then these observations can be summarized as
+% ask for more details are lack of. 
 
 \begin{equation}
     \label{eq:ori_pdf_W}
@@ -146,7 +160,7 @@ is approximately Gaussian distributed at moderate SNR with pdf
         \est{\delta}{\sd}(k) \sim \n \bigg(\bar{\delta},\frac{M}{4\pi^2k^2(N{-}k)E_s/N_0}\bigg).
   \end{equation}  
 We can see that $\hat{\delta}_{\text{SD}}(k)$ is unbiased. Moreover, the lag $k$ affects the variance of the SD estimator. 
-One best choice is to choose $k=\frac{2}{3}N$ to minimize the variance.
+The best choice is to choose $k=\lfloor\frac{2}{3}N\rfloor$ to minimize the variance.
 
 It should be noted that, to prevent "aliasing" of the frequency estimate, it's also required to choose the lag $k$ small enough to ensure $2\pi |\bar{\delta}| k < \pi$.
 Assuming an upper bound $\delta_{\text{max}}$ on the normalized frequency offset is available, 
@@ -168,7 +182,7 @@ where $\lfloor \cdot \rfloor$ and $\lceil \cdot \rceil$ are the floor and ceil o
 \subsubsection{Low-SNR Improvement}
 Recall the SD estimator is introduced by assuming SNR is relatively high. 
 The accuracy of the SD estimator may also be crucial at low SNR.
-One way to improving it is by averaging $K$ numbers of SD estimators with different lags $k$.
+One way to improving it is by averaging $K$ estimates of SD with different lags $k$.
 We call the resulting estimator the $K$-SD estimator, $\est{\delta}{K\text{-SD}}$.
 In this case, we trade off a $K$-fold increase in computational complexity for lower variance.
 
@@ -182,7 +196,7 @@ Simple linear combining of $K$ SD estimators yields the $K$-SD estimator
   \label{eq:K_SD_est}
       \est{\delta}{K\text{-SD}}=\sum_{k \in \cal K}\est{\delta}{\sd}(k)u_k.
 \end{equation}
-One optimal weight vector $\bm{u}_\opt$ can be obtained by minimizing the variance of $\est{\delta}{K\text{-SD}}$,
+The optimal weight vector $\bm{u}_\opt$ can be obtained by minimizing the variance of $\est{\delta}{K\text{-SD}}$,
 which is well-known as
 
 \begin{equation}
@@ -222,6 +236,4 @@ $\J^\prime(\cdot)$ denotes the derivative of $\J$ with respect to $\hat{\delta}$
     \end{equation}
 Our simulations indicate that only a single iteration is usually sufficient to achieve very good accuracy.
 
-% 
-% computational complexity can be ignored.
-% 
+

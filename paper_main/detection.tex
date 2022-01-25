@@ -4,24 +4,25 @@
 As illustrated in Figure~\ref{fig:sig_acquis_chain}, the first step to analyze
 the signal acquisition chain is to formulate the detector.
 The detection algorithm proceeds sequentially and each step a window of length $N$ received samples with 
-$N-1$ overlapped samples of the previous window is considered. The sequential detection problem solved 
+$N{-}1$ overlapped samples of the previous window is considered. The sequential detection problem solved 
 in this paper is fundamentally equivalent to sequential frame synchronization~\cite{Massey_72,Lui_Tan_86,Scholtz_80}.
-Since we mainly focus on the detection algorithm with respect to the timing instant (delay), to make analysis simpler,
-the fractional delay of~\eqref{eq:model} is neglected by assuming a sufficient large sample rate in this section. 
-The effect of fractional delay on detection will be discussed by looking at the receiver operating characteristics (ROC) in simulation (Section~\ref{sec:simulations}).
+To make analysis easier, we will focus on deriving the detection algorithm   
+by assuming the fractional delay is neglected at a sufficiently high sample rate in this section.
+The effect of fractional delay on our proposed detection algorithm will be discussed with different sampling rate, or equivalently, 
+oversampling factor in simulation section (Section~\ref{sec:simulations}). 
 
 \begin{figure}[t]
-  \centerline{\includegraphics[width=3.35in]{H1_H0_hypothesis.png}}
-  \caption{Received sequence in observation window containing partial preamble (Blue: current received sequence. Red: received sequence at true delay $\bar{p}$)}
+  \centerline{\includegraphics[width=2.4in]{H1_H0_hypothesis.png}}
+  \caption{Received sequence in observation window (the shaded area) containing partial preamble (Blue: current received sequence. Red: received sequence at true delay $\bar{p}$)}
   \label{fig:H1_H0_hypothesis}
   \end{figure}
 
-We start by looking at the likelihood ratio test (LRT) for detection task:
+We start by looking at the likelihood ratio test (LRT) for the detection task:
 Let $H_0$ be the null hypothesis that the preamble is not completely presented in the received sequence from the obeservation window 
 against the alternative $H_1$ that it does. 
 Define $\Delta$ to be the distance between current received sequence at position $p_c$ and the true position ($\bar{p}$) of the preamble, 
 i.e., $\Delta=|\bar{p}-p_c|$. Figure~\ref{fig:H1_H0_hypothesis} illustrates the case that the received sequence in observation window contains partial preamble.
-It is symmetry if the partial preamble shows on the left side of the observation window ($p_c>\bar{p}$).
+It is symmetric if the partial preamble shows on the left side of the observation window ($p_c>\bar{p}$).
 It is obvious that under $H_0$, $\Delta \neq 0$ while $H_1$ means $\Delta=0$. 
 Based on~\eqref{eq:model}, the conditional likelihood ratio test (LRT) can be built 
 between $H_0$ and $H_1$ by given the phasor $S{=}Ae^{j\phi}$ and frequency offset $b{=}e^{j2\pi \delta}$
@@ -65,7 +66,8 @@ e.g., Gold sequence, that the partial ACF is approximately equal to zero for all
 % the detector works when plugping in the estimator by assuming the current position is the true position.
 % then (6) -> (8).
 By assuming the above, after some proper scaling of~\eqref{eq:log likelihood}, the LRT 
-finally reduces to a generalized correlation function in terms of the time instant (delay) $p$,
+then reduces to a generalized correlation function in terms of the time instant (delay) $p$,
+
 \begin{equation}
     \label{eq:generalized_corr}
     \rho(p)=
@@ -74,13 +76,13 @@ finally reduces to a generalized correlation function in terms of the time insta
     {||\bm{r}_{p}||\cdot||\hat{\bm{s}}_{p}||} \LRT{H_1}{H_0} \gamma
   \end{equation}
 where $\hat{\bm{s}}_{p}$ represents the carrier-estimate corrected preamble, i.e., $\hat{s}_{p}[n]~{=}~s_{n}\hat{S}_{p}\hat{b}_{p}^n$ for $n=0,\ldots,N{-}1$,
-at delay $p_c$. $\hat{b}_{p_c}$ and $\hat{S}_{p_c}$ are the corresponding frequency and phasor estimates at delay $p$.
-$\bm{r}_{p}$ represents the received data sequence at delay $p$.
+at delay $p_c$. $\hat{b}_{p_c}$ and $\hat{S}_{p_c}$ are the frequency and phasor estimates at delay $p$.
+$||\bm{r}_{p}||$ is the Euclidean norm of received data sequence at delay $p$.
 $\gamma$ is the normalized detection threshold which lies on the range of $[0,1]$.
 Note, the LRT in~\eqref{eq:likelihood ratio} is not practical since the frequency and phasor offsets at true delay $\bar{p}$
 is unknown while detection. Instead of LRT, a generalized likelihood ratio test (GLRT) based detector can be built relying on the frequency and phasor estimates from each window of received sequence;
 Recall that the LRT of~\eqref{eq:likelihood ratio} is built conditionally on known frequency and phase offset 
-at the true position of preamble.
+at true position of the preamble.
 Therefore, the estimation algorithm for $\hat{b}_{p}$ and $\hat{S}_{p}$ can also be derived by
 assuming the current received sequence contains the true preamble (under $H_1$ hypothesis).
 % this tells the reason why we do estimation by assuming the position of preamble is known.
@@ -89,7 +91,12 @@ In conclusion, a GLRT based detector of~\eqref{eq:generalized_corr} is derived f
 Furthermore, since the sequential detection proceeds at every time instant, to make it work in practice, the complexity of the carrier estimates becomes
 much crucial. A low computational-complexity estimator should be derived for real detection purpose.
 
-%
-% \subsection{Fractional Delay}
-% don't know we should talk about the fractional delay or not for the time being. Just ignore it for a second.
-% 
+% should not include the original fractional delay part since I don't know the meaning for introducing the expected loss.
+% I think to talk about how large of the oversampling factor that the effect of fractional delay can be neglected is meaningful but not deep.
+
+
+
+
+
+
+
