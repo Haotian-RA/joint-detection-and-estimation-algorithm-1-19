@@ -2,19 +2,6 @@ clear
 clc
 close all
 
-% load('symbol32.mat')
-% % 
-% M=4;beta=0.5;L_0=32;L=8;
-% ps=srrc(L,beta,M);
-% ps=ps/sqrt(sum(ps.^2));
-% 
-% os_symbol=zeros(1,L_0*M); % oversampled symbol
-% os_symbol(1:M:M*L_0)=symbol32;
-% tx=conv(ps,os_symbol);  % tx before downsample
-
-% load('tx32_4M.mat')
-% load('tx64_4M.mat')
-
 % channel 
 normalized_true_freq_offset=0.0025/4; 
 normalized_true_phase_offset=2*pi*rand;

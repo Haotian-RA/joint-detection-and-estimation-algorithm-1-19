@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1643070260 "main.aux" "main.bbl" "main" 1643071957
+["bibtex main"] 1643074066 "main.aux" "main.bbl" "main" 1643074328
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1643071957 8470 c2830a3f143f5ecbf01c25d907a1db34 "pdflatex"
+  "main.aux" 1643074327 8470 3b0746d4f9f2be438c4c36fe31987f0f "pdflatex"
   "ref.bib" 1638824722 8849 983ebcbc23161d980f1c4a489fb820fd ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1643071954 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643071957
+["pdflatex"] 1643074324 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643074328
   "../main_matlab_figures//H1_H0_hypothesis.png" 1643046005 11928 03b1bf757db72e3d8dcd450c2e0a04d5 ""
   "../main_matlab_figures//SDR_receiver.png" 1639635815 66729 ca52ee618ba7741c793b9ea8680dc967 ""
   "../main_matlab_figures//accuracy_NM_SD.png" 1639432254 57863 85bf8004e273087744070142c7b458bc ""
@@ -176,15 +176,15 @@
   "appendices.tex" 1639698015 11739 14fc625e69e172876b1d7d8df5d9f409 ""
   "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
   "detection.tex" 1643070554 6736 45b4bea4342ad469f816ae17773ed650 ""
-  "freq_est.tex" 1643071953 13062 3522284b38cb601a9c816c53959c438f ""
+  "freq_est.tex" 1643074323 13062 da7909c3ce8ac60396ecc1b92fdc1f31 ""
   "introduction.tex" 1642741704 4357 93ac756f9a2690445912d77a78980083 ""
-  "main.aux" 1643071957 8470 c2830a3f143f5ecbf01c25d907a1db34 "pdflatex"
-  "main.bbl" 1643070260 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
+  "main.aux" 1643074327 8470 3b0746d4f9f2be438c4c36fe31987f0f "pdflatex"
+  "main.bbl" 1643074066 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
   "main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
   "model.tex" 1643071099 4560 c2f5cc73e9eaf1b5d52586e74d94acc7 ""
   "real_implementation.tex" 1639743909 5819 d805a3262555848aae7054ea451462ef ""
-  "simulations.tex" 1639693258 7764 9cf3612bc8e2686e83424fd84ea037b9 ""
+  "simulations.tex" 1643074207 7837 e6b7ad71cf788e62f44a8a2f23913f3c ""
   (generated)
-  "main.pdf"
   "main.log"
+  "main.pdf"
   "main.aux"

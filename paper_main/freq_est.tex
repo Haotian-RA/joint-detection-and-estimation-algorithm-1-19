@@ -183,14 +183,14 @@ where $\lfloor \cdot \rfloor$ and $\lceil \cdot \rceil$ are the floor and ceil o
 Recall the SD estimator is introduced by assuming SNR is relatively high. 
 The accuracy of the SD estimator may also be crucial at low SNR.
 One way to improving it is by averaging $K$ estimates of SD with different lags $k$.
-We call the resulting estimator the $K$-SD estimator, $\est{\delta}{K\text{-SD}}$.
+We call the resulting estimator the $K-$SD estimator, $\est{\delta}{K\text{-SD}}$.
 In this case, we trade off a $K$-fold increase in computational complexity for lower variance.
 
 Let $\bm{u}$ be a vector of non-negative, with
 $\sum_{k \in {\cal K}}u_k=1$; here ${\cal K}$ represents the set of $K$
 lags to be averaged.
 % extension to reviewer 1, comment 5, reviewer 3, comment 4
-Simple linear combining of $K$ SD estimators yields the $K$-SD estimator
+Simple linear combining of $K$ SD estimators yields the $K-$SD estimator
 
 \begin{equation}
   \label{eq:K_SD_est}
@@ -217,7 +217,7 @@ The SD estimator emphasizes low-complexity property and is intended to provide m
 to enable coherent detection. Once the signal has been acquired, the SD estimator can be improved by 
 investing additional computations. Since detection events are rare, the computational complexity is of little concern.
 
-The principle is to use the SD (or $K$-SD) estimator as the starting point for a Newton-type iteration 
+The principle is to use the SD (or $K-$SD) estimator as the starting point for a Newton-type iteration 
 aimed at finding a better solution to the necessary condition~\eqref{eq:delta}. 
 In principle, multiple iterations are possible to produce successively better approximations to the root of
 $\J(\hat{\delta})$ in~\eqref{eq:delta}. Specifically, the iterations are given by
