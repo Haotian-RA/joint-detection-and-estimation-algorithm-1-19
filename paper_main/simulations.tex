@@ -12,40 +12,93 @@ can be chosen optimally by $2/3$ length of the preamble (For $K-$SD estimator, a
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{generalized_correlation.png}}
-    \caption{Performance of GLRT based detector of~\eqref{eq:generalized_corr} via the received stream}
+    \caption{Performance of GLRT detector of~\eqref{eq:generalized_corr} at each delay of received stream (no fractional delay, dashed line: the position of $\bar{p}$)}
     \label{fig:Generalized correlation}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{receiver_operating_characteristics.png}}
-    \caption{Receiver operating characteristics of detector for different SNR}
+    \caption{Receiver operating characteristics of GLRT based detector for different lengths of reference sequence and SNR}
     \label{fig:Receiver operating characteristics}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{false_alarm_and_detection_probability.png}}
-    \caption{False alarm and detection ratio for different SNR and size of preamble}
+    \caption{False alarm and detection ratio for different SNR and sizes of preamble ($M=4$. Blue: false alarm probability. Red: detection probability)}
     \label{fig:False alarm and detection}
     \end{figure}
 
-Figure~\ref{fig:Generalized correlation} illustrates the performance of the proposed detector of~\eqref{eq:generalized_corr}. 
-We see from the figure that it does not show a perfect autocorrelation property after pulse shaping, e.g., around the position of the preamble, 
-the correlation decays very slow. The problem happens that it makes~\eqref{eq:generalized_corr} much more challengable to choose the threshold to 
-distinguish between the real position of the preamble and its corresponding adjacent positions. The solution to mitigating it is to 
-adjust the detection algorithm by changing making the decisions at each observation individually (by comparing the correlation and threshold) to
-finding the local maximum of the correlation.
+\begin{figure}[t]
+    \centerline{\includegraphics[width=3.4in]{false_alarm_and_detection_probability_fractional_delay.png}}
+    \caption{Comparison between false alarm and detection ratio with and without maximum $\Delta p$ for same $L_0$ and different SNR ($M=4$. Blue: $P_{\text{FA}}$. Red: $P_{\text{D}}$)}
+    \label{fig:False alarm and detection with frac delay}
+    \end{figure}
+
+In this section, we first illustrate the simulation results of the detection algorithm without considering the fractional delay.
+The effect of fractional delay on detection will be discussed at the end of this section. 
+
+Figure~\ref{fig:Generalized correlation} illustrates the performance of the proposed detector in~\eqref{eq:generalized_corr} without fractional delay for 
+$L_0=32$, $M=8$,~\numb{0}\dB~SNR. The GLRT based detector performs robust at low SNR since it achieves the highest generalized correlation at $\bar{p}$.
+However, from the adjacent correlations centered at $\bar{p}$ that we point out,
+the correlation decays very slow and thus it will make much more challenging to choose the threshold to distinguish between 
+the true position of received sequence and its corresponding adjacent positions. This is due to pulse shaping and oversampling. Specifically,
+the width of "mainlobe" depends on the shape of pulse and the value of $M$, e.g., 
+it will become wider if $M$ is larger. 
+To accommodate this imperfect autocorrelation influence by pulse shaping and oversampling, we adjust the detection algorithm by finding the local maximum of the correlation near $\bar{p}$ instead of
+just comparing the correlations with threshold to make the decisions at each delay. 
 
 Figure~\ref{fig:Receiver operating characteristics} shows the receiver operating characteristics (ROC) of the proposed (adjusted) detector.
-It basically illustrates that the detector has good ROCs at moderate SNR. Specifically, the detector achieves perfect ROCs for positive SNR (in decibel); 
-Moreover, it is robust to low SNR environment, e.g., we can pick such a threshold to achieve 
-$10^{-3}$ false alarm probability and $0.75$ detection probability simultaneously.
+It basically illustrates that the detector has good ROCs at very low SNR. Specifically, the detector achieves perfect ROCs for positive SNR for all length of $L_0$; 
+Moreover, it is still robust to negative SNR environment. For instants, we can select such a threshold to achieve  
+$P_{\text{FA}} \approx 10^{-3}$ and $P_{\text{D}} \geq 0.8$ simultaneously when $L_0=32$ and SNR $=$~\numb{-2}\dB.
 However, it is not clear from this figure to pick an exact threshold for certain detection purpose.
 
-Figure~\ref{fig:False alarm and detection} shows the performance of detector but from another perspective. Specifically, it gives us a clearer insight into
-the false alarm and detection probabilities via the threshold.
-It is common that it's hard to pick such a threshold to accommodate all specific detection purposes.
-For simulation purpose, if we want to determine a threshold to work for the reference signal sequence with $L_0 {\geq} 32$ and up to~\numb{10}\dB~SNR,
-Based on Figure~\ref{fig:False alarm and detection} and Neyman-Pearson criterion, $\gamma=0.43$ is a good choice to meet $P_{\text{FA}}<1e^{-3}$ and nearly perfect $P_{\text{D}}$.
+Figure~\ref{fig:False alarm and detection} shows the performance of detector but from another perspective. Specifically, it gives us a deep insight into
+the false alarm and detection probabilities versus the threshold. 
+Basically, we have two observations. First, compared with the two curves of~\numb{0}dB~and~\numb{10}dB SNR for $L_0=32$,
+we see the latter needs to achieve the same false alarm probability with a higher threshold. This is because the level of "sidelobe" in Figure~\ref{fig:Generalized correlation} is
+increasing in terms of SNR; If we look at the same two curves of $P_{\text{D}}$, the curve of a high SNR maintains a perfect $P_{\text{D}}$ at a higher threshold. This is due to
+the increasing level of "mainlobe" via SNR. Second, compared with two curves with different $L_0$ and same SNR, we see that the received sequence with more symbols achieves the same $P_{\text{FA}}$
+at lower threshold. The reason is that the sequence with more symbols will have a better autocorrelation property.  
+Moreover, it is commonly hard to pick such a threshold to accommodate all specific detection purposes.
+For simulation purpose, now if we want to determine a threshold to work for all reference sequences with $L_0 {\geq} 32$ and SNR up to~\numb{10}\dB,
+based on Figure~\ref{fig:False alarm and detection} and Neyman-Pearson criterion, $\gamma=0.43$ is a good choice to meet $P_{\text{FA}}<1e^{-3}$ and nearly perfect $P_{\text{D}}$ for all lengths of $L_0$.
+
+To this point, we discuss the effect of fractional delay $\Delta p$ in model~\eqref{eq:model} on modified detection algorithm. 
+Above, we assume $\Delta p$ is neglected when sampling rate $f_s$ is sufficiently large. 
+However, when $f_s$ is not much bigger than symbol rate, 
+or equivalently, the oversampling factor $M$ is relatively small, 
+the value of $\Delta p$ will degrade the performance of detection and estimation due to
+mismatching between the preamble in received and reference sequence.
+For example, when $M{=}1$ and the preamble has the maximum fractional delay 
+equaling to $\Delta p=\pm\frac{1}{2f_s}=\pm\frac{T}{2M}=\pm\frac{T}{2}$, 
+half of the preamble in received and reference sequence is mismatched thus the peak of
+generalized correlation in Figure~\ref{fig:Generalized correlation} will disappear.
+Instead, Two peaks will show up: one at $\bar{p}$ and another one at the adjacent $p$ depending on the sign of $\Delta p$.
+Recall, the detection algorithm is to find the local maximum of generalized correlation around $\bar{p}$.
+Thus, there is no doubt that $\Delta p$ will greatly decrease the detection probability, as shown in Figure~\ref{fig:False alarm and detection with frac delay}.
+
+In Figure~\ref{fig:False alarm and detection with frac delay}, the most intuitive observation is that the curves of $P_{\text{D}}$ with (maximum) fractional delay for all SNR
+do not start at 1 when $\gamma$ is very low. The detector is hard to make the correct decision between the adjacent two delays with similar high correlations. 
+If we compare with the two curves of $P_{\text{D}}$ for SNR $=\numb{0}\dB$ and $\numb{10}\dB$
+both with fractional delay, the initial $P_{\text{D}}$ of $\numb{10}\dB$ SNR is approxmiately 0.6 and greater than 0.5 at $\numb{0}\dB$.
+This is because at low SNR, the noise level degrades the detection performance; While, at high SNR, 
+the percentage of the mismatched preamble between received and reference sequence 
+is below $50\%$ since $\Delta p{=}{\pm}\frac{T}{2M}{=}{\pm}\frac{T}{8}$. The generalized correlation
+at $\bar{p}$ will be larger than at the adjacent delay with the probability more than $1/2$.
+
+We can also see the fractional delay has a small effect on false alarm probability, which is important. For example, as we discussed above,
+if we want to choose a threshold to work for the detection task that all reference sequences with $L_0 {\geq} 32$
+and SNR${\leq}$\numb{10}\dB, then from Figure~\ref{fig:False alarm and detection} and~\ref{fig:False alarm and detection with frac delay},
+$\gamma=0.43$ is still a good choice to meet the requirement of false alarm probability. Note, when $\Delta p$ is large, although $\Delta p$ will "lead" the 
+detector to make the decision between the two adjacent delays with similar highest generalized correlation,
+we can just keep either one as the detection result but care more about the estimation accuracy with the determined received sequence
+for coherent demodulation. Thus, in the next section, we will discuss the degradation of estimation accuracy with different levels of $\Delta p$.
+The goal is to choose an oversampling factor $M$ that makes the estimation error negligible.
+
+
+ 
+
 
 \subsection{Simulation Results for Estimation}
 
