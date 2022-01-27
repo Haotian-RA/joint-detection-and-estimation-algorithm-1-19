@@ -1,16 +1,17 @@
 # Fdb version 3
-["bibtex main"] 1643238039 "main.aux" "main.bbl" "main" 1643238521
+["bibtex main"] 1643304828 "main.aux" "main.bbl" "main" 1643304942
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1643238521 9003 be9bfb593108dc96fed92161fa0e0480 "pdflatex"
+  "main.aux" 1643304942 9302 3492bc68a241c19095db1a62ee500a0f "pdflatex"
   "ref.bib" 1638824722 8849 983ebcbc23161d980f1c4a489fb820fd ""
   (generated)
-  "main.bbl"
   "main.blg"
-["pdflatex"] 1643238518 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643238521
+  "main.bbl"
+["pdflatex"] 1643304939 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643304942
   "../main_matlab_figures//H1_H0_hypothesis.png" 1643046005 11928 03b1bf757db72e3d8dcd450c2e0a04d5 ""
   "../main_matlab_figures//SDR_receiver.png" 1639635815 66729 ca52ee618ba7741c793b9ea8680dc967 ""
   "../main_matlab_figures//accuracy_NM_SD.png" 1639432254 57863 85bf8004e273087744070142c7b458bc ""
   "../main_matlab_figures//accuracy_NM_traditional.png" 1639417545 54090 d4226028c75c80afa4e3ed0dd79bc2ae ""
+  "../main_matlab_figures//accuracy_NM_with_M_frac.png" 1643260269 48012 9d73c809416c09ea003ca99bce7d5428 ""
   "../main_matlab_figures//false_alarm_and_detection_probability.png" 1643158177 68403 29d70f7800aacb29ed936337571291cc ""
   "../main_matlab_figures//false_alarm_and_detection_probability_fractional_delay.png" 1643212264 77412 65cb05a502ddda6ad8c535bb1aa589e2 ""
   "../main_matlab_figures//freq_NM_with_different_size.png" 1639437237 79236 9e599e1468d94a6cd12c9aa80a3e5f40 ""
@@ -177,15 +178,15 @@
   "appendices.tex" 1639698015 11739 14fc625e69e172876b1d7d8df5d9f409 ""
   "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
   "detection.tex" 1643070554 6736 45b4bea4342ad469f816ae17773ed650 ""
-  "freq_est.tex" 1643123759 13562 755ae64dffb6ab7d1424b677d0889f00 ""
+  "freq_est.tex" 1643245000 13640 9c1822dff92acf78e51f5315ded2218d ""
   "introduction.tex" 1642741704 4357 93ac756f9a2690445912d77a78980083 ""
-  "main.aux" 1643238521 9003 be9bfb593108dc96fed92161fa0e0480 "pdflatex"
-  "main.bbl" 1643238040 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
+  "main.aux" 1643304942 9302 3492bc68a241c19095db1a62ee500a0f "pdflatex"
+  "main.bbl" 1643304828 4057 3bd88f40eaa7679d860a5ec5f8615f4c "bibtex main"
   "main.tex" 1639743909 3150 e494f68fe99f1d9775909c423d3c8db4 ""
   "model.tex" 1643071099 4560 c2f5cc73e9eaf1b5d52586e74d94acc7 ""
-  "real_implementation.tex" 1639743909 5819 d805a3262555848aae7054ea451462ef ""
-  "simulations.tex" 1643238517 13077 8dba22069f98b2ea7eebbfd8d2db0d17 ""
+  "real_implementation.tex" 1643257481 6068 f99693d5e69d35c2c2599f810e46807f ""
+  "simulations.tex" 1643304938 15159 2348196982bee73258f3e3a0c68b8894 ""
   (generated)
+  "main.log"
   "main.aux"
   "main.pdf"
-  "main.log"

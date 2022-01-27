@@ -93,12 +93,8 @@ and SNR${\leq}$\numb{10}\dB, then from Figure~\ref{fig:False alarm and detection
 $\gamma=0.43$ is still a good choice to meet the requirement of false alarm probability. Note, when $\Delta p$ is large, although $\Delta p$ will "lead" the 
 detector to make the decision between the two adjacent delays with similar highest generalized correlation,
 we can just keep either one as the detection result but care more about the estimation accuracy with the determined received sequence
-for coherent demodulation. Thus, in the next section, we will discuss the degradation of estimation accuracy with different levels of $\Delta p$.
-The goal is to choose an oversampling factor $M$ that makes the estimation error negligible.
-
-
- 
-
+for coherent demodulation. Thus, in the next section, we will talk about the degradation of estimation accuracy with different levels of $\Delta p$.
+The goal is to choose the oversampling factor $M$ that makes the estimation error negligible.
 
 \subsection{Simulation Results for Estimation}
 
@@ -110,32 +106,39 @@ The goal is to choose an oversampling factor $M$ that makes the estimation error
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{accuracy_NM_traditional.png}}
-    \caption{Accuracy of the NM and traditional estimators ($L_0=32$)}
+    \caption{Accuracy of the NM estimator and conventional estimators ($L_0=32$)}
     \label{fig:accuracy_NM_traditional}
     \end{figure}
 
 \begin{figure}[t]
+    \centerline{\includegraphics[width=3.4in]{accuracy_NM_with_M_frac.png}}
+    \caption{Accuracy of NM estimator with maximum fraction delay for different value of oversampling factor ($L_0=32$, $\Delta p=\frac{T}{2M}$)}
+    \label{fig:accuracy_NM_with_M_frac}
+    \end{figure}
+
+\begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{freq_NM_with_different_size.png}}
-    \caption{Accuracy of NM frequency estimate in joint detection and estimation ($\gamma=0.43$)}
+    \caption{Accuracy of NM frequency estimate in joint detection and estimation ($\gamma=0.43$, $M=4$, $\Delta p \in (-\frac{T}{8},\frac{T}{8}]$)}
     \label{fig:accuracy_freq_NM_joint}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.4in]{phi_NM_with_different_size.png}}
-    \caption{Accuracy of the NM phase estimate in joint detection and estimation ($\gamma=0.43$)}
+    \caption{Accuracy of the NM phase estimate in joint detection and estimation ($\gamma=0.43$, $M=4$, $\Delta p \in (-\frac{T}{8},\frac{T}{8}]$)}
     \label{fig:accuracy_phi_NM_joint}
     \end{figure}
 
-\begin{figure*}[t]
-    \centerline{\includegraphics[width=6.5in]{SDR_receiver.png}}
-    \caption{Block diagram for implementing the proposed algorithm on software-defined radio (some steps are omitted)}
-    \label{fig:SDR_receiver}
-    \end{figure*}
+In this section, we focus on the estimating accuracy of our proposed estimators (SD, or $K-$SD and NM)
+by assuming no fractional delay and the sequential GLRT detection progress is perfect.
+The simulation shows the NM estimator can achieve as good accuracy as those conventional estimators in ~\cite{Kay_89,Luise_Reggiannini_95,Fitz_94}
+for coherent demodulation at moderate SNR. 
+Then, the effect of fractional delay $\Delta p$ on estimating accuracy with respect to $M$ will be discussed.
+We find that $M=4$ yields a negligible estimation error from $\Delta p$.
+At the end of this section, we will also show the estimating accuracy of NM estimator after joint detection and simulation for coherent demodulation.  
 
-For simulation purpose, we assume that the detection pro\-gress is perfect in this section.
-Figure~\ref{fig:accuracy_NM_SD} emphasizes illustrating the accuracy of the two proposed estimators, 
-the SD estimator of~\eqref{eq:delta_SD} and the NM estimator of~\eqref{eq:iter_NM_est} in this paper.
-The lower dashed line denotes the Cramer-Rao vector bound (CRVB) for frequency estimate, which is given by
+Figure~\ref{fig:accuracy_NM_SD} gives the insight into the accuracy of two proposed estimators.
+The lower dashed line denotes the Cramer-Rao vec-tor bound (CRVB) for frequency estimate in~\eqref{eq:model}
+multiplied by $M$, which is given by
 
 \begin{equation}
     \label{eq:CRVB_freql}
@@ -147,27 +150,40 @@ Furthermore, the CRVB for $\phi$ is derived as
     \label{eq:CRVB_phi}
     \text{CRVB}(\phi) \geq \frac{2}{L_{0}E_s/N_{0}}.
   \end{equation}
-The derivations of~\eqref{eq:CRVB_freql} and~\eqref{eq:CRVB_phi} are given in Appendix~\ref{BL}.
-
-In Figure~\ref{fig:accuracy_NM_SD}, we see the NM estimator approaches the CRVB. The accuracy of the SD estimator is crucial
+The derivation steps of~\eqref{eq:CRVB_freql} and~\eqref{eq:CRVB_phi} are given in Appendix~\ref{BL}.
+In Figure~\ref{fig:accuracy_NM_SD}, we see the NM estimator approaches the CRVB at SNR$=\numb{4}\dB$. 
+Note, the accuracy of the SD estimator is crucial
 not only just for building the GLRT detector but deciding the accuracy of the NM estimator.
 The evidence is that the NM estimator performs even worse than the SD estimator at low SNR.
 This is because the Newton iteration of~\eqref{eq:iter_NM_est} converges occasionally to local
-minimum away from the true frequency offset if the beginning estimate is really far from. Figure~\ref{fig:accuracy_NM_SD} also shows the averaging method of~\eqref{eq:K_SD_est}
+minimum away from the true frequency offset if the initial (SD) estimate is far from the true frequency offset. 
+Moreover, Figure~\ref{fig:accuracy_NM_SD} shows the averaging method of~\eqref{eq:K_SD_est}
 improves the accuracy of the SD estimator thus improves the NM estimator at low SNR.
 
-Figure~\ref{fig:accuracy_NM_traditional} compares the performance of the NM and traditional estimators in ~\cite{Kay_89,Luise_Reggiannini_95,Fitz_94}.
-Related to Figure~\ref{fig:accuracy_NM_SD}, we conclude that the NM estimator can achieve as good accuracy as those autocorrelation-based estimators 
+Figure~\ref{fig:accuracy_NM_traditional} compares the performance of the NM estimator and conventional estimators in ~\cite{Kay_89,Luise_Reggiannini_95,Fitz_94}.
+Related to Figure~\ref{fig:accuracy_NM_SD}, we co-nclude that the NM estimator can achieve as good accuracy as those autocorrelation-based estimators 
 (L\&R estimator~\cite{Luise_Reggiannini_95} and Fitz estimator~\cite{Fitz_94})
-when the SD estimator is accurate enough. To put it another way, without increasing complexity by averaging with multiple SD estimators, 
+when the SD estimator is accurate enough. Put it another way, without increasing complexity by averaging with multiple SD estimators, 
 the NM estimator can achieve the same good accuracy as the traditional estimators at moderate SNR.
 
-\subsection{Simulation Results for Detection and Synchronization}
+Now we are going to discuss the effect of $\Delta p$ on estimating accuracy of the NM estimator.
+In the previous section, we got the conclusion that $\Delta p$ both degrades the detection probability
+and estimating accuracy because of the mismatching between the preamble in received and reference sequence.
+The solution to dealing with the degradation of detection is to maintain the decision of detector but sacrifice the 
+accuracy of the estimator. Thus, we need to select the oversampling factor $M$ that makes the fractional delay $\Delta p$ small enough and the estimation error negligible.  
+Figure~\ref{fig:accuracy_NM_with_M_frac} illustrates the estimating accuracy of NM estimator with maximum fractional delay
+equaling to $\Delta p{=}\frac{T}{2M}$ for different $M$. It can be seen that when $M=1,2$, i.e., $\Delta p=\frac{T}{2},\frac{T}{4}$, the gap between
+the mean-squared error (MSE) and the CRVB is obvious; The MSE of two curves for $M=4$ and $M=8$ both nearly approach the
+CRVB. But note, the reference sequence with $M=8$ induces an extra double computational complexity than $M=4$. Thus, $M=4$ is an ideal choice
+for joint detection and estimation purpose in this paper.
 
-This section simulates the complete signal acquisition chain and shows the simulation results of the last step in Figure~\ref{fig:sig_acquis_chain}.
-Figure~\ref{fig:accuracy_freq_NM_joint} and~\ref{fig:accuracy_phi_NM_joint} illustrate the performance of our proposed joint detection and 
-carrier synchronization algorithm. No averaged SD estimator is used because we want to reduce the complexity of the sequential detection process.
+At end of simulation section, the complete signal acquisition chain (joint detection and estimation) in Figure~\ref{fig:sig_acquis_chain} is simulated.
+Figure~\ref{fig:accuracy_freq_NM_joint} and~\ref{fig:accuracy_phi_NM_joint} illustrate the performance of NM estimator after joint detection and 
+estimation. $\Delta p$ is included with the range determined by $M$.
+The parameters, e.g., the value of $\gamma$, the oversampling factor $M$, are chosen based on the previous discussion.
+No averaged SD estimator is used because we want to reduce the complexity of the sequential detection process.
 Compared with Figure~\ref{fig:False alarm and detection} and Figure~\ref{fig:accuracy_NM_SD}, the reason for the NM estimator not approaching the CRVB at low SNR
-is due to the non-sufficient accuracy of the SD estimator. 
-Besides that, we can also get a common result that by increasing
+is due to non-sufficient accuracy of the SD estimator. Besides that, we can get a common conclusion that by increasing
 the size of the preamble, better performance of carrier synchronization is realized and CRVB is approached at lower SNR.
+
+
