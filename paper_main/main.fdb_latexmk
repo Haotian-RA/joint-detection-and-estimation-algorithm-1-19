@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex main"] 1643686423 "main.aux" "main.bbl" "main" 1643686467
+["bibtex main"] 1643687263 "main.aux" "main.bbl" "main" 1643687314
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1643686467 10324 896a63ddd9da8484cac8271e34821a52 "pdflatex"
+  "main.aux" 1643687314 10324 896a63ddd9da8484cac8271e34821a52 "pdflatex"
   "ref.bib" 1643684195 9680 c7e6dd0b7c1d02af6dc75f6eb56fb337 ""
   (generated)
   "main.blg"
   "main.bbl"
-["pdflatex"] 1643686463 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643686467
+["pdflatex"] 1643687310 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_main/main.tex" "main.pdf" "main" 1643687314
   "../main_matlab_figures//H1_H0_hypothesis.png" 1643046005 11928 03b1bf757db72e3d8dcd450c2e0a04d5 ""
   "../main_matlab_figures//SDR_phasor_SD.png" 1643680652 45320 33a9ed88fed68bad27bae119d192089e ""
   "../main_matlab_figures//SDR_receiver.png" 1643683678 39092 ce3e4b78b076941c057bc55c16c3db22 ""
@@ -183,13 +183,13 @@
   "detection.tex" 1643070554 6736 45b4bea4342ad469f816ae17773ed650 ""
   "freq_est.tex" 1643433550 13700 af4e06c9f37215e2319a151112ff7ab7 ""
   "introduction.tex" 1643560367 4621 8eb142eb1b1f27fe74ca2ccfbbc56e3a ""
-  "main.aux" 1643686467 10324 896a63ddd9da8484cac8271e34821a52 "pdflatex"
-  "main.bbl" 1643686423 4647 805f61a17de92b6269503b3562bd4626 "bibtex main"
+  "main.aux" 1643687314 10324 896a63ddd9da8484cac8271e34821a52 "pdflatex"
+  "main.bbl" 1643687263 4647 805f61a17de92b6269503b3562bd4626 "bibtex main"
   "main.tex" 1643337550 3168 2f76201aefc3c161c2a763a0b23ac90b ""
   "model.tex" 1643332208 4302 3b794ac7c2f259eb769f273a8c36f22c ""
-  "real_implementation.tex" 1643686462 9671 268f2ca35cee7d04249439e30d94a89f ""
+  "real_implementation.tex" 1643687309 9585 94e16ad8d2a8e6ff6445ff622e1a195a ""
   "simulations.tex" 1643683931 15695 cafb3248bbe856b9d2c0b21808709d27 ""
   (generated)
-  "main.pdf"
-  "main.log"
   "main.aux"
+  "main.log"
+  "main.pdf"

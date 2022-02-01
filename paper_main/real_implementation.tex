@@ -120,14 +120,13 @@ The CPU is Intel(R) Core(TM) i7-9750H, which includes 6 cores and 12 threads.
 The best clock speed of CPU can go up to 4500 MHz. Based on above, 
 the google benchmark~\cite{Google_benchmark} for each function node in Figure~\ref{fig:SDR_receiver} are shown in Table~\ref{table:BM_function_nodes}.
 Note, the time cost in the table should refer to one buffer size, i.e., 8192 received samples; Moreover, the throughput of 
-the pipeline is determined by the node with the longest time. Thus, the throughput of the modified algorithm can be ideally approximated by
+the pipeline is determined by the node with the longest time. Thus, the ideal throughput of the modified algorithm can be approximated by
 $8192/837253 \cdot 10^3 \approx 9.78$ MHz.
-However, the best throughput cannot go that number because of the limit of maximum clock speed of CPU. 
 
 Based on the above discussion, we test the modified joint detection and estimation algorithm by setting
 the sample rate at transmitter be 10 MS/s; Moreover, the transmitter gain plus receiver gain
-is 20 dB. As a result, the maximum throughput of the modified algorithm is approaching 4.5 MS/s with latency near 1 ms;
-The detection algorithm is very robust and the false alarm probability is near 0.
+is 20 dB. As a result, the maximum throughput of the modified algorithm is in the range of 4.5 MS/s $\sim$ 5.0 MS/s with latency near 1 ms;
+The detection algorithm is very robust that the false alarm probability is near 0.
 
 
 
