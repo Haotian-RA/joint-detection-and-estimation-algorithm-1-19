@@ -87,6 +87,21 @@ J.~{Massey}, ``Optimum frame synchronization,'' {\em IEEE Transactions on
 R.~{Scholtz}, ``Frame synchronization techniques,'' {\em IEEE Transactions on
   Communications}, vol.~28, no.~8, pp.~1204--1213, 1980.
 
+\bibitem{TBB_website}
+Oneapi-Src, ``Oneapi-src/onetbb: Oneapi threading building blocks (onetbb).''
+  \textit{GitHub}.~[Online].~Available:~\url{https://github.com/oneapi-src/oneTBB}.
+\newblock [Accessed: 28-Jan-2022].
+
+\bibitem{TBB_book}
+J.~R. Michael~Voss, Rafael~Asenjo, {\em Pro TBB: C++ Parallel Programming with
+  Threading Building Blocks}.
+\newblock 2019.
+
+\bibitem{Google_benchmark}
+Google, ``google/benchmark: A microbenchmark support library.''
+  \textit{GitHub}.~[Online].~Available:~\url{https://github.com/google/benchmark}.
+\newblock [Accessed: 28-Jan-2022].
+
 \bibitem{VanTrees_vol1}
 H.~L. Van~Trees, {\em Detection, estimation, and modulation theory}.
 \newblock New York: Wiley, 1968.

@@ -177,7 +177,7 @@ the mean-squared error (MSE) and the CRVB is obvious; The MSE of two curves for 
 CRVB. But note, the reference sequence with $M=8$ induces an extra double computational complexity than $M=4$. Thus, $M=4$ is an ideal choice
 for joint detection and estimation purpose in this paper.
 
-At end of simulation section, the complete signal acquisition chain (joint detection and estimation) in Figure~\ref{fig:sig_acquis_chain} is simulated.
+At the end of simulation section, the complete signal acquisition chain (joint detection and estimation) is simulated.
 Figure~\ref{fig:accuracy_freq_NM_joint} and~\ref{fig:accuracy_phi_NM_joint} illustrate the performance of NM estimator after joint detection and 
 estimation. $\Delta p$ is included with the range determined by $M$.
 The parameters, e.g., the value of $\gamma$, the oversampling factor $M$, are chosen based on the previous discussion.
@@ -186,4 +186,14 @@ Compared with Figure~\ref{fig:False alarm and detection} and Figure~\ref{fig:acc
 is due to non-sufficient accuracy of the SD estimator. Besides that, we can get a common conclusion that by increasing
 the size of the preamble, better performance of carrier synchronization is realized and CRVB is approached at lower SNR.
 
+\begin{figure*}[t]
+    \centerline{\includegraphics[width=6.5in]{SDR_receiver.png}}
+    \caption{Block diagram for implementing the proposed joint detection and estimation algorithm in Threading Building Blocks}
+    \label{fig:SDR_receiver}
+    \end{figure*}
 
+\begin{figure*}[t]
+    \centerline{\includegraphics[width=6.5in]{SDR_phasor_SD.png}}
+    \caption{Block diagram for modified computation of phasor estimator (the middle level of dashed area in Figure~\ref{fig:SDR_receiver}) in Threading Building Blocks}
+    \label{fig:SDR_phasor_SD}
+    \end{figure*}

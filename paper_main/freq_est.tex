@@ -26,18 +26,17 @@ closed form for the estimated phasor $\hat{S}$ is readily derived,
     \label{eq:opt_S}
     \hat{S}=\frac{\sum_{n=0}^{N-1}{r_{n}s_n^{*}e^{-j2\pi\hat{\delta} n}}}{\sum_{n=0}^{N-1}|s_{n}|^2},
   \end{equation}
-and $\hat{\phi}=\arg\{S\}$. We see the estimate of phasor $\hat{S}$ relies on the estimate of frequency $\hat{\delta}$ at $\bar{p}$.
+and $\hat{\phi}=\arg\{S\}$. We see the estimate of phasor $\hat{S}$ relies on the estimate of frequency $\hat{\delta}$.
 It is shown later the derivation of $\hat{\delta}$ also plugs in the expression of phasor estimate in~\eqref{eq:opt_S}. Thus, the estimators for frequency and phasor are
 joint estimators. Moreover, by plugging~\eqref{eq:opt_S} in~\eqref{eq:generalized_corr}, the GLRT based detector finally reduces to
 
 \begin{equation}
   \label{eq:reduced_GLRT_detector}
   \rho(p)=
-  \frac{|\hat{S}_p|}
+  \frac{|\hat{S}^{(\text{num})}_p|}
   {||\bm{r}_{p}||\cdot||\bm{s}||} \LRT{H_1}{H_0} \gamma
 \end{equation}
-where $||\bm{s}||$ denotes Euclidean norm of the preamble. The most benefit of~\eqref{eq:reduced_GLRT_detector} against to
-~\eqref{eq:generalized_corr} is the greatly decrease of compu-tational complexity.
+where $\hat{S}^{(\text{num})}$ denotes the numerator of phasor estimate in~\eqref{eq:opt_S} and $||\bm{s}||$ is Euclidean norm of the preamble. From~\eqref{eq:reduced_GLRT_detector} to~\eqref{eq:generalized_corr}, the computational complexity is greatly decreased.
 
 % extension to reviewer 1, comment 3, reviewer 3, comment 4
 The frequency estimate is obtained similarly as the zero of the
