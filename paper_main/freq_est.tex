@@ -184,9 +184,9 @@ the optimal choosing policy for lag $k_{\opt}$ is refined as
 where $\lfloor \cdot \rfloor$ and $\lceil \cdot \rceil$ are the floor and ceil operation, respectively.
 
 \subsubsection{Low-SNR Improvement}
-Recall the SD estimator is introduced by assuming SNR is relatively high. 
-The accuracy of the SD estimator may also be crucial at low SNR.
-One way to improving it is by averaging $K$ estimates of SD with different lags $k$.
+Recall that the expression of SD estimator with optimal choice $k$ only fits a moderate SNR.
+The performance of SD at low SNR is also crucial and needs to be discussed.
+One way to improving the accuracy is by averaging $K$ estimates of SD with different lags $k$.
 We call the resulting estimator the $K-$SD estimator, $\est{\delta}{K\text{-SD}}$.
 In this case, we trade off a $K$-fold increase in computational complexity for lower variance.
 
