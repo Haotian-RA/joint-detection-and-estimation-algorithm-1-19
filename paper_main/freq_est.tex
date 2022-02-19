@@ -89,13 +89,13 @@ identity for large $N$.
 Both solutions have computational complexity $O(N^2)$ reflecting the
 double summation.
 
-We propose a family of alternative solutions to~\eqref{eq:delta}.
-A solution with $O(N)$ complexity is used for operating at the sample
+Recall our paper focus on the joint detection and estimation problem. Thus, we propose a family of alternative solutions to~\eqref{eq:delta}.
+A coarse solution with $O(N)$ complexity is used for operating at the sample
 rate during the sequential GLRT detection;
 it prioritizes low complexity at the expense of some loss of accuracy.
-A second solution is used to improve the estimation accuracy for coherent demodulation once the preamble has been detected.
+A fine solution is used to improve the estimation accuracy for coherent demodulation once the preamble has been detected.
 
-\subsection{Solution I: Single-Difference (SD) Estimator}
+\subsection{Solution I: (Coarse) Single-Difference (SD) Estimator}
 
 The first estimator is rooted in the insight that at high SNR environment, every lag $k$ in~\eqref{eq:delta} can be used to
 approximate the true frequency offset $\bar{\delta}$. Assume noise is very small, i.e.,
@@ -108,46 +108,68 @@ $r_m \approx s_mAe^{j(2\pi \bar{\delta} m+\phi)}$, and~\eqref{eq:delta} can be e
 Note that in~\eqref{eq:delta_extens_no_noise} the inner summation is purely real for every lag~$k$ if $\hat{\delta}=\bar{\delta}$.
 This observation suggests that an unbiased estimate of the frequency offset can be obtained by using only a single lag~$k$
 from~\eqref{eq:delta}. The approach lowers the complexity from $O(N^2)$ to $O(N)$ and permits a closed-form solution for $\hat{\delta}$.  
-Thus, the SD estimator is used for sequential GLRT detection in this paper. 
+The disadvantage of the estimator by using single lag $k$ is its insufficient estimating accuracy since it lacks of the processing gain by outer integrator.
+Thus, the estimator is named as the coarse SD estimator. We just omit "coarse" for simplicity from now.
+However, due to the low complexity, the SD estimator can be used for 
+frequency offset correction of sequential GLRT detector in~\eqref{eq:generalized_corr}. 
 
 \subsubsection{Closed-form expression} 
-For one lag $k$, the SD estimator is given by
+For one lag $k$, the primary SD estimator is directly obtained by reducing~\eqref{eq:delta_extens_no_noise},
 \begin{equation}
     \label{eq:delta_SD}
-    \est{\delta}{\sd}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k}.
+    \est{\delta}{\text{primary}-\sd}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k}.
 \end{equation}
 
-\subsubsection{Choice of lag $k$}
-In low (or moderate) SNR environment, i.e., noise effect cannot be ignored, the argument of numerator in~\eqref{eq:delta_SD} can be extended to 
+\subsubsection{Performance of primary SD estimator}
+In low (or moderate) SNR environment, i.e., noise effect cannot be ignored, the argument of numerator, denoted as $W(k)$, in~\eqref{eq:delta_SD} can be extended to 
 
 \begin{equation}
-    \label{eq:delta_extens_w_noise}
-    \begin{aligned}
-      \sum_{m=k}^{N-1}&r_{m-k}r_m^*s_{m-k}^*s_m= \sum_{m=k}^{N-1} \Big( A^2|s_{m-k}|^2|s_m|^2e^{-j2\pi \bar{\delta} k} + \\
-      &w_m^* S|s_{m-k}|^2s_m e^{j2\pi \bar{\delta}(m-k)} + w_{m-k}S^*|s_m|^2s_{m-k}^* e^{-j2\pi \bar{\delta} m} + \\
-      &w_{m-k}w_m^*s_{m-k}^*s_m \Big) .
-    \end{aligned}
-    \end{equation}
+  \label{eq:delta_extens_w_noise}
+  \begin{aligned}
+    W(k)&=\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m= \sum_{m=k}^{N-1} \Big( A^2|s_{m-k}|^2|s_m|^2e^{-j2\pi \bar{\delta} k} + \\
+    &w_m^* S|s_{m-k}|^2s_m e^{j2\pi \bar{\delta}(m-k)} + w_{m-k}S^*|s_m|^2s_{m-k}^* e^{-j2\pi \bar{\delta} m} + \\
+    &w_{m-k}w_m^*s_{m-k}^*s_m \Big) .
+  \end{aligned}
+\end{equation}
+
 To interpret~\eqref{eq:delta_extens_w_noise}, recognize that the first term of right hand side is
-deterministic and provides the mean of the expression.
-The last term can be neglected even at moderate SNR since the
-factors in the product are uncorrelated (as long as $k \neq 0$).
-The two middle terms yield a zero-mean, complex Gaussian random variable.
-If we denote the expression in~\eqref{eq:delta_extens_w_noise} as random variable $W(k)$,
-then these observations can be summarized as
+deterministic and provides the mean of the expression. The two middle terms yield a zero-mean, complex Gaussian random variable. 
+The last term performs another zero mean-random variable with a second kind Bessel distribution, which is close to Gaussian distribution. Moreover, we assume
+$N{-}k$ is large, by central limit theorem, the second kind Bessel random variable is considered approximately Gaussian.      
+Thus,~\eqref{eq:delta_extens_w_noise} is summarized as
 % ask for more details are lack of. 
 
 \begin{equation}
+  \begin{aligned}
     \label{eq:ori_pdf_W}
-    W(k) \sim \cn\bigg((
-    \frac{N{-}k}{A^2}){(\frac{E_s}{M})}^2e^{-j2\pi \bar{\delta} k},
-    2(\frac{N{-}k}{A^4})\frac{N_0}{2}{(\frac{E_s}{M})}^3\bigg).
-  \end{equation}
+    W(k) \sim \cn\bigg(\Big(
+    \frac{N{-}k}{A^2}\Big){\Big(\frac{E_s}{M}\Big)}^2e^{-j2\pi \bar{\delta} k},
+    2&\Big(\frac{N{-}k}{A^4}\Big)\frac{N_0}{2}{\Big(\frac{E_s}{M}\Big)}^3+ \\
+    &\Big(\frac{N{-}k}{A^4}\Big)\Big(\frac{N_0}{2}\Big)^2{\Big(\frac{E_s}{M}\Big)}^2\bigg).
+  \end{aligned}
+\end{equation}
 Here $A^2|s_m|^2 {\approx} E_s/M$ denotes the average energy per
-sample.
+sample. To discuss the performance of $W(k)$ with respect to the SNR, we look at the ratio of 
+(absolute) square of mean to variance in~\eqref{eq:ori_pdf_W}, which yields the relationship between
+output SNR of $W(k)$ and input SNR,
 
-Recall from~\eqref{eq:delta_SD} the estimator $\hat{\delta}_{\text{SD}}(k)$ requires $\arg\{W(k)\}$.
-The full pdf of $\arg\{W(k)\}$ is derived in the appendix \ref{AL}
+\begin{equation}
+  \begin{aligned}
+    \label{eq:SNR_out}
+    \text{SNR}_{\text{out}}=\frac{|\mu_{W(k)}|^2}{\sigma^2_{W(k)}} 
+    =&~\frac{N-k}{\displaystyle 2\cdot\frac{N_0}{2}/\frac{E_s}{M}+\Big(\frac{N_0}{2}\Big)^2/\Big(\frac{E_s}{M}\Big)^2} \\
+    &~~~~~~~~~\quad =\frac{N-k}{2/\text{SNR}_{\text{in}}+1/\text{SNR}_{\text{in}}^2}
+  \end{aligned}
+\end{equation}
+where $\mu_{w(k)}$ and $\sigma^2_{W(k)}$ deonte the mean and variance of $W(k)$ provided in~\eqref{eq:ori_pdf_W}, and $\text{SNR}_{\text{in}}$ is defined as the input average sample energy to noise power spectral density, specifically, $\frac{E_s}{M}/\frac{N_0}{2}$. In~\eqref{eq:SNR_out}, 
+$N-k$, which is the size of integrator in~\eqref{eq:delta_extens_w_noise}, exactly provides the processing gain; At relatively high SNR,
+the inverse of squared input SNR, which is from the variance of second kind Bessel random variable, can be neglected. Then $\text{SNR}_{\text{out}}$
+exhibits a linear relationship with $\text{SNR}_{\text{in}}$. On the other hand, at low input SNR, the inverse squared SNR dominates and degrades the $\text{SNR}_{\text{out}}$
+of $W(k)$ quadratically, which makes the $\text{SNR}_{\text{out}}$ fast approach and then be lower than the minimum requirement that maintains the required accuracy of 
+primary SD estimator for building detector and later a fine estimator.
+
+Recall from~\eqref{eq:delta_SD}, the primary SD estimator $\hat{\delta}_{\text{primary}-\text{SD}}(k)$ requires $\arg\{W(k)\}$.
+The full probability density function (pdf) of $\arg\{W(k)\}$ is derived in the appendix \ref{AL},
 where it is also shown that a good approximation, valid for moderate SNR, 
 is Gaussian. Specifically 
 
@@ -155,16 +177,40 @@ is Gaussian. Specifically
     \label{eq:sol_pdf_W}
     \arg\{W(k)\} \sim \n\bigg(\angle \mu_{W(k)},\frac{\sigma^2_{W(k)}}{|\mu_{W(k)}|^2}\bigg).
   \end{equation}
-$\mu_{w(k)}$ and $\sigma^2_{W(k)}$ are the mean and variance of $W(k)$ provided in~\eqref{eq:ori_pdf_W}.
-By plugging~\eqref{eq:ori_pdf_W},~\eqref{eq:sol_pdf_W} into~\eqref{eq:delta_SD}, the SD estimator
+By plugging~\eqref{eq:ori_pdf_W} without adding second Bessel variance term, and~\eqref{eq:sol_pdf_W} into~\eqref{eq:delta_SD}, the primary SD estimator
 is approximately Gaussian distributed at moderate SNR with pdf
 
 \begin{equation}
     \label{eq:pdf_delta}
-        \est{\delta}{\sd}(k) \sim \n \bigg(\bar{\delta},\frac{M}{4\pi^2k^2(N{-}k)E_s/N_0}\bigg).
+        \est{\delta}{\text{primary}-\sd}(k) \sim \n \bigg(\bar{\delta},\frac{M}{4\pi^2k^2(N{-}k)E_s/N_0}\bigg).
   \end{equation}  
-We can see that $\hat{\delta}_{\text{SD}}(k)$ is unbiased. Moreover, the lag $k$ affects the variance of the SD estimator. 
-The best choice is to choose $k=\lfloor\frac{2}{3}N\rfloor$ to minimize the variance.
+We see that $\hat{\delta}_{\text{primary}-\text{SD}}(k)$ is unbiased. 
+Note, the distribution of the primary SD estimator in~\eqref{eq:pdf_delta} only exploits a good fit at moderate SNR because of
+the constraint in~\eqref{eq:sol_pdf_W}. A rough calculation of the distribution of primary SD estimator at low SNR is by simply 
+replacing the variance of Gaussian variable with the variance of second kind Bessel
+of~\eqref{eq:ori_pdf_W} and plugging in~\eqref{eq:sol_pdf_W}. The resulting variance, or equavilently, mean-squared error (MSE) of the primary 
+SD estimator at low SNR, compared to high SNR, is increased by $M/(4E_s/N_0)$.
+For example, when $E_s/N_0=0.3$, i.e., \numb{-5}\dB, with a normal oversampling factor $M=4$,
+the performance of primary SD estimator is approximately degraded by a factor of 3.3.
+The solution to mitigate the impairment of primary SD estimator at low SNR
+is given in the next section.
+
+\subsubsection{General SD estimator}
+
+\begin{figure}[t]
+  \centerline{\includegraphics[width=3.4in]{general_SD_estimator.png}}
+  \caption{Flow diagram of implementing an alternative general SD estimator}
+  \label{fig:general_SD_estimator}
+  \end{figure}
+
+The reason for primary SD est-imator in~\eqref{eq:delta_SD} has a relatively bad performance at low SNR is due to the large noise
+disturbance that greatly decorrelates the received signal and reference signal at every sample instant.
+An alternative SD estimator is proposed by changing the order of computation in~\eqref{eq:delta_SD}.
+Specifically, instead of calculating the correlation at each time instant and then averaging, we first do averaging of 
+correlations for coherent time instants; Then, use the remaining processing gain to average 
+correlations between non-coherent time instants.
+The process is illustrated in Figure~\ref{fig:general_SD_estimator}. 
+
 
 It should be noted that, to prevent "aliasing" of the frequency estimate, it's also required to choose the lag $k$ small enough to ensure $2\pi |\bar{\delta}| k < \pi$.
 Assuming an upper bound $\delta_{\text{max}}$ on the normalized frequency offset is available, 
@@ -183,37 +229,37 @@ the optimal choosing policy for lag $k_{\opt}$ is refined as
   \end{equation}
 where $\lfloor \cdot \rfloor$ and $\lceil \cdot \rceil$ are the floor and ceil operation, respectively.
 
-\subsubsection{Low-SNR Improvement}
-Recall that the expression of SD estimator with optimal choice $k$ only fits a moderate SNR.
-The performance of SD at low SNR is also crucial and needs to be discussed.
-One way to improving the accuracy is by averaging $K$ estimates of SD with different lags $k$.
-We call the resulting estimator the $K-$SD estimator, $\est{\delta}{K\text{-SD}}$.
-In this case, we trade off a $K$-fold increase in computational complexity for lower variance.
+% \subsubsection{Low-SNR Improvement}
+% Recall that the expression of SD estimator with optimal choice $k$ only fits a moderate SNR.
+% The performance of SD at low SNR is also crucial and needs to be discussed.
+% One way to improving the accuracy is by averaging $K$ estimates of SD with different lags $k$.
+% We call the resulting estimator the $K-$SD estimator, $\est{\delta}{K\text{-SD}}$.
+% In this case, we trade off a $K$-fold increase in computational complexity for lower variance.
 
-Let $\bm{u}$ be a vector of non-negative, with
-$\sum_{k \in {\cal K}}u_k=1$; here ${\cal K}$ represents the set of $K$
-lags to be averaged.
-% extension to reviewer 1, comment 5, reviewer 3, comment 4
-Simple linear combining of $K$ SD estimators yields the $K-$SD estimator
+% Let $\bm{u}$ be a vector of non-negative, with
+% $\sum_{k \in {\cal K}}u_k=1$; here ${\cal K}$ represents the set of $K$
+% lags to be averaged.
+% % extension to reviewer 1, comment 5, reviewer 3, comment 4
+% Simple linear combining of $K$ SD estimators yields the $K-$SD estimator
 
-\begin{equation}
-  \label{eq:K_SD_est}
-      \est{\delta}{K\text{-SD}}=\sum_{k \in \cal K}\est{\delta}{\sd}(k)u_k.
-\end{equation}
-The optimal weight vector $\bm{u}_\opt$ can be obtained by minimizing the variance of $\est{\delta}{K\text{-SD}}$,
-which is well-known as
+% \begin{equation}
+%   \label{eq:K_SD_est}
+%       \est{\delta}{K\text{-SD}}=\sum_{k \in \cal K}\est{\delta}{\sd}(k)u_k.
+% \end{equation}
+% The optimal weight vector $\bm{u}_\opt$ can be obtained by minimizing the variance of $\est{\delta}{K\text{-SD}}$,
+% which is well-known as
 
-\begin{equation}
-  \label{eq:u_opt}
-      \bm{u}_\opt=\frac{\bm{C}^{-1}\bm{1}}{\bm{1}^T\bm{C}^{-1}\bm{1}}.
-\end{equation}
-$\bm{C}$ is the autocovariance matrix between the $K$ SD estimators and $\bm{1}$ represents the column vector of one. 
-Unfortunately, it is generally difficult to know the full information of $\bm{C}$. However,
-If the lags $k \in {\cal K}$ are chosen to satisfy the spacing between any pair is at least
-equal to the oversampling factor $M$, then the estimates to be combined are approximately uncorrelated and unbiased; The  
-resulting $\bm{C}$ is a diagonal matrix of variance of each SD estimator. For example, a good choice for selecting 3 lags is 
-${\cal K}=\{k_\opt-M,k_\opt,k_\opt+M\}$. The optimal weights $\bm{u}_\opt$ are proportional to the inverse of the
-variances in~\eqref{eq:pdf_delta}.
+% \begin{equation}
+%   \label{eq:u_opt}
+%       \bm{u}_\opt=\frac{\bm{C}^{-1}\bm{1}}{\bm{1}^T\bm{C}^{-1}\bm{1}}.
+% \end{equation}
+% $\bm{C}$ is the autocovariance matrix between the $K$ SD estimators and $\bm{1}$ represents the column vector of one. 
+% Unfortunately, it is generally difficult to know the full information of $\bm{C}$. However,
+% If the lags $k \in {\cal K}$ are chosen to satisfy the spacing between any pair is at least
+% equal to the oversampling factor $M$, then the estimates to be combined are approximately uncorrelated and unbiased; The  
+% resulting $\bm{C}$ is a diagonal matrix of variance of each SD estimator. For example, a good choice for selecting 3 lags is 
+% ${\cal K}=\{k_\opt-M,k_\opt,k_\opt+M\}$. The optimal weights $\bm{u}_\opt$ are proportional to the inverse of the
+% variances in~\eqref{eq:pdf_delta}.
 
 \subsection{Solution II: Newton-Method (NM) Estimator}
 
