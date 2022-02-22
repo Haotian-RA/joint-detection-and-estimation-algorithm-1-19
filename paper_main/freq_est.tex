@@ -89,11 +89,12 @@ identity for large $N$.
 Both solutions have computational complexity $O(N^2)$ reflecting the
 double summation.
 
-Recall our paper focus on the joint detection and estimation problem. Thus, we propose a family of alternative solutions to~\eqref{eq:delta}.
+Since our paper focus on the joint detection and estimation problem, we propose a family of alternative solutions to~\eqref{eq:delta}.
 A coarse solution with $O(N)$ complexity is used for operating at the sample
 rate during the sequential GLRT detection;
 it prioritizes low complexity at the expense of some loss of accuracy.
 A fine solution is used to improve the estimation accuracy for coherent demodulation once the preamble has been detected.
+The two solutions are given with details in the next sections.
 
 \subsection{Solution I: (Coarse) Single-Difference (SD) Estimator}
 
@@ -149,19 +150,19 @@ Thus,~\eqref{eq:delta_extens_w_noise} is summarized as
   \end{aligned}
 \end{equation}
 Here $A^2|s_m|^2 {\approx} E_s/M$ denotes the average energy per
-sample. To discuss the performance of $W(k)$ with respect to the SNR, we look at the ratio of 
-(absolute) square of mean to variance in~\eqref{eq:ori_pdf_W}, which yields the relationship between
-output SNR of $W(k)$ and input SNR,
+sample. A quick test for performance of the primary SD estimator with respect to SNR is to look at the ratio of 
+(absolute) square of mean to variance of $W(k)$ in~\eqref{eq:ori_pdf_W}. The result yields the relationship between
+output SNR of primary SD estimator and input SNR,
 
 \begin{equation}
   \begin{aligned}
-    \label{eq:SNR_out}
-    \text{SNR}_{\text{out}}=\frac{|\mu_{W(k)}|^2}{\sigma^2_{W(k)}} 
+    \label{eq:SNR_out_primary}
+    \text{SNR}_{\text{out\_pri}}=\frac{|\mu_{W(k)}|^2}{\sigma^2_{W(k)}} 
     =&~\frac{N-k}{\displaystyle 2\cdot\frac{N_0}{2}/\frac{E_s}{M}+\Big(\frac{N_0}{2}\Big)^2/\Big(\frac{E_s}{M}\Big)^2} \\
     &~~~~~~~~~\quad =\frac{N-k}{2/\text{SNR}_{\text{in}}+1/\text{SNR}_{\text{in}}^2}
   \end{aligned}
 \end{equation}
-where $\mu_{w(k)}$ and $\sigma^2_{W(k)}$ deonte the mean and variance of $W(k)$ provided in~\eqref{eq:ori_pdf_W}, and $\text{SNR}_{\text{in}}$ is defined as the input average sample energy to noise power spectral density, specifically, $\frac{E_s}{M}/\frac{N_0}{2}$. In~\eqref{eq:SNR_out}, 
+where $\mu_{w(k)}$ and $\sigma^2_{W(k)}$ deonte the mean and variance of $W(k)$ provided in~\eqref{eq:ori_pdf_W}, and $\text{SNR}_{\text{in}}$ is defined as the input average sample energy to noise power spectral density, specifically, $\frac{E_s}{M}/\frac{N_0}{2}$. In~\eqref{eq:SNR_out_primary}, 
 $N-k$, which is the size of integrator in~\eqref{eq:delta_extens_w_noise}, exactly provides the processing gain; At relatively high SNR,
 the inverse of squared input SNR, which is from the variance of second kind Bessel random variable, can be neglected. Then $\text{SNR}_{\text{out}}$
 exhibits a linear relationship with $\text{SNR}_{\text{in}}$. On the other hand, at low input SNR, the inverse squared SNR dominates and degrades the $\text{SNR}_{\text{out}}$
@@ -177,6 +178,7 @@ is Gaussian. Specifically
     \label{eq:sol_pdf_W}
     \arg\{W(k)\} \sim \n\bigg(\angle \mu_{W(k)},\frac{\sigma^2_{W(k)}}{|\mu_{W(k)}|^2}\bigg).
   \end{equation}
+Thus,~\eqref{eq:sol_pdf_W} proves the variance of primary SD estimator is inverse proportional to $\text{SNR}_{\text{out\_pri}}$ in~\eqref{eq:SNR_out_primary}.
 By plugging~\eqref{eq:ori_pdf_W} without adding second Bessel variance term, and~\eqref{eq:sol_pdf_W} into~\eqref{eq:delta_SD}, the primary SD estimator
 is approximately Gaussian distributed at moderate SNR with pdf
 
@@ -195,11 +197,11 @@ the performance of primary SD estimator is approximately degraded by a factor of
 The solution to mitigate the impairment of primary SD estimator at low SNR
 is given in the next section.
 
-\subsubsection{General SD estimator}
+\subsubsection{Block-$v$ SD estimator}
 
 \begin{figure}[t]
-  \centerline{\includegraphics[width=3.4in]{general_SD_estimator.png}}
-  \caption{Flow diagram of implementing an alternative general SD estimator}
+  \centerline{\includegraphics[width=3.4in,height=3.2in]{general_SD_estimator.png}}
+  \caption{Flow diagram of implementing the Block-$v$ SD estimator}
   \label{fig:general_SD_estimator}
   \end{figure}
 
@@ -207,27 +209,111 @@ The reason for primary SD est-imator in~\eqref{eq:delta_SD} has a relatively bad
 disturbance that greatly decorrelates the received signal and reference signal at every sample instant.
 An alternative SD estimator is proposed by changing the order of computation in~\eqref{eq:delta_SD}.
 Specifically, instead of calculating the correlation at each time instant and then averaging, we first do averaging of 
-correlations for coherent time instants; Then, use the remaining processing gain to average 
-correlations between non-coherent time instants.
-The process is illustrated in Figure~\ref{fig:general_SD_estimator}. 
+correlations for coherent time instants. The averaged results are called coherent integrators and the process is preprocessing; Then, use the remaining processing gain to integrate 
+the coherent integrator between non-coherent time instants.
+The details are illustrated in Figure~\ref{fig:general_SD_estimator}. 
 
-
-It should be noted that, to prevent "aliasing" of the frequency estimate, it's also required to choose the lag $k$ small enough to ensure $2\pi |\bar{\delta}| k < \pi$.
-Assuming an upper bound $\delta_{\text{max}}$ on the normalized frequency offset is available, 
-the optimal choosing policy for lag $k_{\opt}$ is refined as
+In Figure~\ref{fig:general_SD_estimator}, the coherent integrator $u_l$ is formulated by
 
 \begin{equation}
-    \label{eq:est_k_opt}
-    k_{\opt}=\left\{
-      \begin{array}{cl}
-        \lfloor\frac{2}{3}N\rfloor
-        & \text{for $\frac{1}{2\delta_{\max}}>\lfloor\frac{2}{3}N\rfloor$} \\
-        \lceil\frac{1}{2\delta_{\max}}-1\rceil
-        & \text{for $\frac{1}{2\delta_{\max}} \leq\lfloor\frac{2}{3}N\rfloor$},
-      \end{array}
-    \right.
-  \end{equation}
-where $\lfloor \cdot \rfloor$ and $\lceil \cdot \rceil$ are the floor and ceil operation, respectively.
+  \label{eq:coherent_integrator}
+  u_l=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v-1
+\end{equation}
+where $v$ is the block size of cross-correlation between received and reference signals. $v$ is set to be a factor of $N$
+to include all sample instants.
+$k_v$ denotes the distance between coherent integrator that calculates non-coherent cross-correlation.
+Thus, $k_v=\lfloor k/v \rfloor$, where $\lfloor \cdot \rfloor$ represents the floor operation, since $v$ is not necessary to be a factor of $k$.
+However, we still assume $k\approx k_vv$ for comparison simplicity. Based on above discussion, the alternative Block-$v$ SD estimator is given by
+
+\begin{equation}
+  \label{eq:general_sd_estimator}
+  \hat{\delta}_{\text{Block}-v-\text{SD}}(v,k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}u_l^*u_{l-k_v}\big\}}{2\pi k_vv}
+\end{equation}
+It can be seen that the primary SD estimator in~\eqref{eq:delta_SD} is a special case of Block-$v$ SD estimator when $v=1$.
+Thus, we uniformly call the two estimators as Block-$v$ SD estimator.
+
+Now, we discuss the performance of Block-$v$ SD estimator by focusing on the cross-correlation between the two coherent integrators in~\eqref{eq:general_sd_estimator}.
+Based on~\eqref{eq:coherent_integrator} and the derivation of~\eqref{eq:ori_pdf_W}, the coherent integrator $u_l^*$ is complex Gaussian distributed with probability density function,
+
+\begin{equation*}
+  \label{eq:pdf_co_integrator_1}
+  u_l^* \sim \cn\bigg(\frac{E_s/MS^*}{A^2}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \bar{\delta}n},v\frac{E_s/M}{A^2}\frac{N_0}{2}\bigg),
+\end{equation*}
+and the pdf of complex Gaussian-distributed $u_{l-k_v}$ is also given by
+
+\begin{equation*}
+  \label{eq:pdf_co_integrator_2}
+  u_{l-k_v} \sim \cn\bigg(\frac{E_s/MS}{A^2}\sum_{n=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \bar{\delta}n},v\frac{E_s/M}{A^2}\frac{N_0}{2}\bigg).
+\end{equation*}
+Note, $u_l^*$ and $u_{l-k}$ are uncorrelated. Compared with~\eqref{eq:delta_extens_w_noise}, the cross-correlation between two coherent integrates $u_l^*$ and $u_{l-k_v}$ also yields a random variable
+with a combination of Gaussian and second kind Bessel. The mean and variance of $u_l^*u_{l-k_v}$, denoted as $\mu_{C_u}$ and $\sigma^2_{C_u}$, are given by, respectively,
+
+\begin{equation}
+  \begin{aligned}
+  \label{eq:cross_corr_co_inte}
+  &\mu_{C_u}=\frac{(E_s/M)^2}{A^2}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \bar{\delta}n}\sum_{m=(l-k)v}^{(l-k+1)v-1}e^{j2\pi \bar{\delta}m}, \\
+  &\sigma^2_{C_u}=v^2\frac{(E_s/M)^2}{A^4}\Big(\frac{N_0}{2}\Big)^2+2v\frac{(E_s/M)^3}{A^4}\frac{N_0}{2}\Bigg(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Bigg)^2,
+\end{aligned}
+\end{equation}
+where $\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}$ is one of Dirichlet function, which approaches the maximum value $v$ at $\bar{\delta}=0$ and first pair of zero crossings at
+$\bar{\delta}=\pm 1/v$. Based on~\eqref{eq:SNR_out_primary} and~\eqref{eq:cross_corr_co_inte}, 
+the output SNR of Block-$v$ SD estimator in terms of the input SNR yields
+
+\begin{equation}
+  \begin{aligned}
+    \label{eq:SNR_out_general}
+    &\text{SNR}_{\text{out\_Blv}}=\frac{|\mu_{C_u}|^2}{\sigma^2_{C_u}} \\
+    &=\frac{\frac{(Es/M)^4}{A^4}\Big(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Big)^4(N/v-k_v)^2}
+    {\Big[v^2\frac{(E_s/M)^2}{A^4}\Big(\frac{N_0}{2}\Big)^2+2v\frac{(E_s/M)^3}{A^4}\frac{N_0}{2}\Big(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Big)^2\Big](N/v-k_v)} \\
+    &=\frac{(N/v-k_v)\Big(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Big)^4}
+    {\frac{v^2}{\text{SNR}_{\text{in}}^2}+\frac{2v}{\text{SNR}_{\text{in}}}\Big(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Big)^2}.
+  \end{aligned}
+\end{equation}
+Some important observations of $\text{SNR}_{\text{out\_Blv}}$ from~\eqref{eq:SNR_out_general} can be discussed. 
+First, $\text{SNR}_{\text{out\_Blv}}$ depends on the value of $|\bar{\delta}|v$.
+We start to consider the case when $|\bar{\delta}|v\ll1$, i.e., $\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})} \approx v$
+and $(N/v-k_v)v \approx N-k$.
+When the input SNR is moderate, the second term of variance dominates and results the same output SNR as in~\eqref{eq:SNR_out_primary};
+While at low SNR, the first term of variance dominates and produces a $v$ times larger output SNR than primary SD estimator, which corresponds to the design intention of block-$v$ ($v \geq 2$) SD estimator.
+Thus, the selection of $v$ trades off the processing gain at low SNR and the incurred large frequency offset.
+
+By comparing~\eqref{eq:SNR_out_primary} and~\eqref{eq:SNR_out_general}, it can be seen that Block-$v$ SD estimator produces a positive processing gain both at low and high SNR, when $|\bar{\delta}|v$ satisfies
+$v^{3/4}\leq\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\leq v$; While, Block-$v$ SD estimator
+only produces positive processing gain at high SNR with $\sqrt{v}\leq\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}<v^{3/4}$.
+However, the worst case happens when $|\bar{\delta}|v_{\text{min}}$ even also produces a relative large frequency offset, 
+i.e., $v_{\text{min}}=2$ and $0\leq\frac{\sin(2\pi \bar{\delta})}{\sin(\pi \bar{\delta})}<\sqrt{2}$. Then, the Block-$v$ SD estimator will suffer a worse performance than the primary SD estimator for all SNRs.
+
+Now, let's measure the distribution of Block-$v$ SD estimator at low SNR.
+Assume $|\bar{\delta}|v$ always satisfies $v^{3/4}\leq\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\leq v$,
+and the extra processing gain $v$ at relatively low SNR increases the $\text{SNR}_{\text{out\_Blv}}$ to meet the moderate SNR requirement of~\eqref{eq:sol_pdf_W}.
+Thus, by plugging~\eqref{eq:cross_corr_co_inte},~\eqref{eq:sol_pdf_W} into~\eqref{eq:general_sd_estimator}, the block-$v$ SD estimator is distributed approximately Gaussian at relatively low SNR with probability density function
+
+\begin{equation}
+  \begin{aligned}
+  \label{eq:pdf_general_delta}
+      \est{\delta}{\text{Block}-v-\text{SD}}(&v,k_v) \\
+      &\sim \n \bigg(\bar{\delta},\frac{M^2v^2}{16\pi^2k^2\Big(\frac{\sin(\pi \bar{\delta}v)}{\sin(\pi \bar{\delta})}\Big)^4(N/v{-}k_v)(E_s/N_0)^2}\bigg).
+  \end{aligned}
+\end{equation} 
+Thus, $\est{\delta}{\text{Block}-v-\text{SD}}$ is also unbiased. Moreover, the lag $k_v$ also affects the variance of Block-$v$ SD estimator. The best choice is to choose
+$k_v=\lfloor\frac{2N}{3v}\rfloor$ to minimize the variance. However,
+it should be noted that if $k_v$ is too large, the frequency estimate $\est{\delta}{\text{Block}-v-\text{SD}}$ 
+may be one of the alias of $\bar{\delta}$ if $2\pi|\bar{\delta}|k_vv>\pi$. The ambiguity problem is 
+common in frequency estimation and we propose a method based on Chinese reminder theorem that solves this problem in the next section.
+It shows that by some extra simple computation, $k_v$ can be chosen always by the optimal value. 
+
+\subsubsection{Solution to preventing "alaising" of choice $k_v$}
+
+The relat-ionship between frequency estimate $\hat{\delta}$ and true frequency offset $\bar{\delta}$ is given by 
+
+\begin{equation}
+  \label{eq:relationship_est_and_true_delta}
+  2\pi \hat{\delta}k_vv+2\pi n=2\pi \bar{\delta}k_vv, \quad \text{for}~n=0,\pm 1,\pm 2,\ldots
+\end{equation}
+where $\hat{\delta}$ should satisfy $-\pi \leq 2\pi \hat{\delta}k_vv \leq \pi$. Thus, the ambiguity happens when $2\pi|\hat{\delta}k_vv|<\pi$ and~\eqref{eq:relationship_est_and_true_delta} doesn't holds for $n=0$.
+To solve the ambiguity problem based on knowing the value of frequency estimate $\hat{\delta}$, we can obtain the true frequency offset $\bar{\delta}$ by 
+
+
 
 % \subsubsection{Low-SNR Improvement}
 % Recall that the expression of SD estimator with optimal choice $k$ only fits a moderate SNR.

@@ -25,15 +25,15 @@ i.e., $\Delta=|\bar{p}-p_c|$. Figure~\ref{fig:H1_H0_hypothesis} illustrates the 
 It is symmetric if the partial preamble shows on the left side of the observation window ($p_c>\bar{p}$).
 It is obvious that under $H_0$, $\Delta \neq 0$ while $H_1$ means $\Delta=0$. 
 Based on~\eqref{eq:model}, the conditional likelihood ratio test (LRT) can be built 
-between $H_0$ and $H_1$ by given the phasor $S{=}Ae^{j\phi}$ and frequency offset $b{=}e^{j2\pi \delta}$
+between $H_0$ and $H_1$ by given the distance $\Delta$, the phasor $S{=}Ae^{j\phi}$ and frequency offset $b{=}e^{j2\pi \delta}$
 at true delay $\bar{p}$ (under $H_1$),
 
 \begin{equation}
     \label{eq:likelihood ratio}
     \begin{aligned}
-    &\Lambda(R|S,b)=\frac{p_{R|H_1,S,b}(r|H_1,S,b)}{p_{R|H_0,S,b}(r|H_0,S,b)}= \\
+    &\Lambda(R|S,b,\Delta)=\frac{p_{R|H_1,S,b}(r|H_1,S,b)}{p_{R|H_0,S,b,\Delta}(r|H_0,S,b,\Delta)}= \\
     &\frac{\displaystyle \prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}\exp{(-\frac{1}{2}\frac{|r_{n}{-}s_nSb^n|^2}{N_0/2})}}
-    {(\frac{1}{\sqrt{\pi N_0}})^N\displaystyle \prod_{n=\Delta}^{N-1}\exp{(-\frac{1}{2}\frac{|r_{n}{-}s_{n-\Delta}Sb^{n-\Delta}|^2}{N_0/2})} 
+    {(\displaystyle \frac{1}{\sqrt{\pi N_0}})^N\displaystyle \prod_{n=\Delta}^{N-1}\exp{(-\frac{1}{2}\frac{|r_{n}{-}s_{n-\Delta}Sb^{n-\Delta}|^2}{N_0/2})} 
     \displaystyle \prod_{n=0}^{\Delta-1}\exp{(-\frac{1}{2}\frac{|r_n|^2}{N_0/2})}} \\
     &\LRT{H_1}{H_0} \eta.
     \end{aligned}
@@ -43,30 +43,20 @@ Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio
 \begin{equation}
     \label{eq:log likelihood}
     \begin{aligned}
-    \Re\{\sum_{n=0}^{N-1}r_{n}s^*_nS^*b^{-n}-
-    \sum_{n=\Delta}^{N-1}r_{n}s^*_{n-\Delta}S^*b^{-(n-\Delta)}\}
+    \Re\Bigg\{\sum_{n=0}^{N-1}r_{n}s^*_nS^*b^{-n}-
+    \sum_{n=\Delta}^{N-1}r_{n}s^*_{n-\Delta}S^*b^{-(n-\Delta)}\Bigg\}
     &\LRT{H_1}{H_0} \frac{N_0}{2}\ln\eta \\
     &+\frac{A^2}{2}\sum_{n=N-\Delta}^{N-1}|s_n|^2.
     \end{aligned}
 \end{equation}
 The second summation on the left hand side points to the inner product of the overlap between
 the observed (partial) preamble and the true preamble. 
-By plugging $r_{n}$ of hypothesis $H_1$, i.e., $r_{n}=s_nSb^n+w_n$, the summation simplifies 
-to a function $\sigma$ in terms of $\Delta$
-
-\begin{equation}
-    \label{eq:partial ACF of the preamble}
-    \sigma(\Delta)=A^2b^{\Delta}\sum_{n=\Delta}^{N-1}s_ns^*_{n-\Delta}+\sum_{n=\Delta}^{N-1}w_ns^*_{n-\Delta}S^*b^{-(n-\Delta)},
-\end{equation}
-which is Gaussian distributed with mean given  "partial" auto-correlation function (ACF) of the preamble at lag $\Delta$.
-To quantify~\eqref{eq:partial ACF of the preamble}, the symbol sequence of the preamble can be chosen with a good autocorrelation property,
-e.g., Gold sequence, that the partial ACF is approximately equal to zero for all $\Delta \neq 0$. 
-% from here, it gives me a new and very important observation: (7) may explain why we obtain the estimator
-% by assuming the known position of preamble (p_c=p) is meaningful. (7) and (8) tells us we can
-% the detector works when plugping in the estimator by assuming the current position is the true position.
-% then (6) -> (8).
-By assuming the above, after some proper scaling of~\eqref{eq:log likelihood}, the LRT 
-then reduces to a generalized correlation function in terms of the time instant (delay) $p$,
+To put it another way,~\eqref{eq:log likelihood} says that the likelihood 
+ratio test reduces to the difference between full cross-correlation and overlapped cross-correlation
+of received and reference sequences. However, note that in practice, the overlapped cross-correlation is not possible to be
+precomputed while detection since $\Delta$ is always an unknown information to the receiver.
+Fortunately, if we move it to the right hand side, the reduction by cross-correlation can be reflected by the threshold.
+Thus, based on above discussion, after some proper scaling, the LRT finally reduces to a generalized correlation function in terms of the time instant (delay) $p$,
 
 \begin{equation}
     \label{eq:generalized_corr}
@@ -80,11 +70,12 @@ at delay $p_c$. $\hat{b}_{p_c}$ and $\hat{S}_{p_c}$ are the frequency and phasor
 $||\bm{r}_{p}||$ is the Euclidean norm of received data sequence at delay $p$.
 $\gamma$ is the normalized detection threshold which lies on the range of $[0,1]$.
 Note, the LRT in~\eqref{eq:likelihood ratio} is not practical since the frequency and phasor offsets at true delay $\bar{p}$
-is unknown while detection. Instead of LRT, a generalized likelihood ratio test (GLRT) based detector can be built relying on the frequency and phasor estimates from each window of received sequence;
-Recall that the LRT of~\eqref{eq:likelihood ratio} is built conditionally on known frequency and phase offset 
-at true position of the preamble.
-Therefore, the estimation algorithm for $\hat{b}_{p}$ and $\hat{S}_{p}$ can also be derived by
-assuming the current received sequence contains the true preamble (under $H_1$ hypothesis).
+is unknown while detection except for the distance $\Delta$. 
+Thus, instead of LRT, a generalized likelihood ratio test (GLRT) based detector is built relying on frequency and phasor estimates from each window of received sequence;
+To get $\hat{b}_{p_c}$ and $\hat{S}_{p_c}$,
+recall the LRT of~\eqref{eq:likelihood ratio} is built conditionally on known frequency and phase offset 
+at true position of the preamble; Therefore, the algorithm of computing the frequency and phase estimates at $p_c$ 
+can be also by assuming the current received sequence contains the complete true preamble.
 % this tells the reason why we do estimation by assuming the position of preamble is known.
 
 In conclusion, a GLRT based detector of~\eqref{eq:generalized_corr} is derived for detection in this paper, and it relies on the frequency and phase estimates of the observed sequence.
