@@ -3,10 +3,10 @@ clc
 close all
 
 % channel 
-normalized_true_freq_offset=0.0025/4; 
+normalized_true_freq_offset=0.005; 
 normalized_true_phase_offset=2*pi*rand;
 % SNR=[-5 -2 0 5 10];
-SNR=0;
+SNR=-5;
 % SNR=[-8 -5];
 
 threshold=0:0.02:1;
@@ -15,7 +15,7 @@ L_0_set=32;
 n_L_0=0;
 % LL=1000;
 LL=1;
-M=8;L=8;beta=0.5;c_init=10;n_zeros=250;n_pload=250;
+M=4;L=8;beta=0.5;c_init=10;n_zeros=250;n_pload=250;
 pload=zeros(1,n_pload);rho_container=zeros(1,n_zeros+n_pload);
 
 % simulation result vector initialization

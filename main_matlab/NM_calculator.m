@@ -20,6 +20,7 @@ dF=imag(dF);
 
 delta_NM=delta_SD-F/dF;
 
+% N=length(tx);
 phasor_NM=0;
 for n=0:N-1
     phasor_NM=phasor_NM+rx(1,n+1)*conj(tx(1,n+1))*exp(-1i*2*pi*delta_NM*n);

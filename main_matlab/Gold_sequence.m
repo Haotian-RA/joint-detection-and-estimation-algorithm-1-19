@@ -1,4 +1,4 @@
-function [tx] = Gold_sequence(L_0,c_init,M,L,beta,T,ts)
+function [tx,symbol] = Gold_sequence(L_0,c_init,M,L,beta,T,ts,tau)
 % L_0: number of samples of Gold sequence.
 % c_init: a random number for example, 42. if c_init is fixed, gold
 % sequence is fixed.
@@ -9,6 +9,7 @@ function [tx] = Gold_sequence(L_0,c_init,M,L,beta,T,ts)
 c = naive_cn(2*L_0, c_init);
 if nargin==2
     tx = ((1.0 - 2.0*c(1:2:end))+1i*(1-2.0*c(2:2:end)))/sqrt(2);
+    symbol = ((1.0 - 2.0*c(1:2:end))+1i*(1-2.0*c(2:2:end)))/sqrt(2);
 elseif nargin==5
     symbol = ((1.0 - 2.0*c(1:2:end))+1i*(1-2.0*c(2:2:end)))/sqrt(2);
     ps=srrc(L,beta,M);
@@ -26,7 +27,7 @@ else
     ps=ps/sqrt(sum(ps.^2));
 
     Ts=T/M;
-    tau=Ts/2;
+%     tau=Ts/2;
     tau=floor(tau/ts);
     os_symbol=zeros(1,L_0*T/ts); % oversampled symbol
     os_symbol(1:T/ts:L_0*T/ts)=symbol;

@@ -16,7 +16,7 @@ SNR=[0:10];
 L_0_set=[32];
 
 % initialization
-M=4;LL=10000; % # of simulation runs
+M=4;LL=100; % # of simulation runs
 n_L_0=0; % # of L_0_set (for counting) 
 
 CRVB_delta=zeros(length(L_0_set),length(SNR));
@@ -115,8 +115,8 @@ xlabel('E_s/N_0(dB)')
 % save('MSE_delta_3NM.mat','MSE_delta_3NM')
 % save('Bound_SD.mat','Bound_SD')
 
-save('CRVB_delta.mat','CRVB_delta')
-save('MSE_delta_kay.mat','MSE_delta_kay')
-save('MSE_delta_LR.mat','MSE_delta_LR')
-save('MSE_delta_fitz.mat','MSE_delta_fitz')
-save('MSE_delta_3NM.mat','MSE_delta_3NM')
+% save('CRVB_delta.mat','CRVB_delta')
+% save('MSE_delta_kay.mat','MSE_delta_kay')
+% save('MSE_delta_LR.mat','MSE_delta_LR')
+% save('MSE_delta_fitz.mat','MSE_delta_fitz')
+% save('MSE_delta_3NM.mat','MSE_delta_3NM')

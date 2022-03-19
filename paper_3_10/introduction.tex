@@ -1,0 +1,31 @@
+\section{Introduction}
+\label{sec:introduction}
+
+In digital communication systems, information is commonly transmitted in time-multiplexed bursts.
+Examples include time-slotted random access systems. Each active user transmits in-formation to the receiver
+in the same frequency band and in non-overlapping time intervals~\cite{Falconer_95}. 
+A fundamental prerequisite for successful coherent demodulation is that the receiver can
+detect the beginning of the data stream and estimate accurately the phase and frequency offset of the carrier.
+It is worth empha-sizing that time and carrier synchronization are coupled prob-lems, especially at low SNRs:
+coherent methods for detecting the signal require accurate frequency and phase estimates 
+whi-le data-aided frequency and phase estimation requires that the location of the training sequence is available.
+Thus, joint signal detection and carrier synchronization algorithms play a vital role in any communication system.
+
+Clearly, the signal acquisition problem has been considered widely. 
+In the late 90's, Morelli and Mengali~\cite{Morelli_Mengali_98} presented a tutorial review
+of the carrier synchronization field comparing such characteristics as estimation accuracy, range,
+and compu-tational complexity of available techniques. The work by~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}
+is most related to results in this paper. For signal detection,
+particularly, sequential detection process, most of the sequential detector
+is built based on hypothesis testing~\cite{Ramakrishnan_10,Chiani_06,Liang_15}.
+More-over, the lack of information happens commonly when build
+likelihood ratio test (LRT). For example, the LRT in~\cite{Chiani_06} 
+is built based on the distribution of data stream, which is unknown.
+The LRT is then replaced by generalized likelihood ratio test.
+
+In this paper, we propose a joint detection and estimation algorithm 
+for the signal acquisition process and implement it on software-defined radio (SDR).
+In particular, the detection algorithm operates sequentially for every incoming sample
+and is built based on the estimates from the carrier synchronization.
+Thus, a family of low-complexity and high-accuracy estimators is proposed for implementing
+in sequential detection and coherent demodulation on SDR at very high sample rate.

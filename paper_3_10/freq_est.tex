@@ -1,0 +1,251 @@
+\section{Frequency and Phase Estimation}%
+\label{sec:freq_est}   
+
+In this section, we discuss the carrier synchronization problem by assuming the known start time of the preamble in the received sequence.
+For estimating the frequency offset $\delta$ and phasor $\xi=Ae^{j\phi}$, the maximum likelihood estimation (MLE) of the parameters in~\eqref{eq:model} is given by
+
+\begin{equation}
+    \label{eq:ML_f_xi}
+      \hat{\delta},\hat{\xi}=\min_{\delta,\xi=Ae^{j\phi}}\sum_{n=0}^{N-1}|r_n-s_n\xi e^{j2\pi\delta n}|^{2}.
+    \end{equation}
+A closed form for $\hat{\xi}$ is readily derived by taking the Wirtinger derivative with $\xi$ and setting it equal to zero,
+
+\begin{equation}
+    \label{eq:opt_xi}
+    \hat{\xi}=\frac{\sum_{n=0}^{N-1}{r_{n}s_n^{*}e^{-j2\pi\hat{\delta} n}}}{\sum_{n=0}^{N-1}|s_{n}|^2},
+  \end{equation}
+so that $\hat{\xi}$ relies on the frequency estimate $\hat{\delta}$, and $\hat{\phi}=\arg\{\hat{\xi}\}$. 
+% Moreover, by plugging~\eqref{eq:opt_xi} into~\eqref{eq:generalized_corr}, the GLRT based detector can be computed more
+% efficiently,
+
+% \begin{equation}
+%     \label{eq:simplified_GLRT_detector}
+%     \rho(p{+}\Delta) \approx
+%     \frac{|\tilde{\xi}_{p+\Delta}|}
+%     {||\bm{r}_{p+\Delta}||\cdot||\bm{s}||} \LRT{H_1}{H_0} \gamma
+%   \end{equation}
+% where $\tilde{\xi}_{p+\Delta}=\sum_{n=0}^{N-1}{r_{n+p+\Delta}s_n^{*}e^{-j2\pi\hat{\delta}_{p+\Delta} n}}$ represents 
+% the cross-correlation (the numerator) of the phasor estimate $\hat{\xi}$ in~\eqref{eq:opt_xi} at position $p{+}\Delta$, and $||\bm{s}||$ is the Euclidean norm of the preamble.
+
+A necessary condition for the frequency offset estimate $\hat{\delta}$, denoted as $J(\hat{\delta})$,
+is obtained similarly by taking the derivative of~\eqref{eq:ML_f_xi} with respect to
+$\delta$ and setting it equal to zero. Skipping all intermediate derivation steps for brevity's sake,
+it yields
+
+\begin{equation}
+    \label{eq:necessary condition for delta}
+    J(\hat{\delta}) = \Im\bigg\{\sum_{k=1}^{N-1}{\sum_{m=k}^{N-1}{kr_{m-k}r_m^{*}s_{m-k}^{*}s_m}e^{j2\pi\hat{\delta}k}}\bigg\}=0.
+    \end{equation}
+Note, there are a number of local minima of~\eqref{eq:ML_f_xi} also satisfying
+the necessary condition for $\hat{\delta}$ of~\eqref{eq:necessary condition for delta} in addition to the absolute minimum
+(the exact solution of MLE). In~\cite{Luise_Reggiannini_95} and~\cite{Fitz_94}, the "false minima" are avoided
+by appropriately restricting the operating range of the estimator. Specifically,
+instead of calculating the sample autocorrelation functions for entire lag $k\in[1,N-1]$, 
+they truncate~\eqref{eq:necessary condition for delta} by only considering the lag autocorrelation functions for $k\in[1,J]$,
+where $J \ll N{-}1$. This is due to when $k$ is large, the number of autocorrelation functions is small for averaging,
+so that~\eqref{eq:necessary condition for delta} produces a poor estimate for $\hat{\delta}$. 
+
+Moreover, note that the estimator $\hat{\delta}$ in~\eqref{eq:necessary condition for delta} has no closed-form solution.
+In~\cite{Luise_Reggiannini_95}, the necessary condition is approximated by replacing the exponential with its Taylor series expansion.
+In~\cite{Fitz_94}, an approximate solution is obtained via Euler's identity for large $N$.
+Both L\&R~\cite{Luise_Reggiannini_95} and Fitz~\cite{Fitz_94} estimators have computational complexity $O(N^2)$ 
+reflecting the double summation. In~\cite{kay_89}, the Kay estimator reduces the complexity from $O(N^2)$ to $O(N)$ by only computing~\eqref{eq:necessary condition for delta} at lag $k=1$.
+However, it suffers a bad accuracy at low SNRs.
+
+In this paper, we propose a family of alternative solutions to~\eqref{eq:necessary condition for delta}.
+A coarse solution with $O(N)$ complexity is used for operating at high sample rate during the sequential detection;
+It prioritizes low complexity at the expense of some loss of accuracy. A second fine solution is used to improve
+the estimation accuracy at moderate complexity for coherent demodulation once the preamble has been detected. 
+
+\subsection{Coarse Solution: Single-Lag Estimator with Length-v Partial Correlating}
+
+The first estimator is rooted in the insight that at high SNR, every lag $k$ in~\eqref{eq:necessary condition for delta}
+can be used to approximate the frequency estimate $\delta$. By plugging $r_m\approx s_m\xi e^{j2\pi\delta m}$,
+\eqref{eq:necessary condition for delta} is expanded to
+
+\begin{equation}
+  \label{eq:delta_extens_no_noise}
+  \Im\bigg\{A^2\sum_{k=1}^{N-1}\sum_{m=k}^{N-1}k|s_{m-k}|^2|s_m|^2e^{j2\pi (\hat{\delta}-\delta)k}\bigg\}=0.
+  \end{equation}
+Note, the inner summation in~\eqref{eq:delta_extens_no_noise} is purely real for every lag $k$ if $\hat{\delta}=\delta$.
+This suggests that an unbiased estimate of $\hat{\delta}$ can be obtained by using only a single lag $k$. The approach yields
+a closed-form solution for $\hat{\delta}$. 
+Next, we will show that by using a so-called length-$v$ coherent integrator,
+the single-lag estimator also gains a good accuracy at low SNRs.
+
+\subsubsection{Closed-form expression}
+The single-lag (SL) estimator with length-$v$ partial correlating is given by
+
+\begin{equation}
+  \label{eq:single_lag_estimator_w_partial_corr}
+  \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^*\digamma_{l-k_v}\big\}}{2\pi k_vv},
+\end{equation}
+where $\digamma$ denotes the coherent integrator, and
+
+\begin{equation}
+  \label{eq:coherent_integrator}
+  \digamma_l=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
+\end{equation}
+In~\eqref{eq:coherent_integrator}, $v$ is the number of coherent correlations for averaging in each coherent integrator. 
+Normally, $v$ is set to be a factor of $N$ to include all the sample instants.
+In~\eqref{eq:single_lag_estimator_w_partial_corr}, $k_v$ denotes the distance between
+two coherent integrators for calculating the frequency estimate from non-coherent sample instants;
+$k_v=\lfloor k/v \rfloor$, where $\lfloor \cdot \rfloor$ is the floor operation. 
+Particularly, when $v{=}1$, meaning no partial correlating is used,~\eqref{eq:single_lag_estimator_w_partial_corr} reduces to
+
+\begin{equation}
+  \label{eq:single_lag_estimator_wout_partial_corr}
+  \hat{\delta}_{SL}^{(1)}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k},
+\end{equation}
+which is exactly the closed-form solution for $\hat{\delta}$ to~\eqref{eq:delta_extens_no_noise} with single lag $k$.
+
+\subsubsection{Performance of single-lag estimator}
+
+For evaluating the performance of the SL estimator,
+we first look at the probability density function (PDF) for the two coherent integrators in~\eqref{eq:single_lag_estimator_w_partial_corr}.
+By plugging $r_n=s_n\xi e^{j2\pi \delta n}+w_n$ into~\eqref{eq:coherent_integrator}, each of
+the two coherent integrators in~\eqref{eq:single_lag_estimator_w_partial_corr} yields a complex Gaussian
+random variable (r.v.) with PDF
+
+\begin{equation}
+  \label{eq:pdf_co_integrator}
+  \begin{aligned}
+    &\digamma_l^* \sim \cn\bigg(\frac{E_s\xi^*}{MA^2}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n},v\frac{N_0E_s}{2MA^2}\bigg), \\
+    &\digamma_{l-k_v} \sim \cn\bigg(\frac{E_s\xi}{MA^2}\sum_{n=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta n},v\frac{N_0E_s}{2MA^2}\bigg).
+  \end{aligned}
+\end{equation}
+where $A^2|s_n|^2 \approx E_s/M$ denotes the average energy per sample.
+Note, $\digamma_l^*$ and $\digamma_{l-k_v}$ are uncorrelated. Based on~\eqref{eq:pdf_co_integrator}, 
+it is easy to get the product $C_{\digamma_{l}}=\digamma_l^*\digamma_{l-k_v}$ has a mixed distribution with complex Gaussian and a
+second kind Bessel function, where the mean $\mu_{C_{\digamma_{l}}}$ and variance $\sigma^2_{C_{\digamma_{l}}}$ are given by, respectively
+
+\begin{equation}
+  \begin{aligned}
+  \label{eq:mean_var_product_coherent_int}
+  \mu_{C_{\digamma_l}}&=\frac{E_s^2}{M^2A^2}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n}\bigg(\sum_{m=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta m}\bigg) \\
+  &=\frac{E_s^2}{M^2A^2}e^{-j2\pi \delta k_vv}\bigg(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\bigg)^2, \\
+  \sigma^2_{C_{\digamma_l}}&={\underbrace{v^2\frac{N_0^2E_s^2}{4M^2A^4}}_{\text{from Bessel}}}+{\underbrace{2v\frac{N_0E_s^3}{2M^3A^4}\bigg(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\bigg)^2}_{\text{from Complex Gaussian}}},
+  \end{aligned}
+\end{equation}
+where $\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}$ is one of Dirichlet function of $\delta$, which appro-aches
+maximum value $v$ at $\delta{=}0$ and first two zeros at $\delta{=}\pm 1/v$.
+Note, both $\mu_{C_{\digamma_l}}$, $\sigma^2_{C_{\digamma_l}}$ are independent of $l$.
+Thus, $\sum C_{\digamma_l}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr} 
+also has the mixed distribution with complex Gaussian and a second kind Bessel function.
+
+Recall from~\eqref{eq:single_lag_estimator_w_partial_corr}, the distribution of SL estimator depends on $\arg\{\cdot\}$.
+It is derived that the full pdf of $\arg\{\zeta\}$, where $\zeta$ is complex Gaussian distributed, has a good approximation, valid for moderate SNR, as Gaussian.
+Specifically,
+
+\begin{equation}
+  \label{eq:pdf_arg_comp_Gaus}
+  \arg\{\zeta\} \sim \n\big(\angle \mu_{\zeta},\sigma^2_{\zeta}/|\mu_{\zeta}|^2\big).
+\end{equation}
+The derivation of~\eqref{eq:pdf_arg_comp_Gaus} is omitted due to space constraint.
+Now we can try to evaluate the performance of SL estimator based on the result of~\eqref{eq:pdf_arg_comp_Gaus}.
+By central limit theorem and assuming a large $N$, the r.v. followed a distribution of second kind Bessel function
+is assumed to be complex Gaussian. Thus, an altern-ative performance evaluation 
+based on the ratio of (absolute) square of mean to variance of $\sum C_{\digamma_l}$ is given by 
+
+\begin{equation}
+  \begin{aligned}
+    \label{eq:SNR_out}
+    \text{SNR}_{\sum C_{\digamma_l}}=\frac{|\mu_{\sum C_{\digamma_l}}|^2}{\sigma^2_{\sum C_{\digamma_l}}} 
+    % &=\frac{\frac{Es^4}{M^4A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4(N/v-k_v)^2}
+    % {\Big[v^2\frac{N_0^2E_s^2}{4M^2A^4}+2v\frac{N_0E_s^3}{2M^3A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2\Big](N/v{-}k_v)} \\
+    =\frac{(N/v-k_v)\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4}
+    {\frac{v^2}{\text{SNR}_{in}^2}+\frac{2v}{\text{SNR}_{in}}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2}. \\
+  \end{aligned}
+\end{equation}
+where $\text{SNR}_{in}=\frac{2E_s}{MN_0}$. From~\eqref{eq:SNR_out},
+we first see at low SNRs, the variance of the second Bessel r.v. kills the $\text{SNR}_{\sum C_{\digamma_l}}$. More-over,  
+compared with no correlating, the length-$v$ partial correlating provides an
+extra processing gain equaling to $\frac{v+2v\text{SNR}_{in}}{1+2v\text{SNR}_{in}}$ to improve
+the performance of the SL estimator; Although, the above processing gain obtained
+directly from~\eqref{eq:SNR_out} is very rough, it basically says the 
+processing gain is affected by the input SNR and increased by $v$.
+While at high SNRs, both est-imators with or without correlating
+have the same processing gain from the number of correlations in~\eqref{eq:single_lag_estimator_w_partial_corr}, 
+i.e., $N{-}k$, when $|\delta|v \ll 1$. When $|\delta|v$ is large, the SL estimator with partial correlating will have a visible 
+degradation of accuracy. Thus, the selection of $v$ trades off the processing gain at low SNRs
+and the incurred large frequency offset. 
+
+Furthermore, based on~\eqref{eq:single_lag_estimator_wout_partial_corr},~\eqref{eq:mean_var_product_coherent_int}
+and~\eqref{eq:pdf_arg_comp_Gaus}, the distribution of $\hat{\delta}_{SL}^{(v)}(k_v)$ at moderate SNRs is finally given by
+
+\begin{equation}
+  \label{eq:lower_bound_single_lag_high_snr}
+  \hat{\delta}_{SL}^{(v)}(k_v) \sim \n \Bigg(\delta,\frac{Mv}{4\pi^2k^2(N/v{-}k_v)E_s/N_0\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2}\Bigg).
+\end{equation}
+Thus, $\hat{\delta}_{SL}^{(v)}(k_v)$ is unbiased. 
+A lower bound for the variance of single-lag estimator at high SNRs is obtained
+as the variance of~\eqref{eq:lower_bound_single_lag_high_snr} when $v=1$.
+Moreover, we can see the variance of~\eqref{eq:lower_bound_single_lag_high_snr} depends on
+the value of $k_v$. The best choice for $k_v$ is to choose 
+$k_v=\lfloor\frac{2N}{3v}\rfloor$ to minimize the variance.
+
+\subsubsection{Estimation range}
+The SL estimator may suffer the eff-ect
+of "aliasing" if $2\pi |\delta|k_vv{>}\pi$. Thus, a safe estimation range for the estimator with optimal $k_v=\lfloor\frac{2N}{3v}\rfloor$ to avoid the modulo-$2\pi$ operation
+is $\delta$ within $\pm 3/(4MN)$. Compared with the same autocorrelation-based estimator, e.g.,
+the L\&R~\cite{Luise_Reggiannini_95} and Fitz~\cite{Fitz_94}, single-lag estimator has 
+$3/8$ estimation range of L\&R and $3/4$ estimation range of Fitz.
+
+\subsubsection{Computational complexity}
+
+We have discussed the accuracy of single-lag estimator.
+It is also necessary to compare with the complexity since single-lag estimator
+is used in high sample-rate case. The computational complexity of single-lag estimator 
+can be readily assessed from~\eqref{eq:single_lag_estimator_w_partial_corr},~\eqref{eq:coherent_integrator} and~\eqref{eq:single_lag_estimator_wout_partial_corr}.
+
+Specifically, we compare with the complexity of SL estimators in single and sequential detection with and without partial correlating.
+Note, with partial correlating, the SL estimator has same complexity in single and sequential detection since the
+coherent integrator requires the product of the received samples and the preamble 
+at the same sample instants. However, with no partial correlating, from~\eqref{eq:single_lag_estimator_wout_partial_corr},
+we see $s_{m-k}^*s_m$ can be precomputed and stored
+like "filter coefficients"; Moreover, due to the characteristic of the sequential detection process, the products of received samples, $r_{m-k}r_m^*$,
+can be stored in a shift register so that only one new product needs to be computed per sample period.
+
+The exact computational complexity of two single-lag estimators are given in Table~\ref{table:computational complexity comparison}. 
+We see $\hat{\delta}_{SL}^{(1)}(k)$ has 2 times lower complex products and additions compared with $\hat{\delta}_{SL}^{(v>1)}(k_v)$ in sequential detection.
+Furthermore, note the complexity of Kay estimator in~\cite{Morelli_Mengali_98} is given approximately $\frac{3N}{4}$ complex products and additions. By plugging
+the optimal $k=\frac{2N}{3}$, $\hat{\delta}_{SL}^{(1)}(k)$ finally has a lower complexity than Kay estimator with $\frac{2N}{3}$ complex products and additions.
+
+\begin{table}[t]
+  \caption{Complexity of single-lag estimators with and without partial correlating (complex products~|~additions)}  % title of Table
+  \centering 
+  \begin{tabular}{c c c} 
+  \hline\hline 
+   & Single Detection & Sequential Detection \\ [0.5ex] 
+  \hline 
+  $\hat{\delta}_{SL}^{(1)}(k)$  & 2(N-k)~|~N-k & N-k+1~|~N-k \\ 
+  $\hat{\delta}_{SL}^{(v)}(k_v)$ & (2+$\frac{1}{v}$)(N-k)~|~(2-$\frac{1}{v}$)(N-k)-1 & (2+$\frac{1}{v}$)(N-k)~|~(2-$\frac{1}{v}$)(N-k)-1 \\ [1ex]
+  \hline
+  \end{tabular}
+  \label{table:computational complexity comparison}
+\end{table}
+
+\subsection{Fine Solution: Newton-Method based Estimator}
+
+The principle of Newton-Method based estimator is to use the single-lag estimator as the starting point for a Newton-type iteration 
+aimed at finding a better solution to the necessary condition~\eqref{eq:necessary condition for delta}. 
+In principle, multiple iterations are possible to produce successively better approximations to the root of
+$J'(\cdot)$ in~\eqref{eq:necessary condition for delta}. Specifically, the iterations are given by
+
+\begin{equation}
+  \label{eq:iter_NM_est}
+  \hat{\delta}_{NM}^{(i+1)}=\hat{\delta}_{NM}^{(i)}-
+  \frac{J(\hat{\delta}_{NM}^{(i)})}{J^\prime(\hat{\delta}_{NM}^{(i)})}
+\end{equation}
+where $\hat{\delta}_{NM}^{(0)}=\hat{\delta}^{(v)}_{SL}(k_v)$ is the starting point of iteration and
+$J^\prime(\cdot)$ denotes the derivative of $J$ with respect to $\hat{\delta}$. 
+Our simu-lations indicate that only a single iteration is usually sufficient to achieve very good accuracy.
+
+From~\eqref{eq:iter_NM_est} and the previous discussion, we can conclude the importance of accuracy of single-lag estimator
+at low SNRs: 
+with a merely sufficient good accuracy, the single-lag estimator not only increases the probability of detection by better
+fitting the preamble and received signal as in sequential detector~\eqref{eq:generalized_corr}, but 
+it provides a reasonable starting point for getting the more accurate NM estimator. In simluations,
+we will also show the case when the NM estimator has a worse accuracy than single-lag estimator if the latter does not provide enough accuracy. 
+
+% ambiguity problem for sl.

@@ -6,4 +6,4 @@ for k=0:N-1
     corrected_tx(k+1)=tx(k+1)*exp(1i*2*pi*delta_SD*k)*phasor_SD;
 end
 
-rho=real(dot(rx,corrected_tx))/(norm(rx)*norm(corrected_tx));
+rho=abs(dot(rx,corrected_tx))/(norm(rx)*norm(corrected_tx));
