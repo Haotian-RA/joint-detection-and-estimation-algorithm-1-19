@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  24 MAR 2022 20:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  25 MAR 2022 01:38
 entering extended mode
 **c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex
 (c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex
@@ -562,36 +562,33 @@ File: ../main_matlab_figures//partial_preamble_detection.png Graphic file (type 
 Package pdftex.def Info: ../main_matlab_figures//partial_preamble_detection.png  used on input line 5.
 (pdftex.def)             Requested size: 238.49121pt x 118.99994pt.
 
-Overfull \hbox (2.52005pt too wide) detected at line 33
+Overfull \hbox (5.02776pt too wide) detected at line 34
 [][]
  []
 
-[2 <../main_matlab_figures//partial_preamble_detection.png>]) (freq_est.tex [3]
-Underfull \vbox (badness 1668) has occurred while \output is active []
-
- [4]) (simulations.tex
+) (freq_est.tex [2 <../main_matlab_figures//partial_preamble_detection.png>] [3] [4]) (simulations.tex
 <../main_matlab_figures//accuracy_NM_SL.png, id=34, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//accuracy_NM_SL.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_SL.png>
-Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL.png  used on input line 14.
+Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL.png  used on input line 5.
 (pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
 <../main_matlab_figures//accuracy_NM_SL_traditional.png, id=35, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//accuracy_NM_SL_traditional.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_SL_traditional.png>
-Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL_traditional.png  used on input line 20.
+Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL_traditional.png  used on input line 11.
 (pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
 <../main_matlab_figures//ROC_new.png, id=36, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//ROC_new.png Graphic file (type png)
 <use ../main_matlab_figures//ROC_new.png>
-Package pdftex.def Info: ../main_matlab_figures//ROC_new.png  used on input line 32.
+Package pdftex.def Info: ../main_matlab_figures//ROC_new.png  used on input line 17.
 (pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
-) [5 <../main_matlab_figures//accuracy_NM_SL.png (PNG copy)> <../main_matlab_figures//accuracy_NM_SL_traditional.png (PNG copy)>] (implementation_on_SDR.tex
+ [5 <../main_matlab_figures//accuracy_NM_SL.png (PNG copy)> <../main_matlab_figures//accuracy_NM_SL_traditional.png (PNG copy)> <../main_matlab_figures//ROC_new.png (PNG copy)>]) (implementation_on_SDR.tex
 <../main_matlab_figures//SDR_receiver_new.png, id=40, 256.5585pt x 268.00125pt>
 File: ../main_matlab_figures//SDR_receiver_new.png Graphic file (type png)
 <use ../main_matlab_figures//SDR_receiver_new.png>
 Package pdftex.def Info: ../main_matlab_figures//SDR_receiver_new.png  used on input line 5.
 (pdftex.def)             Requested size: 195.13524pt x 187.90219pt.
-) (paper.bbl [6 <../main_matlab_figures//ROC_new.png (PNG copy)> <../main_matlab_figures//SDR_receiver_new.png>])
+) (paper.bbl [6 <../main_matlab_figures//SDR_receiver_new.png>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -609,13 +606,13 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  10178 strings out of 479334
  177332 string characters out of 2857084
- 465911 words of memory out of 3000000
+ 464924 words of memory out of 3000000
  27385 multiletter control sequences out of 15000+200000
  574522 words of font info for 246 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,19n,75p,428b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,19n,75p,415b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXBMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXBMI7.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI5.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexas.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsya.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsyb.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on paper.pdf (7 pages, 436689 bytes).
+Output written on paper.pdf (7 pages, 435668 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

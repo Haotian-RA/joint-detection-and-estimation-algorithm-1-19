@@ -1,15 +1,6 @@
 \section{Simulation Results}%
 \label{sec:simulations}
 
-In simulation section, we reverse the order of discussion by first showing the accuracy of estimators in carrier synchronization
-and then showing some results of sequential detection since the GLRT sequential detector in~\eqref{eq:generalized_corr} relies on the accuracy of 
-the SL estimator. The symbol sequence of the preamble is chosen as a Gold sequence with good autocorrelation properties and
-modulated by a QPSK alphabet. The pulse is chosen
-a $50\%$ rolloff Square-Root Raised Cosine (SRRC) pulse to satisfy the (squared root of) Nyquist property.
-The normalized frequency offset $\delta$ is intentionally set to be in the safe estimation range for all estimators for simulation purpose.
-
-\subsection{Simulation Results for Estimation}
-
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.05in]{accuracy_NM_SL.png}}
     \caption{Accuracy of the NM estimator and single-lag estimator ($L_0=32$)}
@@ -22,17 +13,29 @@ The normalized frequency offset $\delta$ is intentionally set to be in the safe 
     \label{fig:accuracy_NM_SL_traditional}
     \end{figure}
 
-% \begin{figure}[t]
-%     \centerline{\includegraphics[width=3.4in]{generalized_correlation_p_plus_delta.png}}
-%     \caption{Performance of sequential detector when the preamble is pulse shaped}
-%     \label{fig:Generalized correlation}
-%     \end{figure}
-
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.05in]{ROC_new.png}}
     \caption{Receiver operating characteristics (ROC) of the sequential detector}
     \label{fig:Receiver operating characteristics}
     \end{figure}
+
+In simulation section, we reverse the order of discussion by first showing 
+the accuracy of estimators in carrier synchronization and then showing some results of sequential detection since
+the GLRT based detector in~\eqref{eq:generalized_corr} relies on the accuracy of 
+the SL estimator. The symbol sequence of the preamble is chosen as a Gold sequence 
+with good autocorrelation property and
+modulated by a QPSK alphabet.
+The pulse is chosen a 0.5
+rolloff Square-Root Raised Cosine (SRRC) pulse to satisfy the (squared root of) Nyquist property.
+The normalized frequency offset $\delta$ is intentionally set to be in the safe estimation range for all estimators for simulation purpose.
+
+\subsection{Simulation Results for Estimation}
+
+% \begin{figure}[t]
+%     \centerline{\includegraphics[width=3.4in]{generalized_correlation_p_plus_delta.png}}
+%     \caption{Performance of sequential detector when the preamble is pulse shaped}
+%     \label{fig:Generalized correlation}
+%     \end{figure}
 
 Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of single-lag (SL) and the NM estimator.
 Compared with the two curves of SLs with $v{=}1$ and $v{=}16$, we see the length-$16$ partial correlating

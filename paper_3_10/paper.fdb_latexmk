@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex paper"] 1648125271 "paper.aux" "paper.bbl" "paper" 1648125286
+["bibtex paper"] 1648143181 "paper.aux" "paper.bbl" "paper" 1648143530
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "paper.aux" 1648125285 5775 008091c153b9d3e0ff20c6132bd2d5cc "pdflatex"
+  "paper.aux" 1648143530 5648 94809e1a9392ff4c5ec608fa1618dfdf "pdflatex"
   "ref.bib" 1647725131 3744 7abb9b8384cc7d9364e9297f6c0ab6c3 ""
   (generated)
   "paper.bbl"
   "paper.blg"
-["pdflatex"] 1648125283 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1648125286
+["pdflatex"] 1648143527 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1648143530
   "../main_matlab_figures//ROC_new.png" 1647580295 56147 d5f9506817228b1fdcace78f4670cb03 ""
   "../main_matlab_figures//SDR_receiver_new.png" 1647639332 12258 25aa0d89c8871719c23fa519716cc8b5 ""
   "../main_matlab_figures//accuracy_NM_SL.png" 1648122791 75977 64b01107d4f747e235532e4915d64134 ""
@@ -173,15 +173,15 @@
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1463135581 57049 34128738f682d033422ca125f82e5d62 ""
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1606298686 4902 efb3d66683a2da2a232f71e3a571a899 ""
   "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" 1647727153 2278 77b7fcbf290d673b7e294741f1f60c5e ""
-  "detection.tex" 1648074840 11578 e72399071aa23ee28e302e91346de31a ""
-  "freq_est.tex" 1648121767 18799 89f40f1ebe9d4d2e609d0ade2b0ea26f ""
+  "detection.tex" 1648139479 11806 f56a679844c6b54b2ff681c091f65656 ""
+  "freq_est.tex" 1648143527 18563 e0cbd50ef81a6359b5e09b28a90d6721 ""
   "implementation_on_SDR.tex" 1648125282 4067 c9c100dff6f8b692673a7216be512c8a ""
   "introduction.tex" 1647725618 2347 74e79d934de71fd4d9b15b742fd30d27 ""
-  "model.tex" 1648058170 4824 2a28e15ba1bc9ce36708e61425844a80 ""
-  "paper.aux" 1648125285 5775 008091c153b9d3e0ff20c6132bd2d5cc "pdflatex"
-  "paper.bbl" 1648125271 2239 15c868782c0eac8aa26dae69a705ab3c "bibtex paper"
+  "model.tex" 1648134423 4826 960af11de7f76fb33d0a5ff4429ae6c9 ""
+  "paper.aux" 1648143530 5648 94809e1a9392ff4c5ec608fa1618dfdf "pdflatex"
+  "paper.bbl" 1648143181 2239 15c868782c0eac8aa26dae69a705ab3c "bibtex paper"
   "paper.tex" 1647727153 2278 77b7fcbf290d673b7e294741f1f60c5e ""
-  "simulations.tex" 1648124385 5313 5f27827de8b3d44ece4285b1982adfe3 ""
+  "simulations.tex" 1648143177 5308 bae56641f03d3e3579500ba6a9b10192 ""
   (generated)
   "paper.pdf"
   "paper.log"
