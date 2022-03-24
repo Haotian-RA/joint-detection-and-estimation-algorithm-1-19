@@ -3,23 +3,24 @@
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=2.7in,height=2.6in]{SDR_receiver_new.png}}
-    \caption{Block diagram for implementing the proposed algorithm in FGI}
+    \caption{Block diagram for implementing the proposed algorithm in TBB}
     \label{fig:SDR_receiver}
     \end{figure}
 
-To make our proposed algorithm work at a very high sample rate,
-the first improvement of algorithm is by using pipeline.
-Threading Building Blocks (TBB) is a well-known C++
-library that enables parallel programming on multicore processor~\cite{Michael_19}.
-The Flow Graph interfaces (FGI) in TBB~\cite[Ch.~3]{Michael_19} can make the algorithm implemented in a simple structure
-by seperating the algorithm into small nodes, which is used in this paper.
+% To make our proposed algorithm work at a very high sample rate,
+% the first improvement of algorithm is by using pipeline.
+% Threading Building Blocks (TBB) is a well-known C++
+% library that enables parallel programming on multicore processor~\cite{Michael_19}.
+To demonstrate the practicality of our algorithms, we have implemented them on a general
+purpose processor (GPP). The different aspects of the algorithm are mapped to logical nodes in a pipelined, parallel processing atchitecture
+using Threading Building Blocks (TBB)~\cite{Michael_19}.
 
-Figure~\ref{fig:SDR_receiver} shows a simple block diagram for implementing the algorithm in FGI.
-Due to space constraints, we don't give all the details of each node but it is necessary to discuss about
-the node of computing phasor estimate $\hat{\xi}$ (node V). Note, the numerator of~\eqref{eq:opt_xi}
-performs like a time-varying convolution, which cannot be computed efficiently as by FFT.
-The solution to increasing the computation efficiency is by using parallel programming 
-of TBB (or FGI). Specifically,~\eqref{eq:opt_xi} can be com-puted in three stages:
+Figure~\ref{fig:SDR_receiver} shows a simple block diagram illustrating pipeline for the algorithm.
+Due to space constraints, we don't give details of each node. It is necessary to discuss
+the node for computing the phasor estimate $\hat{\xi}$ (node V). The numerator of~\eqref{eq:opt_xi}
+performs a time-varying convolution, which cannot be computed efficiently via FFT.
+Our solution to increasing the computational efficiency is to use parallel programming 
+of TBB. Specifically,~\eqref{eq:opt_xi} can be com-puted in three stages:
 1. Compute several segments of $\sum r_ns_n^*$ in several nodes in parallel;
 2. each node is then multiplied by $\hat{\delta}_{SL}$ at the middle index of the 
 partial correlation.
@@ -36,17 +37,16 @@ the efficiency of computing $\hat{\xi}$ is increased by $L^2$.
 
 Now we show the results of the proposed algorithm in para-llel programming on SDR.
 The signal are transmitted and rec-eived between two universal software radio peripheral (USRP)
-connecting by a 5-Gigabit Ethernet cable. At the receiver side, 
-the CPU includes 6 cores and 12 threads. The results of 
-google benchmark for each node in Figure~\ref{fig:SDR_receiver}
+connected by a 5-Gigabit Ethernet cable to laptops. At the receiver side, 
+the CPU includes 6 cores and 12 threads with 4500 MHz clock frequency. The results of 
+Google benchmark for each node in Figure~\ref{fig:SDR_receiver}
 are shown in Table~\ref{table:BM_function_nodes}. Note, the time cost in the table
-should refer to one buffer size, i.e., 8192, and the throughput of the 
-pipeline is determined by the node with the longest time. Thus, the ideal throughput is approximately equal to
+refers to one buffer size of 8192 samples. The throughput of the 
+pipeline is dominated by the node with the longest time. Thus, the ideal throughput is approximately equal to
 $8192/837253 \cdot 10^3 \approx 9.78$ MHz.
 
-Based on the above discussion, we finally test the proposed algorithm at sample rate
-10 MS/s. As a result, the throughput of the algorithm is in the range of 4.5 MS/s $\sim$ 5.0 MS/s with latency near 1 ms;
-The detection algorithm is very robust that the false alarm probability is near 0 at moderate SNR.
+In operation, the throughput of the algorithm is in the range of 4.5 MS/s $\sim$ 5.0 MS/s with latency near 1 ms;
+The detection algorithm is very robust and the false alarm probability is near 0 at moderate SNR.
 
 \begin{table}[t]
     \caption{Benchmark results of nodes in Figure~\ref{fig:SDR_receiver} with buffer size 8192}  % title of Table

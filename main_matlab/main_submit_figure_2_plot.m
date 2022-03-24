@@ -24,6 +24,8 @@ p1=semilogy(SNR,CRVB_delta(1,:),':');
 hold on
 p2=semilogy(SNR,MSE_block_v_SD_001(1,1:21),'-');
 hold on
+p7=semilogy(SNR,MSE_block_v_SD_001(3,1:21),':.');
+hold on
 p5=semilogy(SNR,MSE_delta_LR(1,:),'-.');
 hold on
 p6=semilogy(SNR,MSE_delta_fitz(1,:),'--');
@@ -33,7 +35,7 @@ hold on
 p4=semilogy(SNR,MSE_delta_kay(1,:),'.-');
 hold on
 [hc,ht,hcl] = nice_plot(gcf); 
-lgnd=legend({'CRVB','SL ($v{=}1$)','L\&R','Fitz','NM ($v{=}1$ SL based)','Kay'},'Interpreter','latex','Location','southwest');
+lgnd=legend({'CRVB','SL ($v{=}1$)','SL ($v{=}16$)','L\&R','Fitz','NM ($v{=}1$ SL based)','Kay'},'Interpreter','latex','Location','southwest');
 ylab=ylabel('MSE of $M\hat{\delta}$','Interpreter','latex');
 % ylab=ylabel('mean squared error of M$\hat{\delta}$','Interpreter','latex');
 xlab=xlabel('$E_s/N_0$ (dB)','Interpreter','latex');

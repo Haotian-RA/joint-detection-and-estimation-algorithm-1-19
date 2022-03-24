@@ -9,6 +9,11 @@ load('new_1_CRVB_delta.mat')
 load('new_1_Bound_SD.mat')
 
 SNR=[-10:10];
+v=1;
+M=1;
+N=32;
+[Bound_SD1] = bound_SD(N,SNR,M,v,0.01);
+[Bound_SD16] = bound_SD(N,SNR,M,16,0.01);
 
 MSE_delta_NM(1,9)=2.1e-4;
 MSE_delta_NM(1,10)=0.55e-4;
@@ -20,7 +25,9 @@ MSE_delta_NM(2,6)=1.9e-4;
 figure(1)
 p1=semilogy(SNR,CRVB_delta(1,1:21),':');
 hold on
-p2=semilogy(SNR,Bound_SD(1,1:21),'-.');
+p2=semilogy(SNR,Bound_SD1(1,1:21),'-.');
+hold on
+p8=semilogy(SNR,Bound_SD16(1,1:21),'-.');
 hold on
 p3=semilogy(SNR,MSE_block_v_SD_001(1,1:21),'-');
 hold on
@@ -48,7 +55,8 @@ hold on
 % hold on
 grid on
 [hc1,ht1,hcl1] = nice_plot(gcf); 
-lgnd=legend({'CRVB','lower bound in (20)',...
+lgnd=legend({'CRVB','lower bound in (19) with v{=}1',...
+    'lower bound in (19) with v{=}16',...
     'SL ($v{=}1$), $M\delta{=}0.01$',...
     'SL($v{=}16$), $M\delta{=}0.01$',...
     'SL ($v{=}16$), $M\delta{=}0.001$',...

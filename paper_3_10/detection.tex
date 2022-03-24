@@ -1,6 +1,12 @@
 \section{Detection and Time Synchronization}
 \label{sec:detection}
 
+\begin{figure}[t]
+  \centerline{\includegraphics[width=3.3in]{partial_preamble_detection.png}}
+  \caption{The window of detection containing a portion of the preamble (Top blue: the window of received samples hasn't passed the position $\bar{p}$ of the preamble. Bottom red: the window has passed $\bar{p}$.)}
+  \label{fig:partial_preamble_detection}
+  \end{figure}
+
 % In this section, we analyze the sequential detection problem, where 
 % the detection algorithm proceeds sequentially and each step a window of
 % $N$ received samples with $N{-}1$ overlapped samples from the previous window is considered.
@@ -8,33 +14,40 @@ We start by looking at the two hypotheses for the sequential detection task:
 Let $H_0$ be the null hypothesis that the received signal is the channel noise or only contains a portion of the preamble against the alternative $H_1$ that it contains the entire preamble. 
 % The detection algorithm proceeds sequentially and each step a window of
 % length $N$ received samples with $N-1$ overlapped samples from the previous window is considered.
-Define $\Delta$ to be the distance between the current start position of the observation of $N$ received samples and the start position of the preamble ($p$). 
-Thus, for $n=0,1,\ldots,N-1$, the two hypotheses are given by
+Figure~\ref{fig:partial_preamble_detection} shows when the detection window contains
+partial preamble with global delay axis index $p$ and local sample index $n$.
+$\Delta=p-\bar{p}$ denotes the distance in samples between the current start position $p$ of the window of $N$ received samples and the start position $\bar{p}$ of the preamble.
+Thus, for $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samples $r_n$
 
 \begin{equation}
-    \label{eq:two hypotheses}
-    \begin{aligned}
-    &H_0:~r_n = 
-    \begin{dcases}
-        s_{n-\Delta}Ae^{j\phi}e^{j2\pi\delta (n-\Delta)}+w_n & \text{for}~\Delta\in(0,N-1], \\
-        w_n & \text{otherwise},
-    \end{dcases} \\
-    &H_1:~r_n=s_nAe^{j\phi}e^{j2\pi\delta n}+w_n.
-    \end{aligned}
-  \end{equation}
+  \label{eq:two hypotheses}
+  \begin{aligned}
+  &H_0{:}\Delta {\neq} 0,r_n{=}
+  \begin{dcases}
+      s_{n-\Delta}Ae^{j\phi}e^{j2\pi\delta (n-\Delta)}{+}w_n & \max(0,\Delta){\leq} n{\leq} \min( \\
+      & ~~~~~~N{-}1,N{-}1{+}\Delta), \\
+      w_n & \text{otherwise},
+  \end{dcases} \\
+  &H_1{:}~\Delta {=} 0,~r_n{=}s_nAe^{j\phi}e^{j2\pi\delta n}+w_n.
+  \end{aligned}
+\end{equation}
 % Figure 3 demonstrates the case when $H_0$ represents a portion of the preamble compared with
 % $H_1$. 
-Note, in~\cite{Ramakrishnan_10,Chiani_06,Liang_15},
-the authors define hypothesis $H_0$ only when no preamble is observed.
-Although, in~\cite{Chiani_06}, the author points out the effect of partial preamble
-can be kindly avoided by us-ing the preamble symbol sequence with a good autocorrelation property.
-In this paper, we still focus on discussing when pa-rtial preamble is observed because it is the worst case of $H_0$
+
+In~\cite{Ramakrishnan_10,Chiani_06,Liang_15},
+the authors define hypothesis $H_0$ only when no preamble
+is observed, i.e., $|\Delta| \geq N$. Although, in~\cite{Chiani_06},
+it is pointed out the effect of partial preamble can be neglected by
+using the preamble symbol sequence with a good autocorrelation property.
+In this paper, we still focus on discussing when partial preamble is observed because it is the worst case of $H_0$
 and it affects the result of hypothesis testing.
 
-Based on the above discussion, we now build the conditional likelihood ratio test (CLRT) 
-between $H_0$ under $\Delta \in(0,N-1]$ and $H_1$ by giving the distance $\Delta$, the phasor $\xi=Ae^{j\phi}$ and
-the frequency offset $\delta$ at the position of the preamble (we omit discussing CLRT for $H_0:r_n=w_n$, since it 
-is a traditional and well-known hypothesis testing problem). The hypothesis testing is given by
+Based on the above discussion, we now build the conditional likelihood ratio test (CLRT)
+between $H_0$ under $\Delta \in(0,N-1]$, i.e., the window of received samples 
+hasn't passed the position $\bar{p}$ of the preamble, 
+and $H_1$ by giving the distance $\Delta$, the phasor $\xi=Ae^{j\phi}$ and
+the frequency offset $\delta$ at position $\bar{p}$. We omit discussing when the window has passed $\bar{p}$,
+because the two cases are symmetric. The likelihood ratio is given by 
 
 \begin{equation}
     \label{eq:likelihood ratio}
@@ -55,67 +68,110 @@ Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio
     &\frac{N_0}{2}\ln\eta+\frac{A^2}{2}\sum_{n=N-\Delta}^{N-1}|s_n|^2.
     \end{aligned}
 \end{equation}
-Note, on the left hand side, the two summations perform like the matched filter for hypothesis $H_1$
-and $H_0$, respectively. To explain this, we plug $r_n=s_n\xi e^{j2\pi\delta n}+w_n$ under hypothesis $H_1$ into the left hand side of~\eqref{eq:log likelihood}.
-In the real operator, it yields
 
-\begin{equation}
-    \label{eq:log likelihood under H_1}
-    \begin{aligned}
-    % &\sigma(\Delta) \\    
-    % &=A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{a zero-mean AWGN}
-    A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{zero-mean noise},
-    \end{aligned}
-\end{equation}
-where $A^2\sum_{n=0}^{N-1}|s_n|^2$ denotes the energy of the preamble and
-$\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*$ is the "partial" autocorrelation function (ACF) of the
-preamble at lag $\Delta$. Similarly, it can be derived the left hand side of~\eqref{eq:log likelihood}
-under hypothesis $H_0$ in the real operator is 
-% $-A^2\sum_{n=\Delta}^{N-1}|s_{n-\Delta}|^2+A^2e^{-j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_{n-\Delta}s_n^*$
-
-\begin{equation}
-    \label{eq:log likelihood under H_0}
-    \begin{aligned}
-    % &\sigma(\Delta) \\    
-    % &=A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{a zero-mean AWGN}
-    -A^2\sum_{n=\Delta}^{N-1}|s_{n-\Delta}|^2+A^2e^{-j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_{n-\Delta}s_n^*+\text{zero-mean noise}.
-    \end{aligned}
-\end{equation}
-Thus, based on~\eqref{eq:log likelihood under H_1} and~\eqref{eq:log likelihood under H_0},
-we can conclude that the principle value of the log-CLRT reduces to the difference between
-the energy of the (partial) preamble and the ACF of the preamble sequence at lag $\Delta$. 
-By using the symbol sequence $\{c_i\}$ of $s_n$ with a good autocorrelation property, e.g., Gold sequence, the
-effect of the ACF can be kindly mitigated; However, because of pulse shaping,
-the autocorrelation property of the preamble is decreased so that 
-the effect of the ACF cannot be ignored. 
-
-In practice, the distance $\Delta$ is an unknown information to the receiver,
-which means the second summation of~\eqref{eq:log likelihood} is not computable.
-However, the first summation is computable and it reflects the energy of the preamble under
-$H_1$ and the "partial" ACF under $H_0$.
-Thus, a practical sequential detector is built just based on the classical 
+On the left hand side, the two summations are the matched filters for hypothesis $H_1$
+and $H_0$, respectively. It can be derived the principal value of the left hand side of~\eqref{eq:log likelihood}
+reduces to the difference between the energy of preamble and a "partial" au-tocorrelation function (ACF)
+of the preamble at lag $\Delta$. More-over, we notice that the second summation on left hand side
+is not computable due to the unknown information of $\Delta$. For-tunately,
+the first summation is computable and it reflects the energy of the preamble
+under $H_1$ and the "partial" ACF under $H_0$, which can be ignored by assuming a
+good autocorrelation property of the preamble. 
+Thus, a practical sequential detector is built just based on the
 cross-correlation between the received signal
 and the preamble corrected by the frequency and phasor estimates with some proper scaling. Specifically,
 
 \begin{equation}
-    \label{eq:generalized_corr}
-    \rho(\tilde{p})=
-    \frac{\Re\{\langle
-      \bm{r}_{\tilde{p}},\hat{\bm{s}}_{\tilde{p}}\rangle\}}
-    {||\bm{r}_{\tilde{p}}||\cdot||\hat{\bm{s}}_{\tilde{p}}||} \LRT{H_1}{H_0} \gamma
-  \end{equation}
-where $\tilde{p}{=}p{+}\Delta$ denotes the general start position of received signal. 
-$\bm{r}_{\tilde{p}}{=}[r_{\tilde{p}},r_{\tilde{p}+1},\ldots,r_{\tilde{p}+N-1}]$ represents the received signal sequence at
-the position $\tilde{p}$, and $\hat{\bm{s}}_{\tilde{p}}$ represents the carrier-estimates corrected preamble sequence, where each element is 
-$\hat{s}_{n}=s_n\hat{\xi}_{\tilde{p}}e^{j2\pi\hat{\delta}_{\tilde{p}}n}~\text{for}~n=0,1,\ldots,N-1$, and $\hat{\xi}_{\tilde{p}}$, $\hat{\delta}_{\tilde{p}}$
-are the phasor and frequency estimates at position $\tilde{p}$. Moreover, $||\cdot||$ is the Euclidean norm of the signal sequence,
-and $\gamma$ is the normalized detection threshold which lies on the range of $[0,1]$. 
-From~\eqref{eq:generalized_corr}, it is obvious that to implement the sequential detector, we need the information
-of the frequency and phasor estimates at that position. Thus, a realistic generalized likelihood ratio test (GLRT) replaces the CLRT of~\eqref{eq:likelihood ratio}
-by first doing carrier synchronization at each position of detection then plugging the estimates into the LRT.
-Furthermore, it should be emphasized that our sequential detector requires to work at high sample rate; Although~\eqref{eq:generalized_corr}
-is already the simpliest form, the complexity of the two estimates $\hat{\xi}$,$\hat{\delta}$ is also crucial. 
+  \label{eq:generalized_corr}
+  \rho(p)=
+  \frac{\Re\{\langle
+    \bm{r}_{p},\hat{\bm{s}}_{p}\rangle\}}
+  {||\bm{r}_{p}||\cdot||\hat{\bm{s}}_{p}||} \LRT{H_1}{H_0} \gamma
+\end{equation}
+where $\bm{r}_{p}{=}[r_{p},r_{p+1},\ldots,r_{p+N-1}]$ denotes the received signal sequence at
+current position $p$, and $\hat{\bm{s}}_{p}$ is the carrier-estimates corrected preamble sequence, where each element equals to
+$\hat{s}_{n}=s_n\hat{\xi}_{p}e^{j2\pi\hat{\delta}_{p}n}~\text{for}~n=0,1,\ldots,N-1$, and $\hat{\xi}_{p}$, $\hat{\delta}_{p}$
+are the phasor and frequency estimates at position $p$. Moreover, $||\cdot||$ denotes the Euclidean norm of the signal sequence,
+and $\gamma$ is the normalized detection threshold which lies in the range of $[0,1]$. 
+From~\eqref{eq:generalized_corr}, we see the CLRT
+is replaced by a realistic generalized likelihood ratio test (GLRT) by first
+doing the carrier synchronization at each position of detection window and 
+then plugging the estimates in the LRT. While~\eqref{eq:generalized_corr}
+is straightforward and of complexity $O(N)$, the complexity of estimating $\hat{\xi}$,$\hat{\delta}$
+is critical for practical implementation. 
 A pair of low-complexity frequency and phasor estimates will be given in the next section.
+
+
+% On the left hand side, the two summations are the matched filters for hypothesis $H_1$
+% and $H_0$, respectively. It is easy to derive that the principal value of the log-CLRT
+% reduces to the difference between the energy of the (partial) preamble and a "partial"
+% autocorrelation function (ACF) of the preamble at lag $\Delta$ under two hypotheses.
+
+% It can be also seen that the second summation of~\eqref{eq:log likelihood} is not computable
+% due to the unknown information of the distance $\Delta$.
+
+% To explain this, we plug $r_n=s_n\xi e^{j2\pi\delta n}+w_n$ under hypothesis $H_1$ into the left hand side of~\eqref{eq:log likelihood}.
+% In the real operator, it yields
+
+% \begin{equation}
+%     \label{eq:log likelihood under H_1}
+%     \begin{aligned}
+%     % &\sigma(\Delta) \\    
+%     % &=A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{a zero-mean AWGN}
+%     A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{zero-mean noise},
+%     \end{aligned}
+% \end{equation}
+% where $A^2\sum_{n=0}^{N-1}|s_n|^2$ denotes the energy of the preamble and
+% $\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*$ is the "partial" autocorrelation function (ACF) of the
+% preamble at lag $\Delta$. Similarly, it can be derived the left hand side of~\eqref{eq:log likelihood}
+% under hypothesis $H_0$ in the real operator is 
+% % $-A^2\sum_{n=\Delta}^{N-1}|s_{n-\Delta}|^2+A^2e^{-j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_{n-\Delta}s_n^*$
+
+% \begin{equation}
+%     \label{eq:log likelihood under H_0}
+%     \begin{aligned}
+%     % &\sigma(\Delta) \\    
+%     % &=A^2\sum_{n=0}^{N-1}|s_n|^2-A^2e^{j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*+\text{a zero-mean AWGN}
+%     -A^2\sum_{n=\Delta}^{N-1}|s_{n-\Delta}|^2+A^2e^{-j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_{n-\Delta}s_n^*+\text{zero-mean noise}.
+%     \end{aligned}
+% \end{equation}
+% Thus, based on~\eqref{eq:log likelihood under H_1} and~\eqref{eq:log likelihood under H_0},
+% we can conclude that the principle value of the log-CLRT reduces to the difference between
+% the energy of the (partial) preamble and the ACF of the preamble sequence at lag $\Delta$. 
+% By using the symbol sequence $\{c_i\}$ of $s_n$ with a good autocorrelation property, e.g., Gold sequence, the
+% effect of the ACF can be kindly mitigated; However, because of pulse shaping,
+% the autocorrelation property of the preamble is decreased so that 
+% the effect of the ACF cannot be ignored. 
+
+% In practice, the distance $\Delta$ is an unknown information to the receiver,
+% which means the second summation of~\eqref{eq:log likelihood} is not computable.
+% However, the first summation is computable and it reflects the energy of the preamble under
+% $H_1$ and the "partial" ACF under $H_0$.
+% Thus, a practical sequential detector is built just based on the classical 
+% cross-correlation between the received signal
+% and the preamble corrected by the frequency and phasor estimates with some proper scaling. Specifically,
+
+% \begin{equation}
+%     \label{eq:generalized_corr}
+%     \rho(\tilde{p})=
+%     \frac{\Re\{\langle
+%       \bm{r}_{\tilde{p}},\hat{\bm{s}}_{\tilde{p}}\rangle\}}
+%     {||\bm{r}_{\tilde{p}}||\cdot||\hat{\bm{s}}_{\tilde{p}}||} \LRT{H_1}{H_0} \gamma
+%   \end{equation}
+% where $\tilde{p}{=}p{+}\Delta$ denotes the general start position of received signal. 
+% $\bm{r}_{\tilde{p}}{=}[r_{\tilde{p}},r_{\tilde{p}+1},\ldots,r_{\tilde{p}+N-1}]$ represents the received signal sequence at
+% the position $\tilde{p}$, and $\hat{\bm{s}}_{\tilde{p}}$ represents the carrier-estimates corrected preamble sequence, where each element is 
+% $\hat{s}_{n}=s_n\hat{\xi}_{\tilde{p}}e^{j2\pi\hat{\delta}_{\tilde{p}}n}~\text{for}~n=0,1,\ldots,N-1$, and $\hat{\xi}_{\tilde{p}}$, $\hat{\delta}_{\tilde{p}}$
+% are the phasor and frequency estimates at position $\tilde{p}$. Moreover, $||\cdot||$ is the Euclidean norm of the signal sequence,
+% and $\gamma$ is the normalized detection threshold which lies on the range of $[0,1]$. 
+% From~\eqref{eq:generalized_corr}, it is obvious that to implement the sequential detector, we need the information
+% of the frequency and phasor estimates at that position. Thus, 
+
+% a realistic generalized likelihood ratio test (GLRT) replaces the CLRT of~\eqref{eq:likelihood ratio}
+% by first doing carrier synchronization at each position of detection then plugging the estimates into the LRT.
+% Furthermore, it should be emphasized that our sequential detector requires to work at high sample rate; Although~\eqref{eq:generalized_corr}
+% is already the simpliest form, the complexity of the two estimates $\hat{\xi}$,$\hat{\delta}$ is also crucial. 
+% A pair of low-complexity frequency and phasor estimates will be given in the next section.
 
 
 

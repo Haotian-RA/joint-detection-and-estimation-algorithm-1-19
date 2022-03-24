@@ -1,17 +1,18 @@
 # Fdb version 3
-["bibtex paper"] 1647727065 "paper.aux" "paper.bbl" "paper" 1647727157
+["bibtex paper"] 1648125271 "paper.aux" "paper.bbl" "paper" 1648125286
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "paper.aux" 1647727156 5630 6685de4f5d3e12ef35270ee0718e7587 "pdflatex"
+  "paper.aux" 1648125285 5775 008091c153b9d3e0ff20c6132bd2d5cc "pdflatex"
   "ref.bib" 1647725131 3744 7abb9b8384cc7d9364e9297f6c0ab6c3 ""
   (generated)
   "paper.bbl"
   "paper.blg"
-["pdflatex"] 1647727154 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1647727157
+["pdflatex"] 1648125283 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1648125286
   "../main_matlab_figures//ROC_new.png" 1647580295 56147 d5f9506817228b1fdcace78f4670cb03 ""
   "../main_matlab_figures//SDR_receiver_new.png" 1647639332 12258 25aa0d89c8871719c23fa519716cc8b5 ""
-  "../main_matlab_figures//accuracy_NM_SL.png" 1647707386 69844 6585961ca45a315fce2db01ae8fc1a87 ""
-  "../main_matlab_figures//accuracy_NM_SL_traditional.png" 1647707433 53397 2d28b605a688410556d35b559494a976 ""
+  "../main_matlab_figures//accuracy_NM_SL.png" 1648122791 75977 64b01107d4f747e235532e4915d64134 ""
+  "../main_matlab_figures//accuracy_NM_SL_traditional.png" 1648123051 61205 a8d5afd4a64ca16b5706c5f0436e0161 ""
   "../main_matlab_figures//data_structure.png" 1646945694 4269 17ad5daecf2be5978f7d00086c0ffac1 ""
+  "../main_matlab_figures//partial_preamble_detection.png" 1648063840 7741 15edc951249fed6a13c561feb923e6d1 ""
   "C:/Users/kobez/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1616621152 9407463 1d607c25ccf25f9018769a56fa7d028f ""
   "C:/Users/kobez/AppData/Local/MiKTeX/pdftex/config/pdftex.map" 1625195859 109011 fb6de004f01ccc0ac432631b69a16e5b ""
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -172,16 +173,16 @@
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1463135581 57049 34128738f682d033422ca125f82e5d62 ""
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1606298686 4902 efb3d66683a2da2a232f71e3a571a899 ""
   "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" 1647727153 2278 77b7fcbf290d673b7e294741f1f60c5e ""
-  "detection.tex" 1647726260 8126 558fbd506bd762e26463093045a8a2d4 ""
-  "freq_est.tex" 1647706887 17048 7abca742bada137a2579ca41e0c6526b ""
-  "implementation_on_SDR.tex" 1647726777 4061 a8d45ecea4d0fea2a1a292d70cceab60 ""
+  "detection.tex" 1648074840 11578 e72399071aa23ee28e302e91346de31a ""
+  "freq_est.tex" 1648121767 18799 89f40f1ebe9d4d2e609d0ade2b0ea26f ""
+  "implementation_on_SDR.tex" 1648125282 4067 c9c100dff6f8b692673a7216be512c8a ""
   "introduction.tex" 1647725618 2347 74e79d934de71fd4d9b15b742fd30d27 ""
-  "model.tex" 1647725793 4560 5f38aeada59e04353d5a240c126eb156 ""
-  "paper.aux" 1647727156 5630 6685de4f5d3e12ef35270ee0718e7587 "pdflatex"
-  "paper.bbl" 1647727065 2490 ba79567a6e47a2cb7181619f10a65a1c "bibtex paper"
+  "model.tex" 1648058170 4824 2a28e15ba1bc9ce36708e61425844a80 ""
+  "paper.aux" 1648125285 5775 008091c153b9d3e0ff20c6132bd2d5cc "pdflatex"
+  "paper.bbl" 1648125271 2239 15c868782c0eac8aa26dae69a705ab3c "bibtex paper"
   "paper.tex" 1647727153 2278 77b7fcbf290d673b7e294741f1f60c5e ""
-  "simulations.tex" 1647726588 4964 c15ce589d9ee310819277b08d0f46a7f ""
+  "simulations.tex" 1648124385 5313 5f27827de8b3d44ece4285b1982adfe3 ""
   (generated)
+  "paper.pdf"
   "paper.log"
   "paper.aux"
-  "paper.pdf"
