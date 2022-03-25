@@ -1,9 +1,13 @@
-\section{Detection and Time Synchronization}
+\section{Detection and Time Synchronization}%
 \label{sec:detection}
 
 \begin{figure}[t]
   \centerline{\includegraphics[width=2.75in]{partial_preamble_detection.png}}
-  \caption{Two cases of detection when a portion of the preamble is in window}
+  \caption{The current window with local time-scale $n$ may contain a
+    partial preamble. The preamble starts at $\bar{p}$ on global scale.
+    The start of the preamble relative to the start
+    of the window is $\Delta$. The cases $\Delta >0$ and $\Delta < 0$
+    are illustrated.}
   \label{fig:partial_preamble_detection}
   \end{figure}
 
@@ -11,15 +15,17 @@
 % the detection algorithm proceeds sequentially and each step a window of
 % $N$ received samples with $N{-}1$ overlapped samples from the previous window is considered.
 We start by looking at the two hypotheses for the sequential detection task:
-Let $H_0$ be the null hypothesis that the received signal is the channel noise or only contains a portion of the preamble against the alternative $H_1$ that it contains the entire preamble. 
+Let $H_0$ be the null hypothesis that the received signal is the
+channel noise or only contains a portion of the preamble against the
+alternative $H_1$ that it contains the entire preamble.  
 % The detection algorithm proceeds sequentially and each step a window of
 % length $N$ received samples with $N-1$ overlapped samples from the previous window is considered.
 Define $\Delta$ to be the distance between the current start position of the window
 of $N$ received samples and the start position of the preamble $\bar{p}$.
-Figure~\ref{fig:partial_preamble_detection} illustrates two cases when a portion of the 
-preamble is in the window with global delay index $p$ and local sample index $n$.
-Thus, for $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samples $r_n$
-
+Figure~\ref{fig:partial_preamble_detection} illustrates two distinct cases when a portion of the 
+preamble is in the window.
+%with global delay index $p$ and local sample index $n$.
+In terms of the local scale $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samples $r_n$
 \begin{equation}
   \label{eq:two hypotheses}
   \begin{aligned}
@@ -46,16 +52,15 @@ while $\Delta=0$ under $H_1$.
 % In this paper, we still focus on discussing when partial preamble is observed because it is the worst case of $H_0$
 % and it affects the result of hypothesis testing.
 
-In this paper, we focus on discussing when a portion of the preamble 
-occurs in the window and $\Delta{\in}(0,N{-}1]$, which refers to
+We focus on discussing when the start of the preamble 
+occurs in the window, i.e., $\Delta{\in}(0,N{-}1]$, which corresponds to
 the top case in figure~\ref{fig:partial_preamble_detection}.
 The bottom case when 
 $\Delta{\in}[-N{+}1,0)$ 
-is omitted discussing because it is symmetric to the top case.
+is symmetric to the top case.
 Based on~\eqref{eq:two hypotheses}, we build conditional likelihood ratio test (CLRT)
-between $H_0$ and $H_1$ by giving the distance $\Delta$, 
-the phasor $\xi$ and the frequency offset $\delta$ at position $\bar{p}$. The likelihood ratio is given by
-
+between $H_0$ and $H_1$ by conditioning on the distance $\Delta$, 
+the phasor $\xi$ and the frequency offset $\delta$. The likelihood ratio is given by
 \begin{equation}
     \label{eq:likelihood ratio}
     \begin{aligned}
@@ -66,8 +71,8 @@ the phasor $\xi$ and the frequency offset $\delta$ at position $\bar{p}$. The li
     & \LRT{H_1}{H_0} \eta.
     \end{aligned}
   \end{equation}
-Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio} is reduced to
 
+  Canceling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio} is reduced to
 \begin{equation}
     \label{eq:log likelihood}
     \begin{aligned}
@@ -78,21 +83,23 @@ Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio
 
 On the left hand side, the two summations are the matched filters for hypothesis $H_1$
 and $H_0$, respectively. 
-It can be derived the principal value of the left hand side of~\eqref{eq:log likelihood}
-reduces to the difference between the energy of the preamble and a "partial"
-autocorrelation function (ACF) of the preamble at lag $\Delta$ under two hypotheses.
+It can be shown that the principal value of the left hand side of~\eqref{eq:log likelihood}
+reduces to the difference between the energy of the preamble and a partial
+autocorrelation function (ACF) of the preamble at lag $\Delta$ under
+the two hypotheses.
 Moreover, we notice the second summation on the left hand side is not computable
 due to the unknown information of $\Delta$ while the first summation is.
 On the other hand,
 the first summation reflects the energy of the preamble
-under $H_1$ and the "partial" ACF of the preamble at lag $\Delta$ under $H_0$.
-Note, the effect of the "partial" ACF can be mitigated by using the preamble
-with a good autocorrelation property.
+under $H_1$ and the partial ACF of the preamble at lag $\Delta$ under $H_0$.
+To mitigate the effect of the partial ACF a preamble
+with very good autocorrelation properties is critical.
 
-Thus, a practical sequential detector is built just based on the
+Thus, a practical sequential detector reduces to the
 cross-correlation between the received signal
-and the preamble corrected by the frequency and phasor estimates with some proper scaling. Specifically,
-
+and the preamble corrected by the frequency and phasor estimates with
+proper scaling.
+Specifically, for each window starting at global sample index $p$
 \begin{equation}
   \label{eq:generalized_corr}
   \rho(p)=
@@ -101,17 +108,18 @@ and the preamble corrected by the frequency and phasor estimates with some prope
   {||\bm{r}_{p}||\cdot||\hat{\bm{s}}_{p}||} \LRT{H_1}{H_0} \gamma
 \end{equation}
 where $\bm{r}_{p}{=}[r_{p},r_{p+1},\ldots,r_{p+N-1}]$ denotes the window of received signal
-sequence at position $p$. $\hat{\bm{s}}_{p}$ denotes the carrier-corrected preamble,
+starting at position $p$. $\hat{\bm{s}}_{p}$ denotes the carrier-corrected preamble,
 where each element is $\hat{s}_{n}=s_n\hat{\xi}_{p}e^{j2\pi\hat{\delta}_{p}n}$
 for $n=0,1,\ldots,N{-}1$, and $\hat{\xi}_{p}$, $\hat{\delta}_{p}$ are the carrier estimates at
 position $p$.
-$||\cdot||$ is the Euclidean norm of the signal sequence,
-and $\gamma$ is the normalized detection threshold which lies in the range of $[0,1]$. 
+%$||\cdot||$ is the Euclidean norm of the signal sequence, and
+$\gamma$ is the normalized detection threshold which lies in the range of $[0,1]$. 
 From~\eqref{eq:generalized_corr}, we see
-a realistic generalized like-lihood ratio test (GLRT) replaces the CLRT
-by first doing the carrier synchronization of signal in window at each position
-and then plugging the estimates in the LRT. 
-It should be emph-asized that our detector requires to work at high sample rate;
+a realistic generalized likelihood ratio test (GLRT) replaces the CLRT
+by first performing  carrier estimation of the signal in window at
+each position $p$
+and then applying corrections based on these estimates in the LRT.\@
+It should be emphasized that our detector is intended to work at high sample rate;
 While~\eqref{eq:generalized_corr} is straightforward and of complexity 
 $O(N)$, the complexity of estimating $\hat{\xi}$,$\hat{\delta}$
 is critical for practical implementation.  
@@ -120,7 +128,7 @@ A pair of low-complexity frequency and phasor estimates will be given in the nex
 
 % On the left hand side, the two summations are the matched filters for hypothesis $H_1$
 % and $H_0$, respectively. It is easy to derive that the principal value of the log-CLRT
-% reduces to the difference between the energy of the (partial) preamble and a "partial"
+% reduces to the difference between the energy of the (partial) preamble and a partial
 % autocorrelation function (ACF) of the preamble at lag $\Delta$ under two hypotheses.
 
 % It can be also seen that the second summation of~\eqref{eq:log likelihood} is not computable
@@ -138,7 +146,7 @@ A pair of low-complexity frequency and phasor estimates will be given in the nex
 %     \end{aligned}
 % \end{equation}
 % where $A^2\sum_{n=0}^{N-1}|s_n|^2$ denotes the energy of the preamble and
-% $\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*$ is the "partial" autocorrelation function (ACF) of the
+% $\sum_{n=\Delta}^{N-1}s_ns_{n-\Delta}^*$ is the partial autocorrelation function (ACF) of the
 % preamble at lag $\Delta$. Similarly, it can be derived the left hand side of~\eqref{eq:log likelihood}
 % under hypothesis $H_0$ in the real operator is 
 % % $-A^2\sum_{n=\Delta}^{N-1}|s_{n-\Delta}|^2+A^2e^{-j2\pi\delta\Delta}\sum_{n=\Delta}^{N-1}s_{n-\Delta}s_n^*$
@@ -162,7 +170,7 @@ A pair of low-complexity frequency and phasor estimates will be given in the nex
 % In practice, the distance $\Delta$ is an unknown information to the receiver,
 % which means the second summation of~\eqref{eq:log likelihood} is not computable.
 % However, the first summation is computable and it reflects the energy of the preamble under
-% $H_1$ and the "partial" ACF under $H_0$.
+% $H_1$ and the partial ACF under $H_0$.
 % Thus, a practical sequential detector is built just based on the classical 
 % cross-correlation between the received signal
 % and the preamble corrected by the frequency and phasor estimates with some proper scaling. Specifically,

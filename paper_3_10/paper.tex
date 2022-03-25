@@ -39,21 +39,28 @@ Fairfax, VA 22030 \\
 \maketitle
 
 \begin{abstract}
-This paper proposes a data-aided joint detection and carrier synchronization algorithm for 
-TDMA bursts. A sequential detection algorithm based on the generalized likelihood ratio test (GLRT)
-is used to detect the embedded preamble signal in rece-ived data stream. Carrier synchronzation 
-happens during seque-ntial detection to provide carrier estimates for GLRT and after detection
-to compute accurate estimates for coherent demodula-tion. Thus, we propose a family of estimators with low-complexity 
-and high-accuracy to accommodate for the two cases.
-At the end, the complete joint detection and estimation
-algorithm is validated through simulation and SDR at a very high sample rate.
+This paper proposes a family of data-aided joint detection and carrier synchronization algorithms for 
+TDMA bursts.
+A sequential detection algorithm based on the generalized likelihood ratio test (GLRT)
+is used to detect the embedded preamble signal in the received data
+stream.
+Low-complexity, coarse carrier synchronization 
+occurs during sequential detection to provide carrier estimates for
+the GLRT.\@
+After detection,
+the coarse estimate is refined for use in coherent demodulation.
+The proposed family of algorithms can be scaled to support operation
+over a wide range of SNR, including SNR below \SI{0}{\decibel}.
+Algorithms are validated through simulation and real-time operation on
+a standard SDR platform is demonstrated with sample rates approaching
+\SI{10}{\mega\hertz}.
 
 \end{abstract}
 
-% \begin{IEEEkeywords}
-% burst-mode transmission, joint detection and estimation, sequential detection, GLRT, 
-% low SNR carrier synchronization, large frequency offset, software-defined radio.
-% \end{IEEEkeywords}
+\begin{IEEEkeywords}
+carrier synchronization, TDMA, frame synchronization, sequential
+detection, GLRT, SDR
+\end{IEEEkeywords}
 
 \input{introduction}
 
