@@ -3,33 +3,35 @@
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL.png}}
-    \caption{Accuracy of the NM estimator and single-lag estimator ($L_0=32$)}
+    \caption{Accuracy of the NM estimator and single-lag estimator ($L_0=32$)}%
     \label{fig:accuracy_NM_SL}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL_traditional.png}}
-    \caption{Accuracy of SL, NM and traditional estimators ($L_0=32$, $M\delta=0.01$)}
+    \caption{Accuracy of SL, NM and traditional estimators ($L_0=32$, $M\delta=0.01$)}%
     \label{fig:accuracy_NM_SL_traditional}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{ROC_new.png}}
-    \caption{Receiver operating characteristics (ROC) of the sequential detector}
+    \caption{Receiver operating characteristics (ROC) of the sequential detector}%
     \label{fig:Receiver operating characteristics}
     \end{figure}
 
 In the simulation section, we reverse the order of discussion by first showing 
 the accuracy of estimators in carrier synchronization and then showing some results of sequential detection since
 the GLRT based detector in~\eqref{eq:generalized_corr} relies on the accuracy of 
-the SL estimator. The symbol sequence of the preamble is chosen as a Gold sequence 
-with good autocorrelation property and
+the SL estimator.
+The symbol sequence of the preamble is chosen as a Gold sequence 
+with good autocorrelation properties and
 modulated by a QPSK alphabet.
-The pulse is chosen a 0.5
-rolloff Square-Root Raised Cosine (SRRC) pulse to satisfy the (squared root of) Nyquist property.
-The normalized frequency offset $\delta$ is intentionally set to be in the safe estimation range for all estimators for simulation purpose.
+The pulse is chosen a
+Square-Root Raised Cosine (SRRC) pulse with roll-off equal to 0.5.
+The normalized frequency offset $\delta$ is intentionally set to be in
+the safe estimation range for all estimators for simulation purposes. 
 
-\subsection{Simulation Results for Estimation}
+\subsection{Simulation Results for Estimation}%
 
 % \begin{figure}[t]
 %     \centerline{\includegraphics[width=3.4in]{generalized_correlation_p_plus_delta.png}}
@@ -38,31 +40,37 @@ The normalized frequency offset $\delta$ is intentionally set to be in the safe 
 %     \end{figure}
 
 Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of single-lag (SL) and the NM estimator.
-Compared with the two curves of SLs with $v{=}1$ and $v{=}16$, 
-we see the length-$16$ partial correlating
-improves the accuracy of SL by providing an approximate $2.5$ dB relative processing gain at negative SNRs (near $\text{SNR}=-5$ dB).
-More-over, the SL with $v{=}1$ approaches the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} with $v=1$ at high SNRs
-while SL with $v{=}16$ does not. 
-The gap is due to the Dirichlet function 
-with respect to $v$ and $|\delta|$
-increases the variance. 
-For the same reason, the accuracy of SL with $v$
-${=}16$ at small frequency offset has a better accuracy at all SNRs.
+Comparing the two curves for SL estimators with $v{=}1$ and $v{=}16$, 
+we see the length-$16$ partial integration
+improves the accuracy by providing an approximate
+\SI{2.5}{\dB}~performance gain at negative SNRs
+(near $\text{SNR}=\SI{-5}{\dB}$). This is consistent
+with~\eqref{eq:relative_processing_gain}.
 
-The SL estimators don't approach the CRVB~\cite{Gini_98} while the NM does. 
-We also see the NM estimator achieves a good acc-uracy 
-based on the starting point of SL with $v=16$ at lower SNR
-because the latter provides enough accuracy. 
-In contrast, the NM estimator based on SL with $v=1$ has worse accuracy than SL 
-at all negative SNRs because the accuracy of SL is not enough so that the Newton iteration converges occasionally to 
-other local minimum away from the true frequency offset.
+Moreover, at high SNR the SL estimator with $v{=}1$ approaches the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} (with $v=1$)
+while the SL estimator with $v{=}16$ does not. 
+The gap is due to the Dirichlet function 
+with respect to $v$ and $|\delta|$.
+For the same reason, the accuracy of the SL estimator with $v=16$ has
+a better accuracy at all SNRs when the frequency offset $\delta$ is small.
+
+The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM
+estimator does at high SNR. 
+We also see that the NM estimator achieves improved accuracy at lower SNR
+when the SL estimator with $v=16$ is used as the starting point. 
+In contrast, at all negative SNRs the NM estimator based on SL estimation with $v=1$ has
+worse accuracy than SL estimation alone.
+This is because the accuracy of the SL estimator is not sufficient to
+provide a consistently good starting point and the Newton iteration converges occasionally to 
+other local minima away from the true frequency offset.
 
 Figure~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our proposed estimators
-and traditional estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}. It shows when 
-frequency offset is small, our NM estimator has a slightly better accuracy than traditional estimators at moderate SNRs.
-The drawback of the NM estimator is the poor accuracy at low SNRs since it depends on the 
-SL. Thus, a family of the SL with $v=16$ and the NM based on the SL with $v=1$ can be used 
-to achieve a good accuracy at most SNRs.
+and the estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}.
+When the 
+frequency offset is small, our NM estimator has a slightly better accuracy than other estimators at moderate SNRs.
+In general, our family of  SL estimators with different block lengths $v$
+are very competitive across all SNR considered here while maintaining
+low computational complexity that allows for real-time application.
 
 \subsection{Simulation Results for Detection}
 
@@ -76,8 +84,15 @@ to achieve a good accuracy at most SNRs.
 % instead of just comparing the correlation with the threshold at each window. Note, when count for the ratio of false alarm and detection (for determining the threshold),
 % the two positions should be counted as latter.
 
-Figure~\ref{fig:Receiver operating characteristics} shows the receiver operating characteristics (ROC) of the detection algorithm.
-The better accuracy of SL with par-tial correlating at low SNRs also increases the performance of detection, e.g.,
-at $-2$ dB SNR, $\gamma=0.56$, the gap of false alarm probability $P_{FA}$ is only $0.1\%$ but the detection probability $P_{D}$ of SL with $v{=}16$ is $5\%$ larger than $P_D$ of SL with $v{=}1$. 
-The figure also shows the detector doesn't work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
-The performance is significantly improved by doubling the number of symbols.
+Figure~\ref{fig:Receiver operating characteristics} shows the receiver
+operating characteristics (ROC) of the detection algorithm. 
+The better accuracy of SL estimation with partial integration also
+improves the detection performance  at low SNR.
+For example,
+at $-2$ dB SNR, with $\gamma=0.56$, the gap in the false alarm
+probability $P_{FA}$ is only $0.1\%$
+but the detection probability $P_{D}$ with SL estimation with $v{=}16$
+is $5\%$ larger than $P_D$ achieved with SL estimation with $v{=}1$. 
+The figure also shows that the detector does not work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
+The performance is significantly improved by doubling the length of
+the preamble.
