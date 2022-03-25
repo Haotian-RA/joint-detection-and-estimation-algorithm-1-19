@@ -2,21 +2,9 @@
 \label{sec:simulations}
 
 \begin{figure}[t]
-    \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL.png}}
+    \centerline{\includegraphics[width=3.15in]{accuracy_NM_SL.png}}
     \caption{Accuracy of the NM and the SL estimators ($L_0=32$, $M=2$)}
     \label{fig:accuracy_NM_SL}
-    \end{figure}
-
-\begin{figure}[t]
-    \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL_traditional.png}}
-    \caption{Accuracy of the SL, the NM and the traditional estimators ($L_0=32$, $M=2$, $M\delta=0.01$)}
-    \label{fig:accuracy_NM_SL_traditional}
-    \end{figure}
-
-\begin{figure}[t]
-    \centerline{\includegraphics[width=3.25in]{ROC_new.png}}
-    \caption{Receiver operating characteristics (ROC) of the sequential detector ($M=2$, $M\delta=0.01$)}
-    \label{fig:Receiver operating characteristics}
     \end{figure}
 
 In the simulation section, we reverse the order of discussion by first showing 
@@ -47,11 +35,11 @@ improves the accuracy by providing an approximate
 (near $\text{SNR}=\SI{-5}{\dB}$). This is consistent
 with~\eqref{eq:relative_processing_gain}.
 
-Moreover, we see the SL with $v=1$ has a slightly better accuracy 
-at 10 dB SNR than the SL with $v=32$. The gap is due to the Dirichlet function with
-respect to $v$ and $|\delta|$.
-For the same reason, the accuracy of the SL estimator with $v=32$ has a better accuracy at all SNRs.
-when the frequency offset $\delta$ is small.
+The SL estimator with $v=1$ has slightly better accuracy 
+at 10 dB SNR than with $v=32$.
+The gap is due to the Dirichlet function for
+$\delta \neq 0$.
+When  $\delta$ is very small, the accuracy of the SL estimator with $v=32$ has better accuracy at all SNRs.
 
 The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM
 estimator does at high SNR. 
@@ -71,6 +59,13 @@ In general, our family of  SL estimators with different block lengths $v$
 are very competitive across all SNR considered here while maintaining
 low computational complexity that allows for real-time application.
 
+\begin{figure}[t]
+    \centerline{\includegraphics[width=3.15in]{accuracy_NM_SL_traditional.png}}
+    \caption{Accuracy of the SL, the NM and the traditional estimators ($L_0=32$, $M=2$, $M\delta=0.01$)}
+    \label{fig:accuracy_NM_SL_traditional}
+    \end{figure}
+
+
 \subsection{Simulation Results for Detection}
 
 % Figure~\ref{fig:Generalized correlation} shows the performance of sequential detector
@@ -83,6 +78,7 @@ low computational complexity that allows for real-time application.
 % instead of just comparing the correlation with the threshold at each window. Note, when count for the ratio of false alarm and detection (for determining the threshold),
 % the two positions should be counted as latter.
 
+
 Figure~\ref{fig:Receiver operating characteristics} shows the receiver
 operating characteristics (ROC) of the detection algorithm. 
 The better accuracy of SL estimation with partial integration also
@@ -93,3 +89,10 @@ the detection probability $P_{D}$ is $5\%$ larger compared with the SL with $v{=
 The figure also shows that the detector does not work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
 the preamble.
+
+\begin{figure}[t]
+  \centerline{\includegraphics[width=3.15in]{ROC_new.png}}
+  \caption{Receiver operating characteristics (ROC) of the sequential detector ($M=2$, $M\delta=0.01$)}
+  \label{fig:Receiver operating characteristics}
+\end{figure}
+
