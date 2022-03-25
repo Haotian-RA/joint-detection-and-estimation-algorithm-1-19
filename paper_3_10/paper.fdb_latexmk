@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex paper"] 1648188421 "paper.aux" "paper.bbl" "paper" 1648212785
+["bibtex paper"] 1648188421 "paper.aux" "paper.bbl" "paper" 1648229591
   "C:/Users/kobez/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "paper.aux" 1648212785 5570 e2256b9d71359ba1cfa7442409034a8d "pdflatex"
+  "paper.aux" 1648215002 5570 e2256b9d71359ba1cfa7442409034a8d "pdflatex"
   "ref.bib" 1647725131 3744 7abb9b8384cc7d9364e9297f6c0ab6c3 ""
   (generated)
-  "paper.bbl"
   "paper.blg"
-["pdflatex"] 1648212782 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1648212785
+  "paper.bbl"
+["pdflatex"] 1648214999 "c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex" "paper.pdf" "paper" 1648229591
   "../main_matlab_figures//ROC_new.png" 1647580295 56147 d5f9506817228b1fdcace78f4670cb03 ""
   "../main_matlab_figures//SDR_receiver_new.png" 1648180364 11689 8c72079386a000753b64e91d2c69b901 ""
   "../main_matlab_figures//accuracy_NM_SL.png" 1648122791 75977 64b01107d4f747e235532e4915d64134 ""
@@ -178,11 +178,11 @@
   "implementation_on_SDR.tex" 1648212780 4073 e9647840244300f0eb98c08da8963d0f ""
   "introduction.tex" 1647725618 2347 74e79d934de71fd4d9b15b742fd30d27 ""
   "model.tex" 1648188549 4832 194cacf2c48d32f58b8d8c4f9a396922 ""
-  "paper.aux" 1648212785 5570 e2256b9d71359ba1cfa7442409034a8d "pdflatex"
+  "paper.aux" 1648215002 5570 e2256b9d71359ba1cfa7442409034a8d "pdflatex"
   "paper.bbl" 1648188421 2239 15c868782c0eac8aa26dae69a705ab3c "bibtex paper"
   "paper.tex" 1648171174 2308 a6e7df29d1c1cee1bc499a3a81f813ef ""
-  "simulations.tex" 1648166899 5002 a61bc0e0c67dda28cfc16b499d1e044a ""
+  "simulations.tex" 1648214997 5006 b775db8d4746973d5bfceee84c54ec67 ""
   (generated)
-  "paper.log"
   "paper.aux"
   "paper.pdf"
+  "paper.log"
