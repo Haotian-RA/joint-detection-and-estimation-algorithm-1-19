@@ -3,19 +3,19 @@
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL.png}}
-    \caption{Accuracy of the NM estimator and single-lag estimator ($L_0=32$)}%
+    \caption{Accuracy of the NM and the SL estimators ($L_0=32$, $M=2$)}
     \label{fig:accuracy_NM_SL}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL_traditional.png}}
-    \caption{Accuracy of SL, NM and traditional estimators ($L_0=32$, $M\delta=0.01$)}%
+    \caption{Accuracy of the SL, the NM and the traditional estimators ($L_0=32$, $M=2$, $M\delta=0.01$)}
     \label{fig:accuracy_NM_SL_traditional}
     \end{figure}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=3.25in]{ROC_new.png}}
-    \caption{Receiver operating characteristics (ROC) of the sequential detector}%
+    \caption{Receiver operating characteristics (ROC) of the sequential detector ($M=2$, $M\delta=0.01$)}
     \label{fig:Receiver operating characteristics}
     \end{figure}
 
@@ -39,25 +39,26 @@ the safe estimation range for all estimators for simulation purposes.
 %     \label{fig:Generalized correlation}
 %     \end{figure}
 
-Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of single-lag (SL) and the NM estimator.
-Comparing the two curves for SL estimators with $v{=}1$ and $v{=}16$, 
-we see the length-$16$ partial integration
+Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of the single-lag (SL) and the NM estimator.
+Comparing the two curves for SL estimators with $v{=}1$ and $v=32$, 
+we see the length-$32$ partial integration
 improves the accuracy by providing an approximate
-\SI{2.5}{\dB}~performance gain at negative SNRs
+\SI{4}{\dB}~performance gain at negative SNRs
 (near $\text{SNR}=\SI{-5}{\dB}$). This is consistent
 with~\eqref{eq:relative_processing_gain}.
 
-Moreover, at high SNR the SL estimator with $v{=}1$ approaches the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} (with $v=1$)
-while the SL estimator with $v{=}16$ does not. 
+Moreover, at high SNR the SL estimator with $v{=}1$ approaches
+the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} (with $v=1$)
+while the SL estimator with $v=32$ does not. 
 The gap is due to the Dirichlet function 
 with respect to $v$ and $|\delta|$.
-For the same reason, the accuracy of the SL estimator with $v=16$ has
+For the same reason, the accuracy of the SL estimator with $v=32$ has
 a better accuracy at all SNRs when the frequency offset $\delta$ is small.
 
 The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM
 estimator does at high SNR. 
 We also see that the NM estimator achieves improved accuracy at lower SNR
-when the SL estimator with $v=16$ is used as the starting point. 
+when the SL estimator with $v=32$ is used as the starting point. 
 In contrast, at all negative SNRs the NM estimator based on SL estimation with $v=1$ has
 worse accuracy than SL estimation alone.
 This is because the accuracy of the SL estimator is not sufficient to
@@ -89,9 +90,9 @@ operating characteristics (ROC) of the detection algorithm.
 The better accuracy of SL estimation with partial integration also
 improves the detection performance  at low SNR.
 For example,
-at $-2$ dB SNR, with $\gamma=0.56$, the gap in the false alarm
+at $-2$ dB SNR, with $\gamma=0.44$, the gap in the false alarm
 probability $P_{FA}$ is only $0.1\%$
-but the detection probability $P_{D}$ with SL estimation with $v{=}16$
+but the detection probability $P_{D}$ with SL estimation with $v{=}32$
 is $5\%$ larger than $P_D$ achieved with SL estimation with $v{=}1$. 
 The figure also shows that the detector does not work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
