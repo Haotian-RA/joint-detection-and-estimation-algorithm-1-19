@@ -47,13 +47,11 @@ improves the accuracy by providing an approximate
 (near $\text{SNR}=\SI{-5}{\dB}$). This is consistent
 with~\eqref{eq:relative_processing_gain}.
 
-Moreover, at high SNR the SL estimator with $v{=}1$ approaches
-the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} (with $v=1$)
-while the SL estimator with $v=32$ does not. 
-The gap is due to the Dirichlet function 
-with respect to $v$ and $|\delta|$.
-For the same reason, the accuracy of the SL estimator with $v=32$ has
-a better accuracy at all SNRs when the frequency offset $\delta$ is small.
+Moreover, we see the SL with $v=1$ has a slightly better accuracy 
+at 10 dB SNR than the SL with $v=32$. The gap is due to the Dirichlet function with
+respect to $v$ and $|\delta|$.
+For the same reason, the accuracy of the SL estimator with $v=32$ has a better accuracy at all SNRs.
+when the frequency offset $\delta$ is small.
 
 The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM
 estimator does at high SNR. 
@@ -90,10 +88,8 @@ operating characteristics (ROC) of the detection algorithm.
 The better accuracy of SL estimation with partial integration also
 improves the detection performance  at low SNR.
 For example,
-at $-2$ dB SNR, with $\gamma=0.44$, the gap in the false alarm
-probability $P_{FA}$ is only $0.1\%$
-but the detection probability $P_{D}$ with SL estimation with $v{=}32$
-is $5\%$ larger than $P_D$ achieved with SL estimation with $v{=}1$. 
+at $-2$ dB SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
+the detection probability $P_{D}$ is $5\%$ larger compared with the SL with $v{=}1$. 
 The figure also shows that the detector does not work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
 the preamble.
