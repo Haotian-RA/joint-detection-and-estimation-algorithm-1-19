@@ -39,7 +39,7 @@ where $s_n$ denotes the sampled reference sequence (the preamble), which has the
   \end{equation}
 In~\eqref{eq:model}, $\bar{p}$ denotes the start position of the received preamble.
 Note, because of the uncertainty of sampling, often the sampler may not sample exactly at the start time of the preamble, which causes
-the integer delay $p$ with a fractional delay in the range of $[-\frac{T_s}{2},\frac{T_s}{2})$, where $T_s$ is the sample period as in~\eqref{eq:l_ref_sig_discrete}.
+the integer delay $\bar{p}$ with a fractional delay in the range of $[-\frac{T_s}{2},\frac{T_s}{2})$, where $T_s$ is the sample period as in~\eqref{eq:l_ref_sig_discrete}.
 In this paper, the sampling rate is assumed to be high enough relative to the symbol rate, so that the influence of fractional delay can be ignored.
 $A$, $\phi$, $\delta$ are the amplitude, carrier phase and normalized
 frequency offset with respect to sample period $T_s$ that we want to estimate.

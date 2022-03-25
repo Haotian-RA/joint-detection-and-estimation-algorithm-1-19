@@ -11,16 +11,16 @@
 % the first improvement of algorithm is by using pipeline.
 % Threading Building Blocks (TBB) is a well-known C++
 % library that enables parallel programming on multicore processor~\cite{Michael_19}.
-To demonstrate the practicality of our algorithms, we have implemented them on a general
+To demonstrate the practicality of our algorithms, we have implemented them in C++ on a general
 purpose processor (GPP). The different aspects of the algorithm are mapped to logical nodes in a pipelined, parallel processing atchitecture
 using Threading Building Blocks (TBB)~\cite{Michael_19}.
 
 Figure~\ref{fig:SDR_receiver} shows a simple block diagram illustrating pipeline for the algorithm.
-Due to space constraints, we don't give details of each node. It is necessary to discuss
-the node for computing the phasor estimate $\hat{\xi}$ (node V). The numerator of~\eqref{eq:opt_xi}
-performs a time-varying convolution, which cannot be computed efficiently via FFT.
+Due to space constraints, we don't give the details of each node.
+It is necessary to discuss the node for computing the phasor estimate $\hat{\xi}$ (node V). 
+The numerator of~\eqref{eq:opt_xi} performs a time-varying convolution, which cannot be computed efficiently via FFT.
 Our solution to increasing the computational efficiency is to use parallel programming 
-of TBB. Specifically,~\eqref{eq:opt_xi} can be com-puted in three stages:
+of TBB. Specifically,~\eqref{eq:opt_xi} can be computed in three stages:
 1. Compute several segments of $\sum r_ns_n^*$ in several nodes in parallel;
 2. each node is then multiplied by $\hat{\delta}_{SL}$ at the middle index of the 
 partial correlation.
@@ -35,10 +35,10 @@ Thus, \eqref{eq:opt_xi} is computed more efficiently as
 where $L$ is the number of nodes. Thus, by using parallel pro-gramming,
 the efficiency of computing $\hat{\xi}$ is increased by $L^2$.
 
-Now we show the results of the proposed algorithm in para-llel programming on SDR.
-The signal are transmitted and rec-eived between two universal software radio peripheral (USRP)
+Now we show the results of the proposed algorithm in parallel programming on SDR.
+The signal are transmitted and received between two universal software radio peripheral (USRP)
 connected by a 5-Gigabit Ethernet cable to laptops. At the receiver side, 
-the CPU includes 6 cores and 12 threads with 4500 MHz clock frequency. The results of 
+the CPU includes 6 cores and 12 threads with 4.5 GHz clock frequency. The results of 
 Google benchmark for each node in Figure~\ref{fig:SDR_receiver}
 are shown in Table~\ref{table:BM_function_nodes}. Note, the time cost in the table
 refers to one buffer size of 8192 samples. The throughput of the 

@@ -85,13 +85,13 @@ prior to estimation is given by
 
 \begin{equation}
   \label{eq:single_lag_estimator_w_partial_corr}
-  \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^*\digamma_{l-k_v}\big\}}{2\pi k_vv},
+  \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^{*(v)}\digamma_{l-k_v}^{(v)}\big\}}{2\pi k_vv},
 \end{equation}
 where $\digamma$ denotes the result of coherent integration of length-$v$ blocks
 
 \begin{equation}
   \label{eq:coherent_integrator}
-  \digamma_l=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
+  \digamma_l^{(v)}=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
 \end{equation}
 Normally, $v$ is set to be a factor of $N$ to include all the sample instants with maximum $v=N/2$.
 In~\eqref{eq:single_lag_estimator_w_partial_corr}, $k_v=\lfloor k/v \rfloor$ denotes
@@ -100,70 +100,44 @@ $\lfloor \cdot \rfloor$ is the floor operator. It can be seen
 \eqref{eq:single_lag_estimator_wout_partial_corr} is the special case of~\eqref{eq:single_lag_estimator_w_partial_corr}
 when $v=1$, meaning no partial integrator is used.
 
-
-% Next, we will show that by using a so-called length-$v$ coherent integrator,
-% the single-lag estimator also gains a good accuracy at low SNRs.
-
-% \subsubsection{Closed-form expression}
-% The single-lag (SL) estimator with length-$v$ partial correlating is given by
-
-% \begin{equation}
-%   \label{eq:single_lag_estimator_w_partial_corr}
-%   \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^*\digamma_{l-k_v}\big\}}{2\pi k_vv},
-% \end{equation}
-% where $\digamma$ denotes the coherent integrator, and
-
-% \begin{equation}
-%   \label{eq:coherent_integrator}
-%   \digamma_l=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
-% \end{equation}
-% In~\eqref{eq:coherent_integrator}, $v$ is the number of coherent correlations for averaging in each coherent integrator. 
-% Normally, $v$ is set to be a factor of $N$ to include all the sample instants.
-% In~\eqref{eq:single_lag_estimator_w_partial_corr}, $k_v$ denotes the distance between
-% two coherent integrators for calculating the frequency estimate from non-coherent sample instants;
-% $k_v=\lfloor k/v \rfloor$, where $\lfloor \cdot \rfloor$ is the floor operation. 
-% Particularly, when $v{=}1$, meaning no partial correlating is used,~\eqref{eq:single_lag_estimator_w_partial_corr} reduces to
-
-% \begin{equation}
-%   \label{eq:single_lag_estimator_wout_partial_corr}
-%   \hat{\delta}_{SL}^{(1)}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k},
-% \end{equation}
-
 \subsubsection{Performance of single-lag estimator}
 
-For evaluating the performance of the SL estimator,
-we first look at the probability density function (pdf)
-for the two coherent integrations in~\eqref{eq:single_lag_estimator_w_partial_corr}.
-By setting $r_n=s_n\xi e^{j2\pi \delta n}+w_n$ into~\eqref{eq:coherent_integrator}, each of
-the two coherent integrators in~\eqref{eq:single_lag_estimator_w_partial_corr} yields a complex Gaussian
-random variable (r.v.) with respective pdfs
+For evaluating the performance of the SL estimator, we first look at
+the probabi-lity density function (pdf) of the coherent integration
+$\digamma_l^{*(v)}$ in
+\eqref{eq:single_lag_estimator_w_partial_corr}.
+By setting $r_n=s_n\xi e^{j2\pi \delta n}+w_n$ into~\eqref{eq:coherent_integrator},
+$\digamma_{l}^{*(v)}$ yields a complex Gaussian random variable (r.v.) with pdf
 
 \begin{equation}
   \label{eq:pdf_co_integrator}
   \begin{aligned}
-    &\digamma_l^* \sim \cn\bigg(\xi^*\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n},\frac{N_0}{2}v\bigg), \\
-    &\digamma_{l-k_v} \sim \cn\bigg(\xi\sum_{n=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta n},\frac{N_0}{2}v\bigg).
+    &\digamma_l^{*(v)} \sim \cn\bigg(\xi^*\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n},\frac{N_0}{2}v\bigg),
   \end{aligned}
 \end{equation}
 where $A^2|s_n|^2 \approx A^2= E_s/M$ is hold by assuming a constant and normalized envelope of the preamble given in Section~\ref{sec:model}.
-Note, $\digamma_l^*$ and $\digamma_{l-k_v}$ are uncorrelated. Based on~\eqref{eq:pdf_co_integrator}, 
-the product $C_{\digamma_{l}}=\digamma_l^*\digamma_{l-k_v}$ has a mixed distribution of a complex Gaussian and a
-second kind Bessel function from the products of noise terms.
-The mean $\mu_{C_{\digamma_{l}}}$ and variance $\sigma^2_{C_{\digamma_{l}}}$ are given by, 
+Note, $\digamma_l^{*(v)}$ and $\digamma_{l-k_v}^{(v)}$ are uncorrelated. 
+Based on~\eqref{eq:pdf_co_integrator}, 
+the pro-duct $C_{\digamma}(v,l)=\digamma_l^*\digamma_{l-k_v}$
+has a mixed distribution of a complex Gaussian and a second kind Bessel function
+from the products of noise terms. 
+The mean $\mu_{C_{\digamma}}$ and variance $\sigma^2_{C_{\digamma}}$ of $C_{\digamma}(v,l)$ are given by, respectively 
 
 \begin{equation}
   \begin{aligned}
   \label{eq:mean_var_product_coherent_int}
-  \mu_{C_{\digamma_l}}&=\frac{E_s}{M}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n}\bigg(\sum_{m=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta m}\bigg) \\
-  &=\frac{E_s}{M}e^{-j2\pi \delta k_vv}\bigg(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\bigg)^2, \\
-  \sigma^2_{C_{\digamma_l}}&={\underbrace{\frac{N_0^2}{4}v^2}_{\text{from Bessel}}}+{\underbrace{2v\frac{N_0E_s}{2M}\bigg(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\bigg)^2}_{\text{from Complex Gaussian}}},
+  \mu_{C_{\digamma}}&=\frac{E_s}{M}\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n}\bigg(\sum_{m=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta m}\bigg) \\
+  &=E_s/M\cdot e^{-j2\pi \delta k_vv}\D^2(v,\delta), \\
+  \sigma^2_{C_{\digamma}}&={\underbrace{N_0^2v^2/4}_{\text{from Bessel}}}+{\underbrace{N_0E_sv/M\cdot\D^2(v,\delta)}_{\text{from Complex Gaussian}}},
   \end{aligned}
 \end{equation}
-where $\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}$ is the Dirichlet function of $\delta$, which approaches
-maximum value $v$ at $\delta{=}0$ and first two zeros at $\delta{=}\pm 1/v$.
-Note, both $\mu_{C_{\digamma_l}}$, $\sigma^2_{C_{\digamma_l}}$ are independent of the partial integration block.
-Thus, $\sum C_{\digamma_l}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr} 
-also has the mixed distribution with a complex Gaussian and a second kind Bessel function.
+where $\D(v,\delta) \triangleq \frac{\sin(\pi \delta v)}{\sin(\pi \delta)}$ is the Dirichlet function of $\delta$, which approaches
+the maximum value $v$ at $\delta=0$ and first two zeros at $\delta=\pm 1/v$.
+Note, both $\mu_{C_{\digamma}}$, $\sigma^2_{C_{\digamma}}$ are independent of the partial integration block.
+Thus, the mean and variance of  
+$\sum C_{\digamma}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr} 
+satisfy $\mu_{\sum C_{\digamma}}=\sum\mu_{C_{\digamma}}$ and 
+$\sigma^2_{\sum C_{\digamma}}=\sum\sigma^2_{C_{\digamma}}$.
 
 Recall from~\eqref{eq:single_lag_estimator_w_partial_corr}, the distribution of SL estimator depends on $\arg\{\cdot\}$.
 It can be shown that the full pdf of $\arg\{\zeta\}$, where $\zeta$ is complex Gaussian distributed, is well approximated for moderate SNR, as Gaussian.
@@ -177,53 +151,53 @@ The derivation of~\eqref{eq:pdf_arg_comp_Gaus} is omitted due to space constrain
 Based on~\eqref{eq:pdf_arg_comp_Gaus}, the performance evaluation of 
 the SL estimator can be obtained by looking at the variance in~\eqref{eq:pdf_arg_comp_Gaus},
 or equivalently, the "output" SNR, which equals to the absolute square of mean to variance of
-$\sum C_{\digamma_l}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr}, i.e.,
+$\sum C_{\digamma}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr}, i.e.,
 
 \begin{equation}
   \begin{aligned}
     \label{eq:SNR_out}
-    \text{SNR}_{out}=\frac{|\mu_{\sum C_{\digamma_l}}|^2}{\sigma^2_{\sum C_{\digamma_l}}} 
+    \text{SNR}_{out}^{(v,\delta)}=\frac{|\mu_{\sum C_{\digamma}}|^2}{\sigma^2_{\sum C_{\digamma}}} 
     % &=\frac{\frac{Es^4}{M^4A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4(N/v-k_v)^2}
     % {\Big[v^2\frac{N_0^2E_s^2}{4M^2A^4}+2v\frac{N_0E_s^3}{2M^3A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2\Big](N/v{-}k_v)} \\
-    =\frac{(N/v-k_v)\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4}
-    {\frac{v^2}{\text{SNR}_{in}}+2v\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2}\cdot\text{SNR}_{in}. \\
+    =\frac{(N/v-k_v)\cdot\D^4(v,\delta)}
+    {v^2/\text{SNR}_{in}+2v\cdot\D^2(v,\delta)}\cdot\text{SNR}_{in}. \\
   \end{aligned}
 \end{equation}
-where $\text{SNR}_{in}=\frac{2E_s}{MN_0}$. From~\eqref{eq:SNR_out},
-we can see that the "output" SNR is degraded by the variance of second
-Bessel r.v. at low input SNRs. By assuming $|\delta|v{\ll} 1$, the processing gain
-of the SL estimator with length-$v$ partial correlator relative to the SL estimator
-without partial correlator is obtained by the ratio of~\eqref{eq:SNR_out} 
-with $v$ to~\eqref{eq:SNR_out} with $v=1$, which yields 
+where $\text{SNR}_{in}=2E_s/(MN_0)$. From~\eqref{eq:SNR_out}, we 
+see the "output" SNR is degraded by the variance of second kind Bessel
+r.v. at low input SNRs. By assuming a small frequency offset, e.g., $|\delta|v\ll 1$,
+the relative processing gain with and without partial correlating is given by
 
 \begin{equation}
   \begin{aligned}
     \label{eq:relative_processing_gain}
-    \text{Relative processing gain at small}~|\delta|v \approx\frac{v+2v\text{SNR}_{in}}{1+2v\text{SNR}_{in}}.
+    \frac{\text{SNR}_{out}^{(v)}}{\text{SNR}_{out}^{(1)}} \approx\frac{v+2v\cdot\text{SNR}_{in}}{1+2v\cdot\text{SNR}_{in}}.
   \end{aligned}
 \end{equation}
 
 Some observations can be obtained from~\eqref{eq:relative_processing_gain}.
-First, we see the maximum relative processing gain approaches to $v$ if there is no signal. 
+First, we see the maximum relative processing gain approaches $v$ as $\text{SNR}_{in}$ approaches 0. 
 Moreover, when the input SNR is fixed and small, the relative processing gain
-is increased as $v$ becomes larger. On the other hand, at high input SNRs,
-the effect of Derichlet function in~\eqref{eq:SNR_out} with respect to the frequency offset
-$|\delta|v$ be-comes more important than the relative processing gain.
-Thus, the $\text{SNR}_{out}$ approaches the maximum when $v=1$.
+is increased as $v$ becomes larger.
+On the other hand, at high input SNRs,
+the effect of Dirichlet function in~\eqref{eq:SNR_out}
+becomes more important than the relative processing gain.
+Thus, the $\text{SNR}_{out}$ approaches the ma-ximum with
+$v=1$.
 
 Based on~\eqref{eq:single_lag_estimator_wout_partial_corr},~\eqref{eq:mean_var_product_coherent_int}
 and~\eqref{eq:pdf_arg_comp_Gaus}, the distribution of $\hat{\delta}_{SL}^{(v)}(k_v)$ at moderate SNRs is finally given by
 
 \begin{equation}
   \label{eq:lower_bound_single_lag_high_snr}
-  \hat{\delta}_{SL}^{(v)}(k_v) \sim \n \Bigg(\delta,\frac{(Mv+4\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2E_s/N_0)\cdot Mv}{16\pi^2k^2(N/v{-}k_v)(E_s/N_0)^2\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4}\Bigg).
+  \hat{\delta}_{SL}^{(v)}(k_v) \sim \n \Bigg(\delta,\frac{(Mv+4\D^2(v,\delta)\cdot E_s/N_0)\cdot Mv}{16\pi^2k^2(N/v{-}k_v)(E_s/N_0)^2\D^4(v,\delta)}\Bigg).
 \end{equation}
 Thus, $\hat{\delta}_{SL}^{(v)}(k_v)$ is unbiased. 
-A lower bound for the variance of the SL estimator at high SNRs is obtained
-as the variance of~\eqref{eq:lower_bound_single_lag_high_snr} when $v=1$;
-On the other hand, an approximate lower bound at low SNRs can be obtained by the variance of~\eqref{eq:lower_bound_single_lag_high_snr}
-at maximum $v=N/2$.
-Moreover, we see the variance also depends on
+A lower bound for the variance of single-lag estimator at high SNRs is obtained
+as the variance of~\eqref{eq:lower_bound_single_lag_high_snr} when $v=1$.
+% On the other hand, an approximate lower bound at low SNRs can be obtained by the variance of~\eqref{eq:lower_bound_single_lag_high_snr}
+% at maximum $v=N/2$.
+Moreover, we can see the variance also depends on
 the value of $k_v$. The best choice for $k_v$ is to choose 
 $k_v=\lfloor\frac{2N}{3v}\rfloor$ to minimize the variance.
 
@@ -250,7 +224,7 @@ can be stored in a shift register so that only one new product needs to be compu
 The exact computational complexity of two single-lag estimators are given in Table~\ref{table:computational complexity comparison} with optimal $k_v \approx 2N/(3v)$. 
 We see $\hat{\delta}_{SL}^{(1)}(k)$ has approximate 2 times fewer complex products and additions compared with $\hat{\delta}_{SL}^{(v>1)}(k_v)$ in sequential detection.
 Furthermore, note the complexity of Kay estimator in~\cite{Morelli_Mengali_98} is given approximately $3N/4$ complex products and additions, 
-which is slightly larger than $\hat{\delta}_{SL}^{(1)}(k)$.
+which is slightly bigger than $\hat{\delta}_{SL}^{(1)}(k)$.
 
 \begin{table}[t]
   \caption{Complexity of single-lag estimators with and without partial correlating in sequential detection with optimal $k_v\approx2N/(3v)$}  % title of Table
@@ -288,11 +262,13 @@ where $\hat{\delta}_{NM}^{(0)}=\hat{\delta}^{(v)}_{SL}(k_v)$ is the starting poi
 $J^\prime(\cdot)$ denotes the derivative of $J$ with respect to $\hat{\delta}$. 
 Our simu-lations indicate that only a single iteration is usually sufficient to achieve very good accuracy.
 
-From~\eqref{eq:iter_NM_est} and the previous discussion, we can conclude the importance of accuracy of the SL estimator
-at low SNRs: 
+% From~\eqref{eq:iter_NM_est} and the previous discussion, 
+We can conclude the importance of accuracy of the SL estimator at low SNRs: 
 with a merely sufficient good accuracy, the SL estimator not only increases the probability of detection by better
 fitting the preamble and received signal as in sequential detector~\eqref{eq:generalized_corr}, but 
-it provides a reasonable starting point for getting the more accurate NM estimator. In simluations,
+it provides a reasonable starting point for
+getting the more accurate NM estimator. 
+In simluations,
 we will also show the case when the NM estimator has a worse accuracy than the SL estimator if the latter does not provide enough accuracy. 
 
 % ambiguity problem for sl.

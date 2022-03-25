@@ -2,24 +2,24 @@
 \label{sec:simulations}
 
 \begin{figure}[t]
-    \centerline{\includegraphics[width=3.05in]{accuracy_NM_SL.png}}
+    \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL.png}}
     \caption{Accuracy of the NM estimator and single-lag estimator ($L_0=32$)}
     \label{fig:accuracy_NM_SL}
     \end{figure}
 
 \begin{figure}[t]
-    \centerline{\includegraphics[width=3.05in]{accuracy_NM_SL_traditional.png}}
+    \centerline{\includegraphics[width=3.25in]{accuracy_NM_SL_traditional.png}}
     \caption{Accuracy of SL, NM and traditional estimators ($L_0=32$, $M\delta=0.01$)}
     \label{fig:accuracy_NM_SL_traditional}
     \end{figure}
 
 \begin{figure}[t]
-    \centerline{\includegraphics[width=3.05in]{ROC_new.png}}
+    \centerline{\includegraphics[width=3.25in]{ROC_new.png}}
     \caption{Receiver operating characteristics (ROC) of the sequential detector}
     \label{fig:Receiver operating characteristics}
     \end{figure}
 
-In simulation section, we reverse the order of discussion by first showing 
+In the simulation section, we reverse the order of discussion by first showing 
 the accuracy of estimators in carrier synchronization and then showing some results of sequential detection since
 the GLRT based detector in~\eqref{eq:generalized_corr} relies on the accuracy of 
 the SL estimator. The symbol sequence of the preamble is chosen as a Gold sequence 
@@ -38,27 +38,31 @@ The normalized frequency offset $\delta$ is intentionally set to be in the safe 
 %     \end{figure}
 
 Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of single-lag (SL) and the NM estimator.
-Compared with the two curves of SLs with $v{=}1$ and $v{=}16$, we see the length-$16$ partial correlating
-improves the accuracy of SL by providing an approximate $2.5$ dB (near $\text{SNR}{=}{-}5$ dB) relative processing gain at negative SNRs.
-Moreover, the SL with $v{=}1$ approaches the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} with $v=1$ at high SNRs
-while SL with $v{=}16$ does not. The gap is due to the Dirichlet function in~\eqref{eq:lower_bound_single_lag_high_snr} with respect to $v$ and $|\delta|$
-increases the variance. For the same reason, the accuracy of SL with $v{=}16$ at small normalized frequency offset
-has a better accuracy at all SNRs. The SL estimator with $v=16$ does not approach the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} with $v=16$
-at low SNR due to the r.v. of second Bessel. 
+Compared with the two curves of SLs with $v{=}1$ and $v{=}16$, 
+we see the length-$16$ partial correlating
+improves the accuracy of SL by providing an approximate $2.5$ dB relative processing gain at negative SNRs (near $\text{SNR}=-5$ dB).
+More-over, the SL with $v{=}1$ approaches the lower bound~\eqref{eq:lower_bound_single_lag_high_snr} with $v=1$ at high SNRs
+while SL with $v{=}16$ does not. 
+The gap is due to the Dirichlet function 
+with respect to $v$ and $|\delta|$
+increases the variance. 
+For the same reason, the accuracy of SL with $v$
+${=}16$ at small frequency offset has a better accuracy at all SNRs.
 
-The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM does. We also see the NM estimator achieves
-a good accuracy based on the starting point of SL with $v{=}16$ at lower SNR because the latter provides
-enough accuracy. In contrast, the NM estimator based on SL with $v{=}1$ has worse accuracy than SL 
+The SL estimators don't approach the CRVB~\cite{Gini_98} while the NM does. 
+We also see the NM estimator achieves a good acc-uracy 
+based on the starting point of SL with $v=16$ at lower SNR
+because the latter provides enough accuracy. 
+In contrast, the NM estimator based on SL with $v=1$ has worse accuracy than SL 
 at all negative SNRs because the accuracy of SL is not enough so that the Newton iteration converges occasionally to 
-other local minimum away from the real frequency offset.
+other local minimum away from the true frequency offset.
 
 Figure~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our proposed estimators
-and the traditional estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}. It shows at the small frequency offset environment,
-our NM estimator has a slightly better accuracy than traditional estimators at moderate SNRs.
-The drawback of NM estimator is also obvious that the accuracy depends on the SL.
-However, a family of the SL with $v=16$ and the NM based on SL with $v=1$ can be used
-to achieve a good accuracy at most SNRs. 
-The figure also illustrates the lack of accuracy of single-lag estimators (our SL and Kay).
+and traditional estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}. It shows when 
+frequency offset is small, our NM estimator has a slightly better accuracy than traditional estimators at moderate SNRs.
+The drawback of NM estimator is the poor accuracy at low SNRs since it depends on the 
+SL. Thus, a family of the SL with $v=16$ and the NM based on the SL with $v=1$ can be used 
+to achieve a good accuracy at most SNRs.
 
 \subsection{Simulation Results for Detection}
 

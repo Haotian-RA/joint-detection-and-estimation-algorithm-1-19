@@ -2,8 +2,8 @@
 \label{sec:detection}
 
 \begin{figure}[t]
-  \centerline{\includegraphics[width=3.3in]{partial_preamble_detection.png}}
-  \caption{The window of detection containing a portion of the preamble (Top: the received samples hasn't passed the position of preamble. Bottom: passed.)}
+  \centerline{\includegraphics[width=2.75in]{partial_preamble_detection.png}}
+  \caption{Two cases of detection when a portion of the preamble is in window}
   \label{fig:partial_preamble_detection}
   \end{figure}
 
@@ -15,8 +15,8 @@ Let $H_0$ be the null hypothesis that the received signal is the channel noise o
 % The detection algorithm proceeds sequentially and each step a window of
 % length $N$ received samples with $N-1$ overlapped samples from the previous window is considered.
 Define $\Delta$ to be the distance between the current start position of the window
-of $N$ received samples and the start position $\bar{p}$ of the preamble.
-Figure~\ref{fig:partial_preamble_detection} illustrates the case when a portion of the 
+of $N$ received samples and the start position of the preamble $\bar{p}$.
+Figure~\ref{fig:partial_preamble_detection} illustrates two cases when a portion of the 
 preamble is in the window with global delay index $p$ and local sample index $n$.
 Thus, for $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samples $r_n$
 
@@ -25,8 +25,8 @@ Thus, for $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samp
   \begin{aligned}
   &H_0{:}~r_n{=}
   \begin{dcases}
-      % s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}{+}w_n & \max(0,\Delta)\leq n< \min(N,N{+}\Delta) \\
-      s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}{+}w_n & n{\in}[\max(0,\Delta), \min(N,N{+}\Delta)) \\
+      s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}{+}w_n & \max(0{,}\Delta){\leq} n{<} \min(N{,}N{+}\Delta) \\
+      % s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}{+}w_n & n{\in}[\max(0,\Delta), \min(N,N{+}\Delta)) \\
       w_n & \text{otherwise},
   \end{dcases} \\
   &H_1{:}~r_n{=}s_n\xi e^{j2\pi\delta n}+w_n.
@@ -47,12 +47,14 @@ while $\Delta=0$ under $H_1$.
 % and it affects the result of hypothesis testing.
 
 In this paper, we focus on discussing when a portion of the preamble 
-occurs in the window but hasn't passed the position $\bar{p}$
-of the preamble, which corresponds to the top case in figu-re~\ref{fig:partial_preamble_detection}.
-The bottom case is omitted since it is symmetric to the top case.
-Based on~\eqref{eq:two hypotheses}, we build the conditional likelihood ratio test (CLRT)
-between $H_0$ when $\Delta \in(0,N-1]$ and $H_1$ by giving the distance $\Delta$, the phasor $\xi$ and
-the frequency offset $\delta$ at position $\bar{p}$. The likelihood ratio is given by
+occurs in the window and $\Delta{\in}(0,N{-}1]$, which refers to
+the top case in figure~\ref{fig:partial_preamble_detection}.
+The bottom case when 
+$\Delta{\in}[-N{+}1,0)$ 
+is omitted discussing because it is symmetric to the top case.
+Based on~\eqref{eq:two hypotheses}, we build conditional likelihood ratio test (CLRT)
+between $H_0$ and $H_1$ by giving the distance $\Delta$, 
+the phasor $\xi$ and the frequency offset $\delta$ at position $\bar{p}$. The likelihood ratio is given by
 
 \begin{equation}
     \label{eq:likelihood ratio}
@@ -75,12 +77,18 @@ Cancelling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio
 \end{equation}
 
 On the left hand side, the two summations are the matched filters for hypothesis $H_1$
-and $H_0$, respectively. It can be derived the principal value of the left hand side of~\eqref{eq:log likelihood}
-reduces to the difference between the energy of preamble and a "partial" autocorrelation function (ACF)
-of the preamble at lag $\Delta$ under two hypotheses. Moreover, we notice that the log-CLRT in~\eqref{eq:log likelihood}
-is not computable due to the unknown information of $\Delta$. On the other hand,
-the first summation is computable and it reflects the energy of the preamble
+and $H_0$, respectively. 
+It can be derived the principal value of the left hand side of~\eqref{eq:log likelihood}
+reduces to the difference between the energy of the preamble and a "partial"
+autocorrelation function (ACF) of the preamble at lag $\Delta$ under two hypotheses.
+Moreover, we notice the second summation on the left hand side is not computable
+due to the unknown information of $\Delta$ while the first summation is.
+On the other hand,
+the first summation reflects the energy of the preamble
 under $H_1$ and the "partial" ACF of the preamble at lag $\Delta$ under $H_0$.
+Note, the effect of the "partial" ACF can be mitigated by using the preamble
+with a good autocorrelation property.
+
 Thus, a practical sequential detector is built just based on the
 cross-correlation between the received signal
 and the preamble corrected by the frequency and phasor estimates with some proper scaling. Specifically,
@@ -92,20 +100,21 @@ and the preamble corrected by the frequency and phasor estimates with some prope
     \bm{r}_{p},\hat{\bm{s}}_{p}\rangle\}}
   {||\bm{r}_{p}||\cdot||\hat{\bm{s}}_{p}||} \LRT{H_1}{H_0} \gamma
 \end{equation}
-where $\bm{r}_{p}{=}[r_{p},r_{p+1},\ldots,r_{p+N-1}]$ denotes the received signal sequence at
-current position $p$. $\hat{\bm{s}}_{p}$ denotes the carrier-corrected preamble, where each element is
-$\hat{s}_{n}=s_n\hat{\xi}_{p}e^{j2\pi\hat{\delta}_{p}n}~\text{for}~n=0,1,\ldots,N-1$,
-and $\hat{\xi}_{p}$, $\hat{\delta}_{p}$ are the carrier estimates at position $p$.
+where $\bm{r}_{p}{=}[r_{p},r_{p+1},\ldots,r_{p+N-1}]$ denotes the window of received signal
+sequence at position $p$. $\hat{\bm{s}}_{p}$ denotes the carrier-corrected preamble,
+where each element is $\hat{s}_{n}=s_n\hat{\xi}_{p}e^{j2\pi\hat{\delta}_{p}n}$
+for $n=0,1,\ldots,N{-}1$, and $\hat{\xi}_{p}$, $\hat{\delta}_{p}$ are the carrier estimates at
+position $p$.
 $||\cdot||$ is the Euclidean norm of the signal sequence,
 and $\gamma$ is the normalized detection threshold which lies in the range of $[0,1]$. 
 From~\eqref{eq:generalized_corr}, we see
-a realistic generalized likelihood ratio test (GLRT) replaces the CLRT
-by first doing the carrier synchronization at each position of window and 
-then plugging the estimates in the LRT. It should 
-be emphasized that our detector requires to work at high sample rate;
-While~\eqref{eq:generalized_corr}
-is straightforward and of complexity $O(N)$, the complexity of estimating $\hat{\xi}$,$\hat{\delta}$
-is critical for practical implementation. 
+a realistic generalized like-lihood ratio test (GLRT) replaces the CLRT
+by first doing the carrier synchronization of signal in window at each position
+and then plugging the estimates in the LRT. 
+It should be emph-asized that our detector requires to work at high sample rate;
+While~\eqref{eq:generalized_corr} is straightforward and of complexity 
+$O(N)$, the complexity of estimating $\hat{\xi}$,$\hat{\delta}$
+is critical for practical implementation.  
 A pair of low-complexity frequency and phasor estimates will be given in the next section.
 
 

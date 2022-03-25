@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  25 MAR 2022 01:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.2) (preloaded format=pdflatex 2021.3.24)  25 MAR 2022 14:09
 entering extended mode
 **c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex
 (c:/Users/kobez/OneDrive/Documents/GitHub/joint-detection-and-estimation-1-19/paper_3_10/paper.tex
@@ -456,40 +456,40 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
  (paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 29.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 29.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 30.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 29.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 29.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 30.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 29.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 29.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 30.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 29.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 29.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 30.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    ... okay on input line 30.
 
 -- Verifying Times compatible math font.
 -- newtxmath loaded, OK.
@@ -515,35 +515,35 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 ) (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 )
-LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input line 29.
+LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 29.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 29.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 29.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 29.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 29.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 29.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 30.
  (C:\Users\kobez\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 ) (introduction.tex) (model.tex
@@ -556,39 +556,34 @@ Package pdftex.def Info: ../main_matlab_figures//data_structure.png  used on inp
 
 
  <../main_matlab_figures//data_structure.png>]) (detection.tex
-<../main_matlab_figures//partial_preamble_detection.png, id=19, 289.68225pt x 144.54pt>
+<../main_matlab_figures//partial_preamble_detection.png, id=19, 283.65974pt x 169.23225pt>
 File: ../main_matlab_figures//partial_preamble_detection.png Graphic file (type png)
 <use ../main_matlab_figures//partial_preamble_detection.png>
 Package pdftex.def Info: ../main_matlab_figures//partial_preamble_detection.png  used on input line 5.
-(pdftex.def)             Requested size: 238.49121pt x 118.99994pt.
-
-Overfull \hbox (5.02776pt too wide) detected at line 34
-[][]
- []
-
-) (freq_est.tex [2 <../main_matlab_figures//partial_preamble_detection.png>] [3] [4]) (simulations.tex
+(pdftex.def)             Requested size: 198.7425pt x 118.57022pt.
+ [2 <../main_matlab_figures//partial_preamble_detection.png>]) (freq_est.tex [3] [4]) (simulations.tex
 <../main_matlab_figures//accuracy_NM_SL.png, id=34, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//accuracy_NM_SL.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_SL.png>
 Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL.png  used on input line 5.
-(pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
+(pdftex.def)             Requested size: 234.87749pt x 176.16171pt.
 <../main_matlab_figures//accuracy_NM_SL_traditional.png, id=35, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//accuracy_NM_SL_traditional.png Graphic file (type png)
 <use ../main_matlab_figures//accuracy_NM_SL_traditional.png>
 Package pdftex.def Info: ../main_matlab_figures//accuracy_NM_SL_traditional.png  used on input line 11.
-(pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
+(pdftex.def)             Requested size: 234.87749pt x 176.16171pt.
 <../main_matlab_figures//ROC_new.png, id=36, 526.96875pt x 395.22656pt>
 File: ../main_matlab_figures//ROC_new.png Graphic file (type png)
 <use ../main_matlab_figures//ROC_new.png>
 Package pdftex.def Info: ../main_matlab_figures//ROC_new.png  used on input line 17.
-(pdftex.def)             Requested size: 220.4237pt x 165.31857pt.
- [5 <../main_matlab_figures//accuracy_NM_SL.png (PNG copy)> <../main_matlab_figures//accuracy_NM_SL_traditional.png (PNG copy)> <../main_matlab_figures//ROC_new.png (PNG copy)>]) (implementation_on_SDR.tex
-<../main_matlab_figures//SDR_receiver_new.png, id=40, 256.5585pt x 268.00125pt>
+(pdftex.def)             Requested size: 234.87749pt x 176.16171pt.
+) [5 <../main_matlab_figures//accuracy_NM_SL.png (PNG copy)> <../main_matlab_figures//accuracy_NM_SL_traditional.png (PNG copy)> <../main_matlab_figures//ROC_new.png (PNG copy)>] (implementation_on_SDR.tex
+<../main_matlab_figures//SDR_receiver_new.png, id=40, 250.536pt x 264.38776pt>
 File: ../main_matlab_figures//SDR_receiver_new.png Graphic file (type png)
 <use ../main_matlab_figures//SDR_receiver_new.png>
 Package pdftex.def Info: ../main_matlab_figures//SDR_receiver_new.png  used on input line 5.
-(pdftex.def)             Requested size: 195.13524pt x 187.90219pt.
-) (paper.bbl [6 <../main_matlab_figures//SDR_receiver_new.png>])
+(pdftex.def)             Requested size: 195.13055pt x 187.91025pt.
+) (paper.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -600,21 +595,19 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7
-
-] (paper.aux) ) 
+[6 <../main_matlab_figures//SDR_receiver_new.png>] (paper.aux) ) 
 Here is how much of TeX's memory you used:
  10178 strings out of 479334
  177332 string characters out of 2857084
- 464924 words of memory out of 3000000
+ 463917 words of memory out of 3000000
  27385 multiletter control sequences out of 15000+200000
  574522 words of font info for 246 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,19n,75p,415b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 68i,16n,75p,415b,488s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXBMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXBMI7.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI5.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexas.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsya.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsyb.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb><C:/Users/kobez/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb>
-Output written on paper.pdf (7 pages, 435668 bytes).
+Output written on paper.pdf (6 pages, 433587 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
+ 113 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
