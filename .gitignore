@@ -1,0 +1,15 @@
+# backups
+*~
+
+# tex tmp files
+*.aux
+*.log
+*.pdf
+*.bbl
+*.blg
+
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+auto/
