@@ -38,8 +38,8 @@ segment.
 In other words, \eqref{eq:opt_xi} is computed more efficiently as
 \begin{equation}
   \label{eq:refined_opt_S}
-  ||\bm{s}||^2\cdot\hat{\xi} \approx \sum_{i=0}^{L-1} e^{-j\pi \hat{\delta}\frac{N(2m+1)}{L}}
-  \sum_{n=mN/L}^{(m+1)N/L-1}r_ns_n^*,
+  ||\bm{s}||^2\cdot\hat{\xi} \approx \sum_{i=0}^{L-1} e^{-j\pi \hat{\delta}\frac{N(2i+1)}{L}}
+  \sum_{n=iN/L}^{(i+1)N/L-1}r_ns_n^*,
 \end{equation}
 where $L$ is the number of segments processed in parallel.
 As a result,

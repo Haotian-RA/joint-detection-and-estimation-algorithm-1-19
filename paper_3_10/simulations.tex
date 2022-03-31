@@ -28,7 +28,7 @@ the safe estimation range for all estimators for simulation purposes.
 %     \end{figure}
 
 Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of the single-lag (SL) and the NM estimator.
-Comparing the two curves for SL estimators with $v{=}1$ and $v=32$, 
+Comparing the two curves for SL estimators with $v=1$ and $v=32$, 
 we see the length-$32$ partial integration
 improves the accuracy by providing an approximate
 \SI{4}{\dB}~performance gain at negative SNRs
@@ -56,7 +56,7 @@ and the estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}.
 When the 
 frequency offset is small, our NM estimator has a slightly better accuracy than other estimators at moderate SNRs.
 In general, our family of  SL estimators with different block lengths $v$
-are very competitive across all SNR considered here while maintaining
+are very competitive across all SNRs considered here while maintaining
 low computational complexity that allows for real-time application.
 
 \begin{figure}[t]
@@ -84,9 +84,9 @@ operating characteristics (ROC) of the detection algorithm.
 The better accuracy of SL estimation with partial integration also
 improves the detection performance  at low SNR.
 For example,
-at $-2$ dB SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
+at $\SI{-2}{\dB}$ SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
 the detection probability $P_{D}$ is $5\%$ larger compared with the SL with $v{=}1$. 
-The figure also shows that the detector does not work well at $-4$ dB SNR if only $32$ symbols of preamble are used;  
+The figure also shows that the detector does not work well at $\SI{-4}{\dB}$ SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
 the preamble.
 
