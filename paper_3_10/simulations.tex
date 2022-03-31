@@ -35,15 +35,19 @@ improves the accuracy by providing an approximate
 (near $\text{SNR}=\SI{-5}{\dB}$). This is consistent
 with~\eqref{eq:relative_processing_gain}.
 
-The SL estimator with $v=1$ has slightly better accuracy 
-at 10 dB SNR than with $v=32$.
-The gap is due to the Dirichlet function for
-$\delta \neq 0$.
-When  $\delta$ is very small, the accuracy of the SL estimator with $v=32$ has better accuracy at all SNRs.
+The SL estimator with $v=1$ is slightly more accurate
+at \SI{10}{\dB}~SNR than with $v=32$.
+The gap is due to the Dirichlet function.
+% for $\delta \neq 0$.
+For the same reason,
+when $v>1$
+the accuracy of the estimator improves at all SNRs as $|\delta|$ decreases.
+% When  $\delta$ is very small, the accuracy of the SL estimator with $v=32$ has better accuracy at all SNRs.
 
-The SL estimators do not approach the CRVB~\cite{Gini_98} while the NM
+The SL estimators do not approach the Cramer-Rao Vector Bound (CRVB)~\cite{Gini_98} while the NM
 estimator does at high SNR. 
-We also see that the NM estimator achieves improved accuracy at lower SNR
+% We also see that the
+The NM estimator achieves improved accuracy at lower SNR
 when the SL estimator with $v=32$ is used as the starting point. 
 In contrast, at all negative SNRs the NM estimator based on SL estimation with $v=1$ has
 worse accuracy than SL estimation alone.
