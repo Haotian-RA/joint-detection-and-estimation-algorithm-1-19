@@ -17,12 +17,12 @@
 % start of a TDMA~slot.
 
 Protecting information in contested and congested wireless
-communications environments requires transmissions that are difficult
+communication environments requires transmissions that are difficult
 to intecept or even detect (LPI/LPD) and are robust against
 intentional or accidental interference (AJ).
 A key measure to achieve protection against detection is to rely on
 signals with power spectral densities that are well below the noise or
-interference floor~\cite{Yan_LPD}.
+interference floor~\cite{Yan_19}.
 With appropriate processing gains built into the transmitted waveform, signals can be
 recovered reliably even in the presence of strong noise and
 interference.
@@ -50,16 +50,18 @@ accomplished, e.g., by noncoherent means,
 work in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}
 is still relevant to results in this paper.
 It was argued above that at low SNR, time and carrier synchronization
-are not separable and must be performed jointly.
-To this end, a sequential detector
-is  derived from hypothesis testing principles~\cite{Ramakrishnan_10,Chiani_06,Liang_15}.
+are not separable and must be performed jointly~\cite{purushothaman_16,kim_17}.
+To this end, 
+a sequential detector is derived from hypothesis testing principles
+for varied length of frame in this paper.
+% a sequential detector
+% is  derived from hypothesis testing principles~\cite{Ramakrishnan_10,Chiani_06,Liang_15}.
 As the detector is lacking carrier related parameters to construct 
-the likelihood ratio test (LRT), a generalized likelihood ratio tests (GLRT)
-is employed to cope with the lack of information,
-e.g.,~\cite{Chiani_06}.
+the likelihood ratio test (LRT), a generalized likelihood ratio test (GLRT)
+is employed to cope with the lack of information, e.g.,~\cite{liang_15}.
 
 Computational complexity is a major concern with the practical
-realization of a synchronization system outlined above and operating at low SNR.
+realization of a synchronization system outlined above and operating at low SNR~\cite{murin_16,wang_21}.
 While the sequential detector searches for the start of the
 transmission, carrier-related parameters must be estimated for each
 hypothesized start time. 
@@ -68,5 +70,5 @@ for the complete signal acquisition process
 that emphasize computational complexity while maintaining near-optimal performance.
 The practicality of our algorithms is demonstrated by implementing
 them on a standard SDR platform; in our experiments we can sustain
-approximately \SI{10}{\mega\hertz} sample rates while continuously searching
+above \SI{10}{\mega\hertz} sample rates while continuously searching
 for the presence of the preamble signal.
