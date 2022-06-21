@@ -64,11 +64,17 @@ Computational complexity is a major concern with the practical
 realization of a synchronization system outlined above and operating at low SNR~\cite{murin_16,wang_21}.
 While the sequential detector searches for the start of the
 transmission, carrier-related parameters must be estimated for each
-hypothesized start time. 
-We propose a family of joint detection and estimation algorithm 
+hypothesized start time. In this paper,
+we propose a family of joint detection and estimation algorithm 
 for the complete signal acquisition process
-that emphasize computational complexity while maintaining near-optimal performance.
+that emphasize computational complexity while maintaining near-optimal performance at very low SNR (negative SNR).
 The practicality of our algorithms is demonstrated by implementing
-them on a standard SDR platform; in our experiments we can sustain
-above \SI{10}{\mega\hertz} sample rates while continuously searching
-for the presence of the preamble signal.
+them on a standard SDR platform. To our best knowledge, there is no previous work on discussing 
+the signal acquisition process in such a comprehensive way, especially at negative SNRs, which
+is very meanful for protected communication system.
+
+
+
+% ; in our experiments, we can sustain
+% above \SI{10}{\mega\hertz} sample rates while continuously searching
+% for the presence of the preamble signal. -> I think we can talk about it in abstract.
