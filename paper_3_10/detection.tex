@@ -59,19 +59,19 @@ $\Delta\in[-N{+}1,0)$
 is symmetric to the top case.
 Based on~\eqref{eq:two hypotheses}, we build conditional likelihood ratio test (CLRT)
 between $H_0$ and $H_1$ by conditioning on the distance $\Delta$, 
-the phasor $\xi$ and the frequency offset $\delta$. The likelihood ratio is given by
-\begin{equation}
-    \label{eq:likelihood ratio}
-    \begin{aligned}
-    \Lambda(R|\Delta,\xi,\delta)&=\frac{f_{R|H_1,\xi,\delta}(r|H_1,\xi,\delta)}{f_{R|H_0,\Delta,\xi,\delta}(r|H_1,\Delta,\xi,\delta)} \\
-    &=\frac{\displaystyle \prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_n\xi e^{j2\pi\delta n}|^2}{N_0}}}{\displaystyle \frac{1}{(\pi N_0)^{N/2}}\prod_{n=\Delta}^{N-1}e^{-\frac{|r_n-s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}|^2}{N_0}}\prod_{n=0}^{\Delta-1}e^{-\frac{|r_n|^2}{N_0}}} \\
-    % &=\frac{\prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_n\xi e^{j2\pi\delta n}|^2}{N_0}}}{\prod_{n=\Delta}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}|^2}{N_0}}\prod_{n=0}^{\Delta-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n|^2}{N_0}}} \\
-    % &\times \frac{1}{\prod_{n=0}^{\Delta-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n|^2}{N_0}}}
-    & \LRT{H_1}{H_0} \eta.
-    \end{aligned}
-  \end{equation}
-
-  Canceling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio} is reduced to
+the phasor $\xi$ and the frequency offset $\delta$. The log likelihood ratio reduces to
+% is given by
+% \begin{equation}
+%     \label{eq:likelihood ratio}
+%     \begin{aligned}
+%     \Lambda(R|\Delta,\xi,\delta)&=\frac{f_{R|H_1,\xi,\delta}(r|H_1,\xi,\delta)}{f_{R|H_0,\Delta,\xi,\delta}(r|H_1,\Delta,\xi,\delta)} \\
+%     &=\frac{\displaystyle \prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_n\xi e^{j2\pi\delta n}|^2}{N_0}}}{\displaystyle \frac{1}{(\pi N_0)^{N/2}}\prod_{n=\Delta}^{N-1}e^{-\frac{|r_n-s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}|^2}{N_0}}\prod_{n=0}^{\Delta-1}e^{-\frac{|r_n|^2}{N_0}}} \\
+%     % &=\frac{\prod_{n=0}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_n\xi e^{j2\pi\delta n}|^2}{N_0}}}{\prod_{n=\Delta}^{N-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n-s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}|^2}{N_0}}\prod_{n=0}^{\Delta-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n|^2}{N_0}}} \\
+%     % &\times \frac{1}{\prod_{n=0}^{\Delta-1}\frac{1}{\sqrt{\pi N_0}}e^{-\frac{|r_n|^2}{N_0}}}
+%     & \LRT{H_1}{H_0} \eta.
+%     \end{aligned}
+%   \end{equation}
+  % Canceling the common parts and taking the logarithm,~\eqref{eq:likelihood ratio} is reduced to
 \begin{equation}
     \label{eq:log likelihood}
     \begin{aligned}

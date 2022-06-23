@@ -1,7 +1,7 @@
 \section{Frequency and Phase Estimation}%
 \label{sec:freq_est}   
 
-In this section, estimation is performed using a window of $N$ samples, $0\leq n<N$, starting
+In this section, estimation is performed using a window of $N$ samples $r_n$, $0\leq n<N$, starting
 at the position $\bar{p}$ of the preamble.
 For estimating the frequency offset $\delta$ and phasor
 $\xi=Ae^{j\phi}$, the maximum likelihood estimation (MLE) of the
@@ -102,8 +102,8 @@ prior to estimation is given by
   \label{eq:single_lag_estimator_w_partial_corr}
   \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^{*(v)}\digamma_{l-k_v}^{(v)}\big\}}{2\pi k_vv},
 \end{equation}
-where $\digamma$ denotes the result of coherent integration over
-blocks of  length~$v$
+where $\digamma_{l}^{(v)}$ denotes the result of coherent integration of block $l$
+of length~$v$
 \begin{equation}
   \label{eq:coherent_integrator}
   \digamma_l^{(v)}=\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
@@ -112,7 +112,7 @@ blocks of  length~$v$
 Normally, $v \leq \frac{N}{2}$ is set to be a factor of $N$ to include
 all $N$ samples in the window.
 In~\eqref{eq:single_lag_estimator_w_partial_corr}, $k_v=\lfloor k/v \rfloor$ denotes
-the distance between blocks that are is used for measuring phase differences.
+the distance between blocks that are used for measuring phase differences.
 It can be seen that 
 \eqref{eq:single_lag_estimator_wout_partial_corr} is a special case of~\eqref{eq:single_lag_estimator_w_partial_corr}
 when $v=1$, i.e,  no partial integrator is used.
@@ -123,8 +123,7 @@ In this section we derive expressions for the mean and variance of our
 estimators and assess the benefits of partial coherent integration.
 We first look at
 the probability density function (pdf) of the partial coherent integration
-$\digamma_l^{(v)}$ in
-\eqref{eq:single_lag_estimator_w_partial_corr}.
+$\digamma_l^{(v)}$.
 By setting $r_n=s_n\xi e^{j2\pi \delta n}+w_n$ in~\eqref{eq:coherent_integrator},
 $\digamma_{l}^{(v)}$ yields a complex Gaussian random variable with pdf
 \begin{equation}
@@ -236,7 +235,7 @@ $k_v=\lfloor\frac{2N}{3v}\rfloor$ to minimize the variance.
 
 \subsubsection{Estimation range}
 The SL estimator may suffer an effect
-of akin to aliasing when  $2\pi M|\delta|k_vv{>}\pi$.
+akin to aliasing when  $2\pi M|\delta|k_vv{>}\pi$.
 Thus, a safe estimation range for the SL estimator with optimal
 $k_v=\lfloor\frac{2N}{3v}\rfloor$
 to avoid modulo-$2\pi$ ambiguity
