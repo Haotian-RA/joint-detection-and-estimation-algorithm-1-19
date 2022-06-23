@@ -45,7 +45,7 @@ the accuracy of the estimator improves at all SNRs as $|\delta|$ decreases.
 % When  $\delta$ is very small, the accuracy of the SL estimator with $v=32$ has better accuracy at all SNRs.
 
 The SL estimators do not approach the Cramer-Rao Vector Bound (CRVB)~\cite{Gini_98} while the NM
-estimator does at high SNR. 
+estimators do at moderate SNR. 
 % We also see that the
 The NM estimator achieves improved accuracy at lower SNR
 when the SL estimator with $v=32$ is used as the starting point. 
@@ -87,12 +87,13 @@ Figure~\ref{fig:Receiver operating characteristics} shows the receiver
 operating characteristics (ROC) of the detection algorithm. 
 The better accuracy of SL estimation with partial integration also
 improves the detection performance  at low SNR.
-For example,
-at $\SI{-2}{\dB}$ SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
+For example, at $\SI{-2}{\dB}$ SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
 the detection probability $P_{D}$ is $5\%$ larger compared with the SL with $v{=}1$. 
-The figure also shows that the detector does not work well at $\SI{-4}{\dB}$ SNR if only $32$ symbols of preamble are used;  
+The figure also shows the detector does not work well at $\SI{-4}{\dB}$ SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
-the preamble.
+the preamble. The two curves of LRT at $\SI{-4}{\dB}$ SNR with different $v$
+are obtained by plugging in the true frequency and phase offsets as an upper bound for comparing with 
+the results of GLRT.   
 
 \begin{figure}[t]
   \centerline{\includegraphics[width=3.15in]{ROC_new.png}}

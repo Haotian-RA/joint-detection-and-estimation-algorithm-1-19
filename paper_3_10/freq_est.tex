@@ -58,9 +58,9 @@ In~\cite{Luise_Reggiannini_95}, the necessary condition is
 approximated by replacing the exponential with its Taylor series
 expansion. 
 In~\cite{Fitz_94}, an approximate solution is obtained via Euler's identity for large $N$.
-The estimators in Both~\cite{Luise_Reggiannini_95} and~\cite{Fitz_94}  have computational complexity $O(N^2)$ 
-reflecting the double summation.
-In~\cite{kay_89}, the  estimator reduces the complexity from $O(N^2)$
+The estimators (L\&R and Fitz) in both~\cite{Luise_Reggiannini_95} and~\cite{Fitz_94}  have computational complexity $O(N^2)$ 
+reflecting double summation.
+In~\cite{kay_89}, the Kay estimator reduces the complexity from $O(N^2)$
 to $O(N)$ by only
 computing~\eqref{eq:necessary condition for delta} at lag $k=1$.
 However, it suffers from poor accuracy even at moderate SNRs.
@@ -236,14 +236,14 @@ $k_v=\lfloor\frac{2N}{3v}\rfloor$ to minimize the variance.
 
 \subsubsection{Estimation range}
 The SL estimator may suffer an effect
-of akin to aliasing when  $2\pi |\delta|k_vv{>}\pi$.
-Thus, a safe estimation range for the estimator with optimal
+of akin to aliasing when  $2\pi M|\delta|k_vv{>}\pi$.
+Thus, a safe estimation range for the SL estimator with optimal
 $k_v=\lfloor\frac{2N}{3v}\rfloor$
 to avoid modulo-$2\pi$ ambiguity
-is $\delta$ within $\pm 3/(4MN)$.
-Compared with the same autocorrelation-based estimator,
+is $\delta$ within $\pm 3/(4MN)$. 
+Compared with the traditional autocorrelation-based estimator,
 e.g.,~\cite{Luise_Reggiannini_95} or~\cite{Fitz_94},
-the single-lag estimator has 
+the SL estimator has 
 $3/8$ estimation range of~\cite{Luise_Reggiannini_95} and $3/4$ estimation range of~\cite{Fitz_94}.
 
 \subsubsection{Computational complexity}
@@ -251,7 +251,7 @@ $3/8$ estimation range of~\cite{Luise_Reggiannini_95} and $3/4$ estimation range
 We have discussed the accuracy of the single-lag estimator.
 It is also necessary to address the complexity as the SL estimator
 is intended for real-time use with high sample rates.
-The computational complexity of the single-lag estimator 
+The computational complexity of the single-lag estimator
 can be readily assessed
 from~\eqref{eq:single_lag_estimator_w_partial_corr},~\eqref{eq:coherent_integrator}
 and~\eqref{eq:single_lag_estimator_wout_partial_corr}.
@@ -270,8 +270,8 @@ in Table~\ref{table:computational complexity comparison} with optimal $k_v \appr
 We see that $\hat{\delta}_{SL}^{(1)}(k)$ has approximately two times
 fewer complex products and additions compared with
 $\hat{\delta}_{SL}^{(v>1)}(k_v)$ in sequential detection. 
-Furthermore, note the complexity of the single-lag estimator
-in~\cite{Morelli_Mengali_98} is given as approximately $3N/4$ complex products and additions, 
+Furthermore, note the complexity of Kay estimator also with single lag
+is given as approximately $3N/4$ complex products and additions, 
 which is slightly larger than $\hat{\delta}_{SL}^{(1)}(k)$.
 
 \begin{table}[t]
