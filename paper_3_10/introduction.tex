@@ -1,24 +1,10 @@
 \section{Introduction}%
 \label{sec:introduction}
 
-% In digital communication systems, information is commonly transmitted in time-multiplexed bursts.
-% % Examples include time-slotted random access systems.
-% Each active user transmits information to the receiver
-% in the same frequency band and in non-overlapping time intervals~\cite{Falconer_95}. 
-% Our methods are pertinent for all TDMA systems where the arrival time
-% of the burst and the carrier frequency and phase are
-% not perfectly known.
-% Obvious examples include random access channels, including those in cellular
-% systems. Even when a coarse timing structure is imposed, as in slotted
-% TDMA systems, the precise arrival time of a signal may not be known;
-% this is generally true for the uplink of cellular-like systems. 
-% In such cases, the methods presented herein are still relevant  by
-% restricting the search for the start of the burst to periods near the
-% start of a TDMA~slot.
 
 Protecting information in contested and congested wireless
 communication environments requires transmissions that are difficult
-to intecept or even detect (LPI/LPD) and are robust against
+to intercept or even detect (LPI/LPD) and that are robust against
 intentional or accidental interference (AJ).
 A key measure to achieve protection against detection is to rely on
 signals with power spectral densities that are well below the noise or
@@ -29,14 +15,15 @@ interference.
 
 A fundamental prerequisite for leveraging such processing gains and
 enable successful coherent demodulation is that the receiver can
-detect the beginning of the data stream and estimate accurately the phase and frequency offset of the carrier.
+detect the beginning of the data stream and
+can estimate accurately the phase and frequency offset of the carrier.
 It is worth emphasizing that time and carrier synchronization are
 \emph{coupled problems}, especially at the low SNR that secure
 waveforms operate at:
-coherent methods for detecting the signal require accurate frequency and phase estimates 
+coherent methods for detecting the signal at low SNR require accurate frequency and phase estimates 
 while data-aided frequency and phase estimation requires that the
 location of the training sequence is available.
-While not addressed in detail in this paper, coherent combing of
+While not addressed in this paper, coherent combing of
 spatial streams (MIMO) also relies on accurate synchronization.
 Thus, joint signal detection and carrier synchronization algorithms
 play a vital role in protected communication system.
@@ -52,10 +39,7 @@ is still relevant to results in this paper.
 It was argued above that at low SNR, time and carrier synchronization
 are not separable and must be performed jointly~\cite{purushothaman_16,kim_17}.
 To this end, 
-a sequential detector is derived from hypothesis testing principles
-for varied length of frame in this paper.
-% a sequential detector
-% is  derived from hypothesis testing principles~\cite{Ramakrishnan_10,Chiani_06,Liang_15}.
+a sequential detector is derived from hypothesis testing principles.
 As the detector is lacking carrier related parameters to construct 
 the likelihood ratio test (LRT), a generalized likelihood ratio test (GLRT)
 is employed to cope with the lack of information, e.g.,~\cite{liang_15}.
@@ -67,11 +51,15 @@ transmission, carrier-related parameters must be estimated for each
 hypothesized start time. In this paper,
 we propose a family of joint detection and estimation algorithm 
 for the complete signal acquisition process
-that emphasize computational complexity while maintaining near-optimal performance at very low SNR (negative SNR).
+that emphasize computational complexity while maintaining near-optimal
+performance at very low SNR.
 The practicality of our algorithms is demonstrated by implementing
-them on a standard SDR platform. To our best knowledge, there is no previous work on discussing 
-the signal acquisition process in such a comprehensive way, especially at negative SNRs, which
-is very meanful for protected communication system.
+them on a standard SDR platform.
+To the best of our knowledge, this paper's comprehensive treatment of the signal
+acquisition problem at low SNR has not been presented previously.
+The combination of rigorous algorithm development, careful analysis,
+and implementation provide a unique contribution to the problem of
+protected communications.
 
 
 

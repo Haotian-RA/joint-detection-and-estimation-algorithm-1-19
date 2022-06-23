@@ -33,8 +33,8 @@
 \begin{document}
 
 %\title{Low Complexity Methods for Joint Detection and Synchronization of TDMA Bursts}
-\title{Practical Methods for Joint Detection and Synchronization of
-  TDMA Bursts at Low SNR}
+\title{Practical Methods for Joint Detection and Synchronization in
+  LPI/LPD Communications}
 \author{\IEEEauthorblockN{Haotian Zhai and Bernd-Peter Paris}
 \IEEEauthorblockA{\textit{Department of Electrical and Computer Engineering} \\
 \textit{George Mason University}\\
@@ -44,26 +44,30 @@ Fairfax, VA 22030 \\
 \maketitle
 
 \begin{abstract}
-This paper proposes a family of data-aided joint detection and carrier synchronization algorithms for 
-TDMA bursts.
-A sequential detection algorithm based on the generalized likelihood ratio test (GLRT)
-is used to detect the embedded preamble signal in the received data
-stream.
-Low-complexity, coarse carrier synchronization 
-occurs during sequential detection to provide carrier estimates for
-the GLRT.\@
-After detection,
-the coarse estimate is refined for use in coherent demodulation.
-The proposed family of algorithms can be scaled to support operation
-over a wide range of SNR, including SNR below \SI{0}{\decibel}.
-Algorithms are validated through simulation and real-time operation on
-a standard SDR platform is demonstrated with sample rates approaching
-\SI{10}{\mega\hertz}.
-
+  To operate at low SNR, LPI/LPD communication systems rely on
+  coherent processing which assumes that the receiver is tightly
+  synchronized in time, frequency and phase. 
+  To that end, this paper proposes a family of data-aided joint
+  detection and carrier synchronization algorithms for data-aided
+  frame and carrier synchronization.
+  A sequential detection algorithm based on the generalized likelihood ratio test (GLRT)
+  is used to detect an embedded preamble signal in the received data
+  stream.
+  Novel algorithms for low-complexity, coarse carrier synchronization
+  at low SNR provide carrier estimates
+  during sequential detection.
+  After detection,
+  the coarse carrier estimate is refined for use in coherent demodulation.
+  The proposed family of algorithms can be scaled to support operation
+  over a wide range of SNR, including SNR below \SI{0}{\decibel}.
+  Algorithms are validated through simulation.
+  The practicality of our approach is validated by demonstrating  real-time operation on
+  a standard SDR platform with sample rates approaching
+  \SI{10}{\mega\hertz}.
 \end{abstract}
 
 \begin{IEEEkeywords}
-carrier synchronization, frame synchronization, sequential
+LPI/LPD, carrier synchronization, frame synchronization, sequential
 detection, GLRT, SDR
 \end{IEEEkeywords}
 
@@ -82,7 +86,7 @@ detection, GLRT, SDR
 \section{Conclusion}
 
 A family of algorithms for joint detection and carrier synchronization
-of TDMA bursts was presented.
+suitable for LPI/LPD communications was presented.
 These algorithms are designed for low complexity while achieving good
 performance over a wide range of SNR.\@
 We implemented our algorithms on a SDR platform and demonstrated that
@@ -94,3 +98,8 @@ they can sustain several \si{\mega\hertz} sample rate.
 \end{document}
 
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
