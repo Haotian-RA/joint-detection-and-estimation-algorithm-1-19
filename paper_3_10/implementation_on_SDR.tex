@@ -59,33 +59,33 @@ Each node in Figure~\ref{fig:SDR_receiver} was benchmarked (using Google benchma
 The results for each node are shown 
 in Table~\ref{table:BM_function_nodes}.
 The times displayed in the table
-refer to processing a  buffer of size 8192 samples.
+refer to processing a  buffer of size 512 samples.
 The throughput of the 
 pipeline is dominated by the node with the longest execution time.
 Thus, the  throughput of our current implementation is bounded by
-$\SI{8192}{\sample}/\SI{837253}{\nano\second}  \approx \SI[per-mode=symbol]{9.78}{\mega\sample\per\second}$.
+$\SI{512}{\sample}/\SI{52343}{\nano\second}  \approx \SI[per-mode=symbol]{9.78}{\mega\sample\per\second}$.
 In operation, the throughput of the algorithm was measured to be in
 the range of
-\SI[per-mode=symbol]{4.5}{\mega\sample\per\second} to \SI[per-mode=symbol]{5}{\mega\sample\per\second} with latency near \SI{1}{\milli\second}.
+\SI[per-mode=symbol]{9.5}{\mega\sample\per\second} to \SI[per-mode=symbol]{10.5}{\mega\sample\per\second} with latency near \SI{292}{\micro\second}.
 The detection algorithm is very robust and the false alarm probability is near 0 at moderate SNR.
 
 \begin{table}[t]
-    \caption{Benchmark results of nodes in Figure~\ref{fig:SDR_receiver} with buffer size 8192}  % title of Table
+    \caption{Benchmark results of nodes in Figure~\ref{fig:SDR_receiver} with buffer size 512}  % title of Table
     \centering % used for centering table
     \begin{tabular}{c c c c} % centered columns (4 columns)
     \hline\hline %inserts double horizontal lines
     Node name & Time (ns) & CPU (ns) & Iterations \\ [0.5ex] % inserts table
     %heading
     \hline % inserts single horizontal line
-    I. Buffer  & 408721 & 407754 & 1703 \\ % inserting body of the table
-    II. $r_m^*r_{m-k}$  & 160069 & 160054 & 3416 \\
-    III. $r_m^*r_{m-k}s_{m-k}^*s_m$ & 498967 & 498876 & 1471 \\
-    IV. $\hat{\delta}_{SL}^{(1)}$ & 187135 & 187121 & 3602 \\
-    V. $\hat{\xi}$ & 780620 & 780523 & 886 \\
-    VI. $||\bm{r}||$ & 203907 & 203892 & 3416 \\ % [1ex] adds vertical space
-    VII. $\rho(p)$ & 837253 & 837048 & 829 \\
-    VIII. detection & 378793 & 378765 & 1844 \\
-    IX. carrier synchronization & 811747 & 811739 & 844  \\ [1ex]
+    I. Buffer  & 3885 & 3885 & 200135 \\ % inserting body of the table
+    II. $r_m^*r_{m-k}$  & 3252 & 3252 & 216211 \\
+    III. $r_m^*r_{m-k}s_{m-k}^*s_m$ & 52343 & 52342 & 13388 \\
+    IV. $\hat{\delta}_{SL}^{(1)}$ & 8432 & 8432 & 86480 \\
+    V. $\hat{\xi}$ & 52309 & 52309 & 13359 \\
+    VI. $||\bm{r}||$ & 19638 & 19638 & 34872 \\ % [1ex] adds vertical space
+    VII. $\rho(p)$ & 16217 & 16217 & 42283 \\
+    VIII. detection & 3669 & 3669 & 199976 \\
+    IX. carrier synchronization & 3075 & 3075 & 222154  \\ [1ex]
     \hline
     \end{tabular}
     \label{table:BM_function_nodes} % is used to refer this table in the text
