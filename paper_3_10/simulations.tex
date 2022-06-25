@@ -14,7 +14,7 @@ the SL estimator.
 The symbol sequence of the preamble is chosen as a Gold sequence 
 with good autocorrelation properties and
 modulated by a QPSK alphabet.
-The pulse is chosen a
+The pulse is chosen aa a
 Square-Root Raised Cosine (SRRC) pulse with roll-off equal to 0.5.
 The normalized frequency offset $\delta$ is intentionally set to be in
 the safe estimation range for all estimators for simulation purposes. 
@@ -36,11 +36,11 @@ improves the accuracy by providing an approximate
 with~\eqref{eq:relative_processing_gain}.
 
 The SL estimator with $v=1$ is slightly more accurate
-at \SI{10}{\dB}~SNR than with $v=32$.
+at \SI{10}{\dB}~SNR than the one with $v=32$.
 The gap is due to the Dirichlet function.
 % for $\delta \neq 0$.
-For the same reason,
-when $v>1$
+%For the same reason,
+Also, when $v>1$
 the accuracy of the estimator improves at all SNRs as $|\delta|$ decreases.
 % When  $\delta$ is very small, the accuracy of the SL estimator with $v=32$ has better accuracy at all SNRs.
 
@@ -55,10 +55,10 @@ This is because the accuracy of the SL estimator is not sufficient to
 provide a consistently good starting point and the Newton iteration converges occasionally to 
 other local minima away from the true frequency offset.
 
-Figure~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our proposed estimators
-and the estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}.
-When the 
-frequency offset is small, our NM estimator has a slightly better accuracy than other estimators at moderate SNRs.
+Figure~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our  estimators
+and the (more complex) estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}.
+For small
+frequency offset, the NM estimator has a slightly better accuracy than other estimators at moderate SNRs.
 In general, our family of  SL estimators with different block lengths $v$
 are very competitive across all SNRs considered here while maintaining
 low computational complexity that allows for real-time application.

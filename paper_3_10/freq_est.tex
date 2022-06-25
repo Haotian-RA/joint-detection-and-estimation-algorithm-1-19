@@ -59,7 +59,7 @@ approximated by replacing the exponential with its Taylor series
 expansion. 
 In~\cite{Fitz_94}, an approximate solution is obtained via Euler's identity for large $N$.
 The estimators (L\&R and Fitz) in both~\cite{Luise_Reggiannini_95} and~\cite{Fitz_94}  have computational complexity $O(N^2)$ 
-reflecting double summation.
+reflecting the double summation.
 In~\cite{kay_89}, the Kay estimator reduces the complexity from $O(N^2)$
 to $O(N)$ by only
 computing~\eqref{eq:necessary condition for delta} at lag $k=1$.
@@ -102,7 +102,7 @@ prior to estimation is given by
   \label{eq:single_lag_estimator_w_partial_corr}
   \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^{*(v)}\digamma_{l-k_v}^{(v)}\big\}}{2\pi k_vv},
 \end{equation}
-where $\digamma_{l}^{(v)}$ denotes the result of coherent integration of block $l$
+where $\digamma_{l}^{(v)}$ denotes the result of partial coherent integration over block $l$
 of length~$v$
 \begin{equation}
   \label{eq:coherent_integrator}
@@ -121,6 +121,10 @@ when $v=1$, i.e,  no partial integrator is used.
 
 In this section we derive expressions for the mean and variance of our
 estimators and assess the benefits of partial coherent integration.
+While our analysis is specific to the
+estimator~\eqref{eq:single_lag_estimator_wout_partial_corr}, it
+applies equally to any estimator based on~\eqref{eq:necessary
+  condition for delta} involving products of received samples.
 We first look at
 the probability density function (pdf) of the partial coherent integration
 $\digamma_l^{(v)}$.
@@ -139,7 +143,8 @@ Based on~\eqref{eq:pdf_co_integrator},
 the product $C_{\digamma}(v,l)=\digamma_l^*\digamma_{l-k_v}$
 has a mixed distribution of a complex Gaussian and a Bessel function
 of the second kind; 
-the latter stems from the products of noise terms. 
+the latter stems from the products of noise terms; it cannot be
+neglected when SNR is less than \SI{0}{\decibel}. 
 
 The mean $\mu_{C_{\digamma}}$ and variance $\sigma^2_{C_{\digamma}}$ of $C_{\digamma}(v,l)$ are given by, respectively 
 \begin{equation}
@@ -156,8 +161,8 @@ the maximum value $v$ at $\delta=0$ and has its first two zeros at $\delta=\pm 1
 Note, both $\mu_{C_{\digamma}}$ and $\sigma^2_{C_{\digamma}}$ are independent of the partial integration block~$l$.
 Thus, the mean and variance of  
 $\sum C_{\digamma}$ in the argument operator of~\eqref{eq:single_lag_estimator_w_partial_corr} 
-satisfy $\mu_{\sum C_{\digamma}}=\sum\mu_{C_{\digamma}}$ and 
-$\sigma^2_{\sum C_{\digamma}}=\sum\sigma^2_{C_{\digamma}}$.
+are $\mu_{\sum C_{\digamma}}=\sum\mu_{C_{\digamma}}$ and 
+$\sigma^2_{\sum C_{\digamma}}=\sum\sigma^2_{C_{\digamma}}$, respectively.
 
 Recall from~\eqref{eq:single_lag_estimator_w_partial_corr},
 the distribution of the SL estimator depends on
@@ -170,7 +175,7 @@ Specifically,
   \label{eq:pdf_arg_comp_Gaus}
   \arg\{\zeta\} \sim \n\big(\angle \mu_{\zeta},\sigma^2_{\zeta}/|\mu_{\zeta}|^2\big).
 \end{equation}
-The derivation of~\eqref{eq:pdf_arg_comp_Gaus} is omitted due to space constraint.
+% The derivation of~\eqref{eq:pdf_arg_comp_Gaus} is omitted due to space constraint.
 
 Based on~\eqref{eq:pdf_arg_comp_Gaus} and with
 $\zeta = \sum C_{\digamma}$,
@@ -188,6 +193,9 @@ Equivalently, we can maximize the ``output'' SNR,
   \end{aligned}
 \end{equation}
 where $\text{SNR}_{in}=2E_s/(MN_0)$.
+Therefore, the block length $\nu$ should satisfy $2\nu \gg
+\frac{1
+}{\text{SNR}_{in}}$ and $\nu \ll \frac{1}{\delta}$.
 
 From~\eqref{eq:SNR_out}, we 
 see that  at low SNR $\text{SNR}_{\sum C_{\digamma}}^{(v,\delta)}$ is degraded by
@@ -264,14 +272,16 @@ the products of received samples, $r_{m-k}r_m^*$,
 can be stored so that only one new product needs to be computed per
 sequential detection step (i.e., per sample period).
 
-The  computational complexity of two single-lag estimators are given
-in Table~\ref{table:computational complexity comparison} with optimal $k_v \approx 2N/(3v)$. 
+The  computational complexity of the two single-lag estimators are given
+in Table~\ref{table:computational complexity comparison} for optimal $k_v \approx 2N/(3v)$. 
 We see that $\hat{\delta}_{SL}^{(1)}(k)$ has approximately two times
-fewer complex products and additions compared with
-$\hat{\delta}_{SL}^{(v>1)}(k_v)$ in sequential detection. 
-Furthermore, note the complexity of Kay estimator also with single lag
-is given as approximately $3N/4$ complex products and additions, 
-which is slightly larger than $\hat{\delta}_{SL}^{(1)}(k)$.
+fewer complex products and additions than
+$\hat{\delta}_{SL}^{(v>1)}(k_v)$. 
+Furthermore, note the complexity of the Kay estimator~\cite{kay_89},
+also with a single lag,
+is approximately $3N/4$ complex products and additions. 
+% which is slightly larger than $\hat{\delta}_{SL}^{(1)}(k)$.
+Recall that estimators~\cite{Fitz_94,Luise_Reggiannini_95} are $O(N^2)$.
 
 \begin{table}[t]
   \caption{Complexity of single-lag estimators with and without partial correlating in sequential detection with optimal $k_v\approx2N/(3v)$}  % title of Table

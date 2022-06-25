@@ -43,14 +43,6 @@ while $\Delta=0$ under $H_1$.
 % Figure 3 demonstrates the case when $H_0$ represents a portion of the preamble compared with
 % $H_1$. 
 
-% In~\cite{Ramakrishnan_10,Chiani_06,Liang_15},
-% the authors define hypothesis $H_0$ only when no preamble
-% is observed, i.e., $|\Delta| \geq N$. Although, in~\cite{Chiani_06},
-% it is pointed out the effect of partial preamble can be neglected by
-% using the preamble symbol sequence with a good autocorrelation property.
-% In this paper, we still focus on discussing when partial preamble is observed because it is the worst case of $H_0$
-% and it affects the result of hypothesis testing.
-
 We focus on discussing when the start of the preamble 
 occurs in the window, i.e., $\Delta\in(0,N{-}1]$, which corresponds to
 the top case in figure~\ref{fig:partial_preamble_detection}.
@@ -59,7 +51,7 @@ $\Delta\in[-N{+}1,0)$
 is symmetric to the top case.
 Based on~\eqref{eq:two hypotheses}, we build conditional likelihood ratio test (CLRT)
 between $H_0$ and $H_1$ by conditioning on the distance $\Delta$, 
-the phasor $\xi$ and the frequency offset $\delta$. The log likelihood ratio reduces to
+the phasor $\xi$ and the frequency offset $\delta$. The conditioal log likelihood ratio reduces to
 % is given by
 % \begin{equation}
 %     \label{eq:likelihood ratio}
@@ -88,13 +80,13 @@ autocorrelation function (ACF) of the preamble at lag $\Delta$ under
 the two hypotheses.
 Moreover, we notice the second summation on the left hand side is not computable
 due to the unknown information of $\Delta$ while the first summation is.
-On the other hand,
-the first summation reflects the energy of the preamble
-under $H_1$ and the partial ACF of the preamble at lag $\Delta$ under $H_0$.
-To mitigate the effect of the partial ACF a preamble
+% On the other hand,
+% the first summation reflects the energy of the preamble
+% under $H_1$ and the partial ACF of the preamble at lag $\Delta$ under $H_0$.
+To render the effect of the partial ACF negligible, a preamble
 with very good autocorrelation properties is critical.
 
-Thus, a practical sequential detector reduces to the
+Then, a practical sequential detector reduces to the
 cross-correlation between the received signal
 and the preamble corrected by the frequency and phasor estimates with
 proper scaling.
@@ -112,13 +104,13 @@ where each element is $\hat{s}_{n}=s_n\hat{\xi}_{p}e^{j2\pi\hat{\delta}_{p}n}$
 for $n=0,1,\ldots,N{-}1$, and $\hat{\xi}_{p}$, $\hat{\delta}_{p}$ are the carrier estimates at
 position $p$.
 %$||\cdot||$ is the Euclidean norm of the signal sequence, and
-$\gamma$ is the normalized detection threshold which lies in the range of $[0,1]$. 
+The normalized detection threshold $\gamma$ lies in the range of $[0,1]$. 
 From~\eqref{eq:generalized_corr}, we see
 a realistic generalized likelihood ratio test (GLRT) replaces the CLRT
 by first performing  carrier estimation of the signal in window at
 each position $p$
 and then applying corrections based on these estimates in the LRT.\@
-It should be emphasized that our detector is intended to work at high sample rate;
+It should be emphasized that our detector is intended to work at high sample rates.
 While~\eqref{eq:generalized_corr} is straightforward and of complexity 
 $O(N)$, the complexity of estimating $\hat{\xi}$,$\hat{\delta}$
 is critical for practical implementation.  

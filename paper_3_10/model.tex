@@ -12,8 +12,8 @@ include a reference signal (preamble) that is known to the receiver.
 % see Figure~\ref{fig:data_structure}.
 %Often such a reference sequence is prepended to the payload and is referred to as a preamble.
 %The structure of signal stream at the receiver is shown in Figure~\ref{fig:data_structure}. 
-The problem addressed in this paper is to accurately estimate the
-start time of the preamble and to estimate carrier phase and frequency
+The problem addressed in this paper is to estimate accurately the
+start times of the preamble and to estimate carrier phase and frequency
 offset from the preamble. 
 The payload portion of the burst, which contains the user's information, is not further considered. 
 % Moreover, to make our algorithm applicable for signal transmission in very high speed,
@@ -24,13 +24,13 @@ The received signal is modeled at base band.
 In~\cite{Morelli_Mengali_98}, 
 the authors obtain a simplifed signal model from the matched filter
 outputs;
-however, this assumes that the symbol time is perfectly known.
+however, this assumes inherently that the symbol time is perfectly known.
 Also, the matched filter frontend is not optimal in the presence of
 frequency offset.
-In contrast, our model assumes that the received signal is
+In contrast, our model assumes merely that the received signal is
 oversampled: we collect $M$ samples per symbol period $T$, i.e., the
 sample period is $T_s=\frac{T}{M}$. 
-The received samples $r_n$ are given by the model
+Received samples $r_n$ are given by
 \begin{equation}
     \begin{aligned}
       \label{eq:model}
@@ -58,7 +58,7 @@ position\footnote{This implies that delay is quantized to
 % In this paper, the sampling rate is assumed to be high enough relative to the symbol rate, so that the influence of fractional delay can be ignored.
 $A$, $\phi$, $\delta$ are the amplitude, carrier phase and normalized
 (by $T_s$)
-frequency offset.
+frequency offset and
 %that we want to estimate.
 $w_p$ is complex AWGN.\@
 Moreover, we will denote by $E_s/N_0$ the ratio of signal energy to noise power spectral density (SNR).
