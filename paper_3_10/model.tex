@@ -7,7 +7,7 @@
 %   \label{fig:data_structure}
 %   \end{figure}
 
-In our model, the transmitted bursts are separated by an unkown length of idle period and assumed to
+In our model, the transmitted bursts of the received stream are separated by an unkown length of idle period and assumed to
 include a reference signal (preamble) that is known to the receiver.
 % see Figure~\ref{fig:data_structure}.
 %Often such a reference sequence is prepended to the payload and is referred to as a preamble.
@@ -15,7 +15,7 @@ include a reference signal (preamble) that is known to the receiver.
 The problem addressed in this paper is to accurately estimate the
 start time of the preamble and to estimate carrier phase and frequency
 offset from the preamble. 
-The payload portion of the burst is not further considered. 
+The payload portion of the burst, which contains the user's information, is not further considered. 
 % Moreover, to make our algorithm applicable for signal transmission in very high speed,
 % the complexity of algorithm is also crucial.
 
