@@ -14,7 +14,7 @@ the SL estimator.
 The symbol sequence of the preamble is chosen as a Gold sequence 
 with good autocorrelation properties and
 modulated by a QPSK alphabet.
-The pulse is chosen aa a
+The pulse is chosen as a
 Square-Root Raised Cosine (SRRC) pulse with roll-off equal to 0.5.
 The normalized frequency offset $\delta$ is intentionally set to be in
 the safe estimation range for all estimators for simulation purposes. 
@@ -27,8 +27,8 @@ the safe estimation range for all estimators for simulation purposes.
 %     \label{fig:Generalized correlation}
 %     \end{figure}
 
-Figure~\ref{fig:accuracy_NM_SL} illustrates the accuracy of the single-lag (SL) and the NM estimator.
-Comparing the two curves for SL estimators with $v=1$ and $v=32$, 
+Fig.~\ref{fig:accuracy_NM_SL} illustrates the accuracy of the single-lag (SL) estimator and the NM estimator.
+Comparing the two curves for the SL estimators with $v=1$ and $v=32$, 
 we see the length-$32$ partial integration
 improves the accuracy by providing an approximate
 \SI{4}{\dB}~performance gain at negative SNRs
@@ -55,7 +55,7 @@ This is because the accuracy of the SL estimator is not sufficient to
 provide a consistently good starting point and the Newton iteration converges occasionally to 
 other local minima away from the true frequency offset.
 
-Figure~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our  estimators
+Fig.~\ref{fig:accuracy_NM_SL_traditional} compares the accuracy of our  estimators
 and the (more complex) estimators in~\cite{kay_89,Fitz_94,Luise_Reggiannini_95}.
 For small
 frequency offset, the NM estimator has a slightly better accuracy than other estimators at moderate SNRs.
@@ -89,13 +89,13 @@ low computational complexity that allows for real-time application.
 % the two positions should be counted as latter.
 
 
-Figure~\ref{fig:Receiver operating characteristics} shows the receiver
+Fig.~\ref{fig:Receiver operating characteristics} shows the receiver
 operating characteristics (ROC) of the detection algorithm. 
 The better accuracy of SL estimation with partial integration also
 improves the detection performance  at low SNR.
 For example, at $\SI{-2}{\dB}$ SNR, $\gamma=0.44$, the false alarm probability $P_{FA}$ of SL with $v=32$ is reduced $0.2\%$ and 
 the detection probability $P_{D}$ is $5\%$ larger compared with the SL with $v{=}1$. 
-The figure also shows the detector does not work well at $\SI{-4}{\dB}$ SNR if only $32$ symbols of preamble are used;  
+Fig.~\ref{fig:Receiver operating characteristics} also shows the detector does not work well at $\SI{-4}{\dB}$ SNR if only $32$ symbols of preamble are used;  
 The performance is significantly improved by doubling the length of
 the preamble. The two curves marked LRT at $\SI{-4}{\dB}$ SNR with different $v$
 are obtained by plugging in the true frequency and phase offsets as an upper bound for comparing with 

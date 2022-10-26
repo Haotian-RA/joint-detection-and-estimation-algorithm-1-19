@@ -90,7 +90,7 @@ This approach yields
 a closed-form solution for $\hat{\delta}$, which is given by
 \begin{equation}
   \label{eq:single_lag_estimator_wout_partial_corr}
-  \hat{\delta}_{SL}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k},
+  \hat{\delta}_{SL}(k)=-\frac{\arg\big\{\sum_{m=k}^{N-1}r_{m-k}r_m^*s_{m-k}^*s_m\big\}}{2\pi k}.
 \end{equation}
 
 However, the above single-lag (SL) estimator has insufficient
@@ -122,7 +122,7 @@ when $v=1$, i.e,  no partial integrator is used.
 In this section we derive expressions for the mean and variance of our
 estimators and assess the benefits of partial coherent integration.
 While our analysis is specific to the
-estimator~\eqref{eq:single_lag_estimator_wout_partial_corr}, it
+estimator~\eqref{eq:single_lag_estimator_w_partial_corr}, it
 applies equally to any estimator based on~\eqref{eq:necessary
   condition for delta} involving products of received samples.
 We first look at
@@ -133,7 +133,7 @@ $\digamma_{l}^{(v)}$ yields a complex Gaussian random variable with pdf
 \begin{equation}
   \label{eq:pdf_co_integrator}
   \begin{aligned}
-    &\digamma_l^{(v)} \sim \cn\bigg(\xi\sum_{n=lv}^{(l+1)v-1}e^{j2\pi \delta n},\frac{N_0}{2}v\bigg),
+    &\digamma_l^{(v)} \sim \cn\bigg(\xi\sum_{n=lv}^{(l+1)v-1}e^{j2\pi \delta n},\frac{N_0}{2}v\bigg).
   \end{aligned}
 \end{equation}
 
@@ -189,13 +189,12 @@ Equivalently, we can maximize the ``output'' SNR,
     % &=\frac{\frac{Es^4}{M^4A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^4(N/v-k_v)^2}
     % {\Big[v^2\frac{N_0^2E_s^2}{4M^2A^4}+2v\frac{N_0E_s^3}{2M^3A^4}\Big(\frac{\sin(\pi \delta v)}{\sin(\pi \delta)}\Big)^2\Big](N/v{-}k_v)} \\
     =\frac{(N/v-k_v)\cdot\D^4(v,\delta)}
-    {v^2/\text{SNR}_{in}+2v\cdot\D^2(v,\delta)}\cdot\text{SNR}_{in}. \\
+    {v^2/\text{SNR}_{\text{in}}+2v\cdot\D^2(v,\delta)}\cdot\text{SNR}_{\text{in}}. \\
   \end{aligned}
 \end{equation}
-where $\text{SNR}_{in}=2E_s/(MN_0)$.
+where $\text{SNR}_{\text{in}}=2E_s/(MN_0)$.
 Therefore, the block length $\nu$ should satisfy $2\nu \gg
-\frac{1
-}{\text{SNR}_{in}}$ and $\nu \ll \frac{1}{\delta}$.
+\frac{1}{\text{SNR}_{\text{in}}}$ and $\nu \ll \frac{1}{\delta}$.
 
 From~\eqref{eq:SNR_out}, we 
 see that  at low SNR $\text{SNR}_{\sum C_{\digamma}}^{(v,\delta)}$ is degraded by
@@ -208,13 +207,13 @@ with and without partial integration via the ratio
   \begin{aligned}
     \label{eq:relative_processing_gain}
     \frac{\text{SNR}_{\sum C_{\digamma}}^{(v,0)}}{\text{SNR}_{\sum C_{\digamma}}^{(1,0)}}
-    \approx\frac{v+2v\cdot\text{SNR}_{in}}{1+2v\cdot\text{SNR}_{in}}.
+    \approx\frac{v+2v\cdot\text{SNR}_{\text{in}}}{1+2v\cdot\text{SNR}_{\text{in}}}.
   \end{aligned}
 \end{equation}
 
 Some observations can be obtained from~\eqref{eq:relative_processing_gain}.
 First, we see the maximum relative performance approaches $v$ as
-$\text{SNR}_{in}$ approaches 0.
+$\text{SNR}_{\text{in}}$ approaches 0.
 This underscores that partial integration is critical at low SNR.
 Moreover, when the input SNR is fixed and small, the relative performance
 increases with $v$.
@@ -223,7 +222,7 @@ Then, the effect of Dirichlet function in~\eqref{eq:SNR_out}
 becomes more important and
 $v=1$ should be chosen.
 
-Based on~\eqref{eq:single_lag_estimator_wout_partial_corr},~\eqref{eq:mean_var_product_coherent_int}
+Based on~\eqref{eq:single_lag_estimator_w_partial_corr},~\eqref{eq:mean_var_product_coherent_int}
 and~\eqref{eq:pdf_arg_comp_Gaus},
 the distribution of $\hat{\delta}_{SL}^{(v)}(k_v)$ at moderate or high
 (output) SNRs is given by

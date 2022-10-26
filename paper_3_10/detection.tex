@@ -21,7 +21,7 @@ alternative $H_1$ that it contains the entire preamble.
 % length $N$ received samples with $N-1$ overlapped samples from the previous window is considered.
 Define $\Delta$ to be the distance between the current start position of the window
 of $N$ received samples and the start position of the preamble $\bar{p}$.
-Figure~\ref{fig:partial_preamble_detection} illustrates two distinct cases when a portion of the 
+Fig.~\ref{fig:partial_preamble_detection} illustrates two distinct cases when a portion of the 
 preamble is in the window.
 %with global delay index $p$ and local sample index $n$.
 In terms of the local scale $n=0,1,\ldots,N-1$, the two hypotheses are given by the window of samples $r_n$
@@ -45,13 +45,13 @@ while $\Delta=0$ under $H_1$.
 
 We focus on discussing when the start of the preamble 
 occurs in the window, i.e., $\Delta\in(0,N{-}1]$, which corresponds to
-the top case in figure~\ref{fig:partial_preamble_detection}.
+the top case in fig.~\ref{fig:partial_preamble_detection}.
 The bottom case when 
 $\Delta\in[-N{+}1,0)$ 
 is symmetric to the top case.
 Based on~\eqref{eq:two hypotheses}, we build conditional likelihood ratio test (CLRT)
 between $H_0$ and $H_1$ by conditioning on the distance $\Delta$, 
-the phasor $\xi$ and the frequency offset $\delta$. The conditioal log likelihood ratio reduces to
+the phasor $\xi$ and the frequency offset $\delta$. The conditional log likelihood ratio reduces to
 % is given by
 % \begin{equation}
 %     \label{eq:likelihood ratio}

@@ -16,12 +16,12 @@ purpose processor (GPP).
 The different aspects of the algorithm are mapped to logical nodes in a pipelined, parallel processing architecture
 using Threading Building Blocks (TBB)~\cite{Michael_19}.
 
-Figure~\ref{fig:SDR_receiver} shows a simple block diagram
+Fig.~\ref{fig:SDR_receiver} shows a simple block diagram
 illustrating the pipeline for the complete joint detection and
 estimation process.
 Due to space constraints, we cannot give details for each node; the
 computations performed by the nodes relate closely to the expressions
-throughout this paper some of which are indicated in Figure~\ref{fig:SDR_receiver}.
+throughout this paper some of which are indicated in fig.~\ref{fig:SDR_receiver}.
 
 It is necessary to discuss the node for computing the phasor estimate $\hat{\xi}$ (node V). 
 The numerator of~\eqref{eq:opt_xi} performs a time-varying
@@ -55,7 +55,7 @@ On the receiver side,
 the CPU includes 6 cores and 12 threads with a \SI{4.5}{\giga\hertz}
 clock frequency.
 
-Each node in Figure~\ref{fig:SDR_receiver} was benchmarked (using Google benchmark) to measure their throughput.
+Each node in fig.~\ref{fig:SDR_receiver} was benchmarked (using Google benchmark) to measure their throughput.
 The results for each node are shown 
 in Table~\ref{table:BM_function_nodes}.
 The times displayed in the table
@@ -70,7 +70,7 @@ the range of
 The detection algorithm is very robust and the false alarm probability is near 0 at moderate SNR.
 
 \begin{table}[t]
-    \caption{Benchmark results of nodes in Figure~\ref{fig:SDR_receiver} with buffer size 512}  % title of Table
+    \caption{Benchmark results of nodes in fig.~\ref{fig:SDR_receiver} with buffer size 512}  % title of Table
     \centering % used for centering table
     \begin{tabular}{c c c c} % centered columns (4 columns)
     \hline\hline %inserts double horizontal lines
