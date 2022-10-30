@@ -21,6 +21,7 @@ elseif nargin==5
 
     tx=o_tx(L*M+1:M*L+length(os_symbol)); % sampling and avoid transient
     tx=sqrt(L_0)*tx/sqrt(sum(tx.*conj(tx))); % make symbol energy be 1.
+    
 else
     symbol = ((1.0 - 2.0*c(1:2:end))+1i*(1-2.0*c(2:2:end)))/sqrt(2);
     ps=srrc_fractional_delay(L,beta,T,ts);

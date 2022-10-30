@@ -3,13 +3,17 @@ clc
 close all
 
 % channel
-normalized_true_freq_offset=0.0001;  % do not approach CRB at 0.01
+% M=2;
+M=1;
+normalized_true_freq_offset=0.025/M;  % do not approach CRB at 0.01
 true_phase_offset=2*pi*rand;
 SNR=[-10:1:10];
 
 % simulation initialization
 L_0_set=[32];
-M=1;LL=5000; 
+% M=2;
+% LL=5000; 
+LL=1;
 n_L_0=0;  
 L=8;beta=0.5;c_init=10;v_set=[1 16];
 
@@ -32,7 +36,8 @@ for L_0=L_0_set
     n_L_0=n_L_0+1;
         
     [tx,~] = Gold_sequence(L_0,c_init);
-
+%     [tx,~] = Gold_sequence(L_0,c_init,M,L,beta);
+    
     N=length(tx);
     tx_shift_register_AK = tx_register_AK(tx);
     sig = sig_generator(tx,normalized_true_freq_offset,true_phase_offset);

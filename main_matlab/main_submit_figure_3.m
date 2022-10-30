@@ -4,7 +4,7 @@ close all
 
 % channel 
 % M=4;
-M=1;
+M=2;
 normalized_true_freq_offset=0.01/M; % \delta*T_s
 normalized_true_phase_offset=2*pi*rand;
 SNR=0;
@@ -20,8 +20,8 @@ for L_0=L_0_set
     % prepare sig
     n_L_0=n_L_0+1;
     
-%     [tx,~] = Gold_sequence(L_0,c_init,M,L,beta);
-    [tx,~] = Gold_sequence(L_0,c_init);
+    [tx,~] = Gold_sequence(L_0,c_init,M,L,beta);
+%     [tx,~] = Gold_sequence(L_0,c_init);
 
     N=length(tx);
     sig = sig_generator(tx,normalized_true_freq_offset,normalized_true_phase_offset,pload,n_zeros);
@@ -74,5 +74,5 @@ xlim([0 500])
 % [p2,v2]=max(rho_container(2,:))
 rho_container_1=rho_container(1,:);
 
-sum(tx.*conj(tx))
-save('new_3_rho_container_1.mat','rho_container_1')
+% sum(tx.*conj(tx))
+% save('new_3_rho_container_1.mat','rho_container_1')
