@@ -2,6 +2,30 @@
 
 \subsection{Signal Model}
 
+\begin{frame}
+  \frametitle{Signal Model}
+  \begin{itemize}
+    \item In our model, we assume a training sequence (preamble) is known to the receiver (DA operation). 
+    \item The goal is to estimate accurately the start time of the preamble and to estimate carrier phase and frequency offsets from the preamble. 
+    \item The received samples $r_p$ are given by
+\begin{equation}
+    \begin{aligned}
+      \label{eq:model}
+      r_p = s_{p-\bar{p}}Ae^{j\phi}e^{j2\pi\delta p}+w_{p},
+    \end{aligned}
+  \end{equation}
+where
+\begin{itemize}
+    \item $p$ is the global time axis measuring the position of samples in the entire received stream.
+    \item $\bar{p}$ denotes the start position of the received preamble.
+    \item $s_n$ is the pulse-shaped preamble for $n=0,1,\ldots,N-1$.
+    \item $\xi=Ae^{j\phi}$, $\delta$ are the unknown phasor and frequency offsets.
+    \item $w_p$ is complex AWGN.
+\end{itemize}
+\end{itemize}
+  
+\end{frame}
+
 \subsection{Time Synchronization}
 
 \begin{frame}
