@@ -8,6 +8,8 @@ load('new_4_P_fa_64_M_2.mat')
 load('new_4_P_d_64_M_2.mat')
 load('new_4_P_fa_32_pure_M_2.mat')
 load('new_4_P_d_32_pure_M_2.mat')
+% load('new_4_P_fa_32_SNR_0.mat')
+% load('new_4_P_d_32_SNR_0.mat')
 
 SNR=[-4 -2 0];
 threshold=0:0.02:1;
@@ -45,6 +47,10 @@ P_fa_32_M_2(23,2,2)=0.0072;
 P_fa_32_M_2(24,2,2)=3.95e-3;
 P_fa_32_M_2(25,2,2)=2e-3;
 P_fa_32_M_2(26,2,2)=1.2e-3;
+%%%
+P_d_32_M_2(22,3,2)=0.994;
+P_d_32_M_2(26:end,3,2)=0;
+% P_fa_32_M_2(28,3,2)=0.95e-3;
 %%%
 P_d_32_M_2(1:17,3,1)=1;
 P_d_32_M_2(18,3,1)=0.999;
@@ -87,12 +93,16 @@ semilogx(P_fa_32_M_2(:,2,2),P_d_32_M_2(:,2,2),'-.')
 hold on
 semilogx(P_fa_32_M_2(:,3,1),P_d_32_M_2(:,3,1),'-')
 hold on
+semilogx(P_fa_32_M_2(:,3,2),P_d_32_M_2(:,3,2),'-')
+hold on
+% semilogx(P_fa_32_SNR_0,P_d_32_SNR_0,'-')
+% hold on
 semilogx(P_fa_64_M_2(:,1,1),P_d_64_M_2(:,1,1),'.-')
 hold on
-semilogx(P_fa_32_pure_M_2(:,1,1),P_d_32_pure_M_2(:,1,1),':.')
-hold on
-semilogx(P_fa_32_pure_M_2(:,1,2),P_d_32_pure_M_2(:,1,2),':.')
-hold on
+% semilogx(P_fa_32_pure_M_2(:,1,1),P_d_32_pure_M_2(:,1,1),':.')
+% hold on
+% semilogx(P_fa_32_pure_M_2(:,1,2),P_d_32_pure_M_2(:,1,2),':.')
+% hold on
 % semilogx(P_fa_32_pure_M_2(:,2,1),P_d_32_pure_M_2(:,2,1),':.')
 % hold on
 % semilogx(P_fa_32_pure_M_2(:,2,2),P_d_32_pure_M_2(:,2,2),':.')
@@ -110,7 +120,9 @@ semilogx(P_fa_32_M_2(23,2,2),P_d_32_M_2(23,2,2),'+','Color','[0.4940, 0.1840, 0.
 hold on
 semilogx(P_fa_32_M_2(25,3,1),P_d_32_M_2(25,3,1),'+','Color','[0.4660, 0.6740, 0.1880]')
 hold on
-semilogx(P_fa_64_M_2(18,1,1),P_d_64_M_2(18,1,1),'+','Color','[0.3010, 0.7450, 0.9330]')
+semilogx(P_fa_32_M_2(24,3,2),P_d_32_M_2(24,3,2),'+','Color','[0.3010 0.7450 0.9330]')
+hold on
+semilogx(P_fa_64_M_2(18,1,1),P_d_64_M_2(18,1,1),'+','Color','[0.6350 0.0780 0.1840]')
 grid on
 [hc1,ht1,hcl1] = nice_plot(gcf);
 
@@ -118,7 +130,8 @@ text(P_fa_32_M_2(19,1,1)-0.025,P_d_32_M_2(19,1,1)-0.015,'$\gamma{=}0.36$','Inter
 text(P_fa_32_M_2(20,1,2)-0.014,P_d_32_M_2(20,1,2)+0.015,'$\gamma{=}0.38$','Interpreter','latex','Fontsize',9.5)
 text(P_fa_32_M_2(23,2,1)+0.0015,P_d_32_M_2(23,2,1),'$\gamma{=}0.44$','Interpreter','latex','Fontsize',9.5)
 text(P_fa_32_M_2(23,2,2)-0.0015,P_d_32_M_2(23,2,2)+0.015,'$\gamma{=}0.44$','Interpreter','latex','Fontsize',9.5)
-text(P_fa_32_M_2(25,3,1)-0.0008,P_d_32_M_2(25,3,1)+0.018,'$\gamma{=}0.48$','Interpreter','latex','Fontsize',9.5)
+text(P_fa_32_M_2(25,3,1)-0.0002,P_d_32_M_2(25,3,1)-0.013,'$\gamma{=}0.48$','Interpreter','latex','Fontsize',9.5)
+text(P_fa_32_M_2(24,3,2),P_d_32_M_2(24,3,2)-0.013,'$\gamma{=}0.46$','Interpreter','latex','Fontsize',9.5)
 text(P_fa_64_M_2(18,1,1)+0.0001,P_d_64_M_2(18,1,1),'$\gamma{=}0.34$','Interpreter','latex','Fontsize',9.5)
 
 xlab=xlabel('$P_{FA}$','Interpreter', 'LaTeX');
@@ -127,10 +140,9 @@ lgnd=legend({'$-4$ dB, $L_0{=}32$, $v{=}1$',...
     '$-4$ dB, $L_0{=}32$, $v{=}32$',...
     '$-2$ dB, $L_0{=}32$, $v{=}1$',...
     '$-2$ dB, $L_0{=}32$, $v{=}32$',...
-    '$0$ dB, $L_0{=}32$, $v{=}1$',...
-    '$-4$ dB, $L_0{=}64$, $v{=}32$',...
-    'LRT, $-4$ dB, $L_0{=}32$, $v{=}1$',...
-    'LRT, $-4$ dB, $L_0{=}32$, $v{=}32$',},...
+    '$0$ dB, $L_0=32$, $v=1$',...
+    '$0$ dB, $L_0=32$, $v=32$',...
+    '$-4$ dB, $L_0{=}64$, $v{=}32$'},...
     'Interpreter', 'LaTeX',...
     'Location','southeast');
 set(xlab,'FontSize',12);
@@ -138,6 +150,24 @@ set(ylab,'FontSize',12);
 set(lgnd,'FontSize',8);
 ylim([0.6 1])
 xlim([1e-3 1])
+
+% xlab=xlabel('$P_{FA}$','Interpreter', 'LaTeX');
+% ylab=ylabel('$P_{D}$','Interpreter', 'LaTeX');
+% lgnd=legend({'$-4$ dB, $L_0{=}32$, $v{=}1$',...
+%     '$-4$ dB, $L_0{=}32$, $v{=}32$',...
+%     '$-2$ dB, $L_0{=}32$, $v{=}1$',...
+%     '$-2$ dB, $L_0{=}32$, $v{=}32$',...
+%     '$0$ dB, $L_0{=}32$, $v{=}1$',...
+%     '$-4$ dB, $L_0{=}64$, $v{=}32$',...
+%     'LRT, $-4$ dB, $L_0{=}32$, $v{=}1$',...
+%     'LRT, $-4$ dB, $L_0{=}32$, $v{=}32$',},...
+%     'Interpreter', 'LaTeX',...
+%     'Location','southeast');
+% set(xlab,'FontSize',12);
+% set(ylab,'FontSize',12);
+% set(lgnd,'FontSize',8);
+% ylim([0.6 1])
+% xlim([1e-3 1])
 
 % '$-2$ dB, $L_0{=}32$, $v{=}1$',...
 % '$-2$ dB, $L_0{=}32$, $v{=}32$',},...

@@ -1,4 +1,4 @@
-\section{Real-time implementation}
+\section{Real-time Implementation}
 
 % agenda maybe changed a bit.
 
@@ -7,109 +7,141 @@
 % demo or a picture.
 
 \begin{frame}
-    \frametitle{Implementation on Software-define Radio}
+    \frametitle{Task Based Signal Processing System}
+
+    \begin{columns}
+      \begin{column}{0.515\textwidth}
+        
+        \begin{itemize}
+          \item Using a task based digital signal processing system at the receiver 
+          \begin{itemize}
+              \item Each function maps to an individual task. 
+              \item Tasks are processed in parallel if no data dependency occurs.             
+             
+          \end{itemize} 
+          \item Different aspects of the algorithm are mapped in 
+          a pipelined, parallel task processing architecture via Threading Building Blocks (TBB). 
+
+
+        \end{itemize}
+
+      \end{column} 
+
+    \begin{column}{0.46\textwidth} 
+
+        \begin{center}
+          \includegraphics[width=1.0\linewidth]{SDR_receiver_new.png}
+        \end{center}
+      
+      \end{column}
+    \end{columns}
+
+    % \begin{figure}
+    %     \centering
+    %     \begin{minipage}{.5\textwidth}
+    %       \centering
+    %       \includegraphics[width=.5\linewidth]{SDR_receiver_new.png}
+    %     \end{minipage}%
+    %     \begin{minipage}{.5\textwidth}
+    %       \centering
+    %       \includegraphics[width=.8\linewidth]{SDR_signal_transmission_path.png}
+    %     \end{minipage}
+    % \end{figure}
+
+    % \begin{itemize}
+    %     \item Different aspects of our algorithm are mapped to logical nodes in a pipelined, parallel processing architecture using Threading Building Blocks (TBB).
+    %     \item The signals are transmitted and received between two universal software radio peripherals (USRP) connected by 5 Gb/s Ethernet cables to
+    %     laptops.
+    %     \item Accuracy, throughput and latency (the time when the first joint detection and estimation are finished) are considered. 
+    % \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}
+    \frametitle{Flow Graph Analyzer: Latency and Throughput}
 
     \begin{figure}
         \centering
-        \begin{minipage}{.5\textwidth}
-          \centering
-          \includegraphics[width=.5\linewidth]{SDR_receiver_new.png}
-        \end{minipage}%
-        \begin{minipage}{.5\textwidth}
-          \centering
-          \includegraphics[width=.8\linewidth]{SDR_signal_transmission_path.png}
-        \end{minipage}
+          \includegraphics[width=.62\linewidth]{fga_throughput.png}
     \end{figure}
 
+    \begin{figure}
+      \centering
+        \includegraphics[width=.62\linewidth]{fga_latency.png}
+  \end{figure}
+
     \begin{itemize}
-        \item Different aspects of our algorithm are mapped to logical nodes in a pipelined, parallel processing architecture using Threading Building Blocks (TBB).
-        \item The signals are transmitted and received between two universal software radio peripherals (USRP) connected by 5 Gb/s Ethernet cables to
-        laptops.
-        \item Accuracy, throughput and latency (the time when the first joint detection and estimation are finished) are considered. 
+        \item The top graph shows the task architecture of proposed algorithm leverages high parallelism and pipelining. The throughput is approximately 
+        $ \SI[per-mode=symbol]{28.74}{\mega\sample\per\second}$.
+        \item By zooming in the very first time duration, the latency (finish time of the first burst) is observed around $ \SI[per-mode=symbol]{383.7}{\nano\second}$.
+
     \end{itemize}
   \end{frame}
 
 
   \begin{frame}
-    \frametitle{Accuracy, throughput and latency}
+    \frametitle{Google Benchmark: Task Measurement}
 
     \begin{figure}
         \centering
-        \begin{minipage}{.3\textwidth}
-          \centering
-          \includegraphics[width=.5\linewidth]{SDR_receiver_new.png}
-        \end{minipage}%
-        \begin{minipage}{.7\textwidth}
-          \centering
-          \begin{table}[t]
-            \tiny
-            \centering % used for centering table
-            \begin{tabular}{c c c c} % centered columns (4 columns)
-            \hline\hline %inserts double horizontal lines
-            Node name & Time (ns) & CPU (ns) & Iterations \\ [0.5ex] % inserts table
-            %heading
-            \hline % inserts single horizontal line
-            I. Buffer  & 3885 & 3885 & 200135 \\ % inserting body of the table
-            II. $r_m^*r_{m-k}$  & 3252 & 3252 & 216211 \\
-            III. $r_m^*r_{m-k}s_{m-k}^*s_m$ & 52343 & 52342 & 13388 \\
-            IV. $\hat{\delta}_{SL}^{(1)}$ & 8432 & 8432 & 86480 \\
-            V. $\hat{\xi}$ & 52309 & 52309 & 13359 \\
-            VI. $||\bm{r}||$ & 19638 & 19638 & 34872 \\ % [1ex] adds vertical space
-            VII. $\rho(p)$ & 16217 & 16217 & 42283 \\
-            VIII. detection & 3669 & 3669 & 199976 \\
-            IX. carrier synchronization & 3075 & 3075 & 222154  \\ [1ex]
-            \hline
-            \end{tabular}
-            \label{table:BM_function_nodes} % is used to refer this table in the text
-          \end{table}
-        
-        \end{minipage}
+        \begin{table}[t]
+          \tiny
+          \centering % used for centering table
+          \begin{tabular}{c c c c} % centered columns (4 columns)
+          \hline\hline %inserts double horizontal lines
+          Node name & Time (ns) & CPU (ns) & Iterations \\ [0.5ex] % inserts table
+          %heading
+          \hline % inserts single horizontal line
+          I. Buffer  & 3487 & 3487 & 206840 \\ % inserting body of the table
+          II. $r_m^*r_{m-k}$  & 3530 & 3530 & 198687 \\
+          III. $r_m^*r_{m-k}s_{m-k}^*s_m$ & 49290 & 49289 & 13958 \\
+          IV. $\hat{\delta}_{SL}^{(1)}$ & 53219 & 53217 & 12180 \\
+          V. $\hat{\xi}$ & 65397 & 65388 & 15312 \\
+          VI. $||\bm{r}||$ & 13130 & 13129 & 52026 \\ % [1ex] adds vertical space
+          VII. $\rho(p)$ & 7278 & 7278 & 92031 \\
+          VIII. detection & 5521 & 5521 & 123079 \\
+          IX. carrier synchronization & 46855 & 46851 & 14867  \\ [1ex]
+          \hline
+          \end{tabular}
+          \label{table:BM_function_nodes} % is used to refer this table in the text
+        \end{table}   
     \end{figure}
 
     \begin{itemize}
-        \item Accuracy is checked by extracting one random received burst, correcting it with obtained phasor and frequency estimates and comparing with the training sequence.
-        \item Use Google Benchmark to benchmark each computating cell and do tuning for the slowest cell to approach some throughput.
+       \item Benchmark each mapping task of proposed algorithm in task system
+       \begin{itemize}
+        \item how much the throughput of each task can achieve
+        \item adjusting the task with the slowest time to increase the throughput of entire system
+       \end{itemize}
+       \item The throughput is calculated (bounded) by $\SI{2048}{\sample}/\SI{65397}{\nano\second}  \approx \SI[per-mode=symbol]{31.32}{\mega\sample\per\second}$.
     \end{itemize}
   \end{frame}
+
+  \begin{frame}
+    \frametitle{Software-defined Radio}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{SDR_real.jpeg}
+    \end{center}
+
+  \end{frame} 
 
 
   \begin{frame}
-    \frametitle{Flow Graph Analyzer}
-
-    \begin{figure}
-        \centering
-        \begin{minipage}{.3\textwidth}
-          \centering
-          \includegraphics[width=.5\linewidth]{SDR_receiver_new.png}
-        \end{minipage}%
-        \begin{minipage}{.7\textwidth}
-          \centering
-          \begin{table}[t]
-            \tiny
-            \centering % used for centering table
-            \begin{tabular}{c c c c} % centered columns (4 columns)
-            \hline\hline %inserts double horizontal lines
-            Node name & Time (ns) & CPU (ns) & Iterations \\ [0.5ex] % inserts table
-            %heading
-            \hline % inserts single horizontal line
-            I. Buffer  & 3885 & 3885 & 200135 \\ % inserting body of the table
-            II. $r_m^*r_{m-k}$  & 3252 & 3252 & 216211 \\
-            III. $r_m^*r_{m-k}s_{m-k}^*s_m$ & 52343 & 52342 & 13388 \\
-            IV. $\hat{\delta}_{SL}^{(1)}$ & 8432 & 8432 & 86480 \\
-            V. $\hat{\xi}$ & 52309 & 52309 & 13359 \\
-            VI. $||\bm{r}||$ & 19638 & 19638 & 34872 \\ % [1ex] adds vertical space
-            VII. $\rho(p)$ & 16217 & 16217 & 42283 \\
-            VIII. detection & 3669 & 3669 & 199976 \\
-            IX. carrier synchronization & 3075 & 3075 & 222154  \\ [1ex]
-            \hline
-            \end{tabular}
-            \label{table:BM_function_nodes} % is used to refer this table in the text
-          \end{table}
-        
-        \end{minipage}
-    \end{figure}
-
+    \frametitle{Summary and Future Work}
     \begin{itemize}
-       \item Use flow graph analyzer (FGA) to 
+      \item A family of algorithms for joint detection and carrier synchronization for LPI/LPD communications was presented.
+      \begin{itemize}
+        \item The algorithm is designed for low complexity while achieving good performance over a wide range of SNR.
+      \end{itemize}
+      \item The practicality of the algorithm is examined by a Software-defined Radio platform.
+      \begin{itemize}
+        \item Different aspects of algorithm are mapped in a highly pipelined and parallel task architecture.
+      \end{itemize}
     \end{itemize}
-  \end{frame}
+
+    
+
+    
+
+    
+  \end{frame} 
