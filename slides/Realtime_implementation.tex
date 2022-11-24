@@ -20,7 +20,7 @@
              
           \end{itemize} 
           \item Different aspects of the algorithm are mapped in 
-          a pipelined, parallel task processing architecture via Threading Building Blocks (TBB). 
+          a pipelined, parallel task processing architecture via Threading Building Blocks~\cite{Michael_19}. 
 
 
         \end{itemize}
@@ -30,7 +30,7 @@
     \begin{column}{0.46\textwidth} 
 
         \begin{center}
-          \includegraphics[width=1.0\linewidth]{SDR_receiver_new.png}
+          \includegraphics[width=1.0\linewidth]{SDR_receiver_new_slides.png}
         \end{center}
       
       \end{column}
@@ -58,7 +58,18 @@
 
 
   \begin{frame}
-    \frametitle{Flow Graph Analyzer: Latency and Throughput}
+    \frametitle{Software-defined Radio}
+    \begin{center}
+      \includegraphics[width=.8\textwidth]{SDR_real.jpeg}
+    \end{center}
+
+  \end{frame} 
+
+
+  \begin{frame}
+    \frametitle{Flow Graph Analyzer~\cite{Intel_Corporation}: Latency and Throughput}
+
+    % need more explain on how FGA works.
 
     \begin{figure}
         \centering
@@ -117,13 +128,7 @@
     \end{itemize}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Software-defined Radio}
-    \begin{center}
-      \includegraphics[width=.8\textwidth]{SDR_real.jpeg}
-    \end{center}
-
-  \end{frame} 
+ 
 
 
   \begin{frame}
@@ -133,15 +138,13 @@
       \begin{itemize}
         \item The algorithm is designed for low complexity while achieving good performance over a wide range of SNR.
       \end{itemize}
-      \item The practicality of the algorithm is examined by a Software-defined Radio platform.
+      \item The practicality of the algorithm is validated on a Software-defined Radio platform.
       \begin{itemize}
         \item Different aspects of algorithm are mapped in a highly pipelined and parallel task architecture.
       \end{itemize}
+
+      \item The proposed algorithm can be also applied for a dispersive channel.
+      \item Package the cpp code of real-time implementation as the open source distribution.
     \end{itemize}
-
-    
-
-    
-
-    
+      
   \end{frame} 

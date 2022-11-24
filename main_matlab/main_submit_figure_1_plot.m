@@ -19,21 +19,21 @@ MSE_delta_NM_M_2(2,10)=6.5e-6;
 
 
 figure(1)
-p1=semilogy(SNR,CRVB_delta(1,1:21),':');
+p1=semilogy(SNR,CRVB_delta(1,1:21),'k:');
 hold on
 % p2=semilogy(SNR,Bound_SD1(1,1:21),'-.');
 % hold on
 % p8=semilogy(SNR,Bound_SD32(1,1:21),'-.');
 % hold on
-p3=semilogy(SNR,MSE_block_v_SD_001_M_2(1,1:21),'-');
+p3=semilogy(SNR,MSE_block_v_SD_001_M_2(1,1:21),'b--');
 hold on
-p4=semilogy(SNR,MSE_block_v_SD_001_M_2(2,1:21),'.-');
+p4=semilogy(SNR,MSE_block_v_SD_001_M_2(2,1:21),'b-');
 hold on
-p5=semilogy(SNR,MSE_block_v_SD_0001_M_2(2,1:21),'--.');
+p5=semilogy(SNR,MSE_block_v_SD_0001_M_2(2,1:21),'g--.');
 hold on
-p6=semilogy(SNR,MSE_delta_NM_M_2(1,:),':.');
+p6=semilogy(SNR,MSE_delta_NM_M_2(1,:),'r--');
 hold on
-p7=semilogy(SNR,MSE_delta_NM_M_2(2,:),'--');
+p7=semilogy(SNR,MSE_delta_NM_M_2(2,:),'r-');
 hold on
 % p8=semilogy(linspace(-5,SNR(10),100),MSE_block_v_SD_001_M_2(1,10)*ones(1,100));
 annotation('textarrow',[0.48,0.325],[0.656,0.656],'String','4dB gain','FontSize',10,'Linewidth',1,'LineStyle','--')

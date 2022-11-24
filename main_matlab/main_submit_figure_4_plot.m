@@ -83,21 +83,21 @@ P_d_32_pure_M_2(13,1,2)=0.995;
 % [hc,ht,hcl] = nice_plot(gcf);
 
 figure(3)
-semilogx(P_fa_32_M_2(:,1,1),P_d_32_M_2(:,1,1),':')
+semilogx(P_fa_32_M_2(:,1,1),P_d_32_M_2(:,1,1),'b--')
 hold on
-semilogx(P_fa_32_M_2(:,1,2),P_d_32_M_2(:,1,2),'--')
+semilogx(P_fa_32_M_2(:,1,2),P_d_32_M_2(:,1,2),'b-')
 hold on
-semilogx(P_fa_32_M_2(:,2,1),P_d_32_M_2(:,2,1),'--.')
+semilogx(P_fa_32_M_2(:,2,1),P_d_32_M_2(:,2,1),'r--')
 hold on
-semilogx(P_fa_32_M_2(:,2,2),P_d_32_M_2(:,2,2),'-.')
+semilogx(P_fa_32_M_2(:,2,2),P_d_32_M_2(:,2,2),'r-')
 hold on
-semilogx(P_fa_32_M_2(:,3,1),P_d_32_M_2(:,3,1),'-')
+semilogx(P_fa_32_M_2(:,3,1),P_d_32_M_2(:,3,1),'g--')
 hold on
-semilogx(P_fa_32_M_2(:,3,2),P_d_32_M_2(:,3,2),'-')
+semilogx(P_fa_32_M_2(:,3,2),P_d_32_M_2(:,3,2),'g-')
 hold on
 % semilogx(P_fa_32_SNR_0,P_d_32_SNR_0,'-')
 % hold on
-semilogx(P_fa_64_M_2(:,1,1),P_d_64_M_2(:,1,1),'.-')
+semilogx(P_fa_64_M_2(:,1,1),P_d_64_M_2(:,1,1),'c:')
 hold on
 % semilogx(P_fa_32_pure_M_2(:,1,1),P_d_32_pure_M_2(:,1,1),':.')
 % hold on
@@ -110,19 +110,26 @@ hold on
 % 
 % 
 hold on
-semilogx(P_fa_32_M_2(19,1,1),P_d_32_M_2(19,1,1),'+','Color','[0, 0.4470, 0.7410]')
+% semilogx(P_fa_32_M_2(19,1,1),P_d_32_M_2(19,1,1),'+','Color','[0, 0.4470, 0.7410]')
+semilogx(P_fa_32_M_2(19,1,1),P_d_32_M_2(19,1,1),'+','Color','b')
 hold on
-semilogx(P_fa_32_M_2(20,1,2),P_d_32_M_2(20,1,2),'+','Color','[0.8500, 0.3250, 0.0980]')
+% semilogx(P_fa_32_M_2(20,1,2),P_d_32_M_2(20,1,2),'+','Color','[0.8500, 0.3250, 0.0980]')
+semilogx(P_fa_32_M_2(20,1,2),P_d_32_M_2(20,1,2),'+','Color','b')
 hold on
-semilogx(P_fa_32_M_2(23,2,1),P_d_32_M_2(23,2,1),'+','Color','[0.9290, 0.6940, 0.1250]	')
+% semilogx(P_fa_32_M_2(23,2,1),P_d_32_M_2(23,2,1),'+','Color','[0.9290, 0.6940, 0.1250]	')
+semilogx(P_fa_32_M_2(23,2,1),P_d_32_M_2(23,2,1),'+','Color','r')
 hold on
-semilogx(P_fa_32_M_2(23,2,2),P_d_32_M_2(23,2,2),'+','Color','[0.4940, 0.1840, 0.5560]')
+% semilogx(P_fa_32_M_2(23,2,2),P_d_32_M_2(23,2,2),'+','Color','[0.4940, 0.1840, 0.5560]')
+semilogx(P_fa_32_M_2(23,2,2),P_d_32_M_2(23,2,2),'+','Color','r')
 hold on
-semilogx(P_fa_32_M_2(25,3,1),P_d_32_M_2(25,3,1),'+','Color','[0.4660, 0.6740, 0.1880]')
+% semilogx(P_fa_32_M_2(25,3,1),P_d_32_M_2(25,3,1),'+','Color','[0.4660, 0.6740, 0.1880]')
+semilogx(P_fa_32_M_2(25,3,1),P_d_32_M_2(25,3,1),'+','Color','g')
 hold on
-semilogx(P_fa_32_M_2(24,3,2),P_d_32_M_2(24,3,2),'+','Color','[0.3010 0.7450 0.9330]')
+% semilogx(P_fa_32_M_2(24,3,2),P_d_32_M_2(24,3,2),'+','Color','[0.3010 0.7450 0.9330]')
+semilogx(P_fa_32_M_2(24,3,2),P_d_32_M_2(24,3,2),'+','Color','g')
 hold on
-semilogx(P_fa_64_M_2(18,1,1),P_d_64_M_2(18,1,1),'+','Color','[0.6350 0.0780 0.1840]')
+% semilogx(P_fa_64_M_2(18,1,1),P_d_64_M_2(18,1,1),'+','Color','[0.6350 0.0780 0.1840]')
+semilogx(P_fa_64_M_2(18,1,1),P_d_64_M_2(18,1,1),'+','Color','c')
 grid on
 [hc1,ht1,hcl1] = nice_plot(gcf);
 

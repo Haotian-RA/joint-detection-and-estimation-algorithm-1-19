@@ -6,15 +6,15 @@
   \frametitle{Motivation}
   \begin{itemize}
     \item Protecting information in contested and congested wireless communication environments requires transmissions that are difficult to intercept or even detect (LPI/LPD). 
-     \item Achieving robust protection against detection relys on signals with power spectral densities that are well below the noise floor. 
+     \item Achieving robust protection against detection relies on signals with power spectral densities that are well below the noise floor. 
     % \item To recover the signals at low SNR, joint detection and carrier synchronization algorithms play a vital role in protected communication system. 
      \item At low SNR, the time and carrier synchronization are coupled problems:
      \begin{itemize}
-      \item coherent methods for detecting signal require accurate carrier estimations, while
+      \item coherent methods for detecting signal require accurate carrier estimation, while
       \item data-aided carrier estimation requires the location of the training sequence.
      \end{itemize}
      \item In practice, the position of the embedded training sequence (preamble) should be searched sequentially.
- 
+     % explain using sliding window.
  \end{itemize}
 \end{frame}
 
@@ -67,7 +67,7 @@
     \begin{column}{0.46\textwidth} 
 
         \begin{center}
-          \includegraphics[width=1.0\linewidth]{architecture_of_paper.png}
+          \includegraphics[width=.95\linewidth]{architecture_of_paper.png}
         \end{center}
       
       \end{column}
@@ -76,15 +76,15 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Previous Works}
+  \frametitle{Prior Work}
   \begin{itemize}
       \item Some classical works on carrier synchronization were discussed by assuming perfect time synchronization~\cite{Morelli_Mengali_98}.
       \begin{itemize}
         \item  However, this is not reliable especially at low SNR.
       \end{itemize}
-      \item Some previous works also dealt with the time and carrier synchronization problem jointly with good accuracy at low SNR~\cite{purushothaman_16,kim_17}. 
+      \item Some previous work also dealt with the time and carrier synchronization problem jointly with good accuracy at low SNR~\cite{purushothaman_16,kim_17}. 
       \begin{itemize}
-        \item They were doing frame synchronization by assuming a specific data sequence, and 
+        \item They were doing frame synchronization instead of sequential detection, and 
         \item the complexity of the algorithm is relatively high.
       \end{itemize}
       \item Computational complexity is a major concern with the practical realization of a synchronization system discussed in~\cite{murin_16,wang_21}.

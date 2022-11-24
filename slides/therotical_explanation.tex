@@ -1,4 +1,4 @@
-\section{Theoretical Explanation}
+\section{Joint Synchronization Algorithm}
 
 \subsection{Signal Model}
 
@@ -40,6 +40,7 @@
 
     \begin{itemize}
       \item Two hypotheses for sequential detection task are given by:
+      % using sliding window to explain
       
       \begin{equation*}
         \label{eq:two hypotheses}
@@ -49,7 +50,7 @@
             s_{n-\Delta}\xi e^{j2\pi\delta (n-\Delta)}{+}w_n & \max(0{,}\Delta){\leq} n {<} \min(N{,}N{+}\Delta) \\
             w_n & \text{otherwise},
         \end{dcases} \\
-        &H_1{:}~r_n{=}s_n\xi e^{j2\pi\delta n}+w_n,
+        &H_1{:}~r_n{=}s_n\xi e^{j2\pi\delta n}+w_n, \quad n = 0,1,\ldots,N{-}1,
         \end{aligned}
       \end{equation*}
       where
@@ -162,30 +163,31 @@
 
     \begin{itemize}
     
-      \item At moderate SNR, every lag $k$ can be used to approximate the frequency estimate $\delta$. 
+      \item At moderate SNR, every lag $k$ can be used to estimate the frequency offset $\delta$. 
       
-      \begin{itemize}
-        \item This suggests that an unbiased estimate of $\delta$ can be obtained by using only a single lag $k$.
-      \end{itemize}
+      % \begin{itemize}
+      %   \item This suggests that an unbiased estimate of $\delta$ can be obtained by using only a single lag $k$.
+      % \end{itemize}
       
       \item To extend the operation to low SNR, a generalized single-lag (SL) estimator with partial coherent integration (PCI) is derived
       
-      \begin{equation*}
+      \begin{equation}
         \label{eq:single_lag_estimator_w_partial_corr}
         \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^{*(v)}\digamma_{l-k_v}^{(v)}\big\}}{2\pi k_vv},
-      \end{equation*}
+      \end{equation}
 
-      where $\digamma_{l}^{(v)}$ is the result of PCI over block $l$
+      where $\digamma_{l}^{(v)}$ is coherent integrator over block $l$
       of length $v$
 
-      \begin{equation*}
+      \begin{equation}
         \label{eq:coherent_integrator}
         \digamma_l^{(v)}=\frac{1}{v}\sum_{n=lv}^{(l+1)v-1}r_ns_n^*, \quad \text{for}~l=0,1,\ldots,N/v{-}1.
-      \end{equation*}
+      \end{equation}
 
-      % \begin{itemize}
-      %   \item  $k_v=\lfloor k/v \rfloor$.
-      % \end{itemize}
+      and 
+      \begin{itemize}
+        \item  $k_v=\lfloor k/v \rfloor$.
+      \end{itemize}
 
     \end{itemize}
 
@@ -233,16 +235,21 @@
         \label{eq:mean_var_product_coherent_int}
         \mu_{C_{\digamma}}&=\frac{E_s}{Mv^2}\bigg(\sum_{n=lv}^{(l+1)v-1}e^{-j2\pi \delta n}\bigg)\bigg(\sum_{m=(l-k_v)v}^{(l-k_v+1)v-1}e^{j2\pi \delta m}\bigg) \\
         &=E_s/M\cdot e^{-j2\pi \delta k_vv}\cdot\D^2(v,\delta)/v^2, \\
-        \sigma^2_{C_{\digamma}}&={\underbrace{N_0^2/(4v^2)}_{\text{from Bessel}}}+{\underbrace{N_0E_s/M\cdot\D^2(v,\delta)/v^3}_{\text{from Complex Gaussian}}},
+        \sigma^2_{C_{\digamma}}&={\underbrace{N_0^2/(4v^2)}_{\text{from Bessel}}}+{\underbrace{N_0E_s/(Mv)\cdot\D^2(v,\delta)/v^2}_{\text{from Complex Gaussian}}},
         \end{aligned}
       \end{equation*}
 
       \begin{itemize}
         \item $\D(v,\delta)=\frac{\sin(\pi \delta v)}{\sin(\pi\delta)}$ 
         % is the Dirichlet function of $\delta$, which 
-        has the maximum value $v$ at $\delta{=}0$.
-        \item $E_s/N_0$ is the symbol energy to noise power ratio (SNR).
-        \item The value of $v$ trades off the output SNR.
+        has the maximum value $v$ at $\delta=0$.
+        % \item $E_s/N_0$ is the symbol energy to noise power ratio (SNR).
+        % \item The value of $v$ trades off the output SNR.
+        \item The value of $v$ trades off the mean and variance of $C_{\digamma}$ 
+        \begin{itemize}
+          \item $\mu_{C_{\digamma}}$ increases as $v$ decreases, and
+          \item $ \sigma^2_{C_{\digamma}}$ of Bessel term (noise square) decreases as $v$ increases.
+        \end{itemize}
       \end{itemize}
     
 
@@ -344,7 +351,7 @@
     \begin{itemize}
     
       \item The accuracy of SL and NM are improved by using PCI.
-      \item The accuracy of SL is better at all SNRs with lower frequency offset since the Dirichlet function is larger.  
+      \item The accuracy of SL increases as frequency error decreases for a larger Dirichlet function.  
       \item NM approaches the CRVB as SL reaches some accuracy.
 
     \end{itemize}
