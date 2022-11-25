@@ -81,9 +81,14 @@
       \end{equation*}
   
       \begin{itemize}
-          \item The two inner products on left hand side are the matched filters for hypothesis $H_1$ and $H_0$, respectively.
-          \item The matched filter for $H_0$ is not computable in practice due to unknown information of $\Delta$.
-          \item The effect of partial correlation can be mitigated by using a preamble with very good autocorrelation property.
+          \item The two inner products on left hand side are the
+            matched filters for hypothesis $H_1$ and $H_0$,
+            respectively. 
+          \item The matched filter for $H_0$ is not computable in
+            practice due to unknown time offset  $\Delta$.
+          \item The matched filter for $H_0$ must be rendered
+            negligible by using a preamble with very good
+            autocorrelation properties. 
       \end{itemize}
       
   \end{itemize}
@@ -138,7 +143,7 @@
         \hat{\delta},\hat{\xi}=\argmin_{\delta,\xi=Ae^{j\phi}}\sum_{n=0}^{N-1}\Big|r_n-s_n\xi e^{j2\pi\delta n}\Big|^{2}.
       \end{equation*}
 
-      \item The closed form for $\hat{\xi}$ and a necessary condition for $\hat{\delta}$ are obtained by
+      \item The closed form for $\hat{\xi}$ and a necessary condition for $\hat{\delta}$ are given by
       
       % and a necessary condition for $\hat{\delta}$ are obtained by taking the Wirtinger derivative
       
@@ -163,7 +168,7 @@
 
     \begin{itemize}
     
-      \item At moderate SNR, every lag $k$ can be used to estimate the frequency offset $\delta$. 
+      \item At moderate SNR, any lag $k$ can be used to estimate the frequency offset $\delta$. 
       
       % \begin{itemize}
       %   \item This suggests that an unbiased estimate of $\delta$ can be obtained by using only a single lag $k$.
@@ -176,7 +181,7 @@
         \hat{\delta}_{SL}^{(v)}(k_v)=-\frac{\arg\big\{\sum_{l=k_v}^{N/v-1}\digamma_l^{*(v)}\digamma_{l-k_v}^{(v)}\big\}}{2\pi k_vv},
       \end{equation}
 
-      where $\digamma_{l}^{(v)}$ is coherent integrator over block $l$
+      where $\digamma_{l}^{(v)}$ is coherent integration over block $l$
       of length $v$
 
       \begin{equation}
@@ -185,10 +190,8 @@
       \end{equation}
 
       and 
-      \begin{itemize}
-        \item  $k_v=\lfloor k/v \rfloor$.
-      \end{itemize}
-
+      $k_v=\lfloor k/v \rfloor$.
+     
     \end{itemize}
 
     % \begin{center}
@@ -224,7 +227,7 @@
 
 
 \begin{frame}
-  \frametitle{Properties of Non-coherent Blocks}
+  \frametitle{Properties of Non-coherent Products}
 
     \begin{itemize}
     
@@ -248,7 +251,9 @@
         \item The value of $v$ trades off the mean and variance of $C_{\digamma}$ 
         \begin{itemize}
           \item $\mu_{C_{\digamma}}$ increases as $v$ decreases, and
-          \item $ \sigma^2_{C_{\digamma}}$ of Bessel term (noise square) decreases as $v$ increases.
+          \item $ \sigma^2_{C_{\digamma}}$
+            % of Bessel term (noise square) % both variane terms decrease with v!
+            decreases as $v$ increases.
         \end{itemize}
       \end{itemize}
     
@@ -312,22 +317,23 @@
 
     \begin{itemize}
     
-      \item Using the SL estimator as starting point for a Newton-type iteration aimed at finding a better solution to the necessary condition for $\hat{\delta}$
-      
+      \item Using the SL estimator as starting point, a Newton-type
+        iteration is aimed at finding a better solution to the necessary condition for $\hat{\delta}$      
       \begin{equation*}
         \label{eq:iter_NM_est}
         \hat{\delta}_{NM}^{(i+1)}=\hat{\delta}_{NM}^{(i)}-
         \frac{J(\hat{\delta}_{NM}^{(i)})}{J^\prime(\hat{\delta}_{NM}^{(i)})}
       \end{equation*}
-
       where
       \begin{itemize}
         \item $\hat{\delta}_{NM}^{(0)}=\hat{\delta}^{(v)}_{SL}(k_v)$.
-        \item $J^\prime(\cdot)$ is the derivative of $J$ with respect to $\hat{\delta}$.
+        \item $J^\prime(\cdot)$ is the derivative of objective
+          function $J$ with respect to $\hat{\delta}$.
         \item Complexity is $O(N^2)$.
       \end{itemize}
-
-      \item A single iteration is usually sufficient to achieve very good accuracy.
+      \item A single iteration is usually sufficient to achieve very
+        good accuracy.
+      \item Refinement is computed only when signal is detected.
       % \item Summary: The SL estimator is used for operating at high sample rate for sequential detection task due to its low complexity.
       % The NM estimator improves the accuracy after reliable detection to enable coherent demodualtion.
         
@@ -345,14 +351,15 @@
   \frametitle{Accuracy of SL and NM Estimators}
 
     \begin{center}
-      \includegraphics[width=.6\textwidth]{accuracy_NM_SL_slides.png}
+      \includegraphics[width=.57\textwidth]{accuracy_NM_SL_slides.png}
     \end{center}
 
     \begin{itemize}
     
       \item The accuracy of SL and NM are improved by using PCI.
-      \item The accuracy of SL increases as frequency error decreases for a larger Dirichlet function.  
-      \item NM approaches the CRVB as SL reaches some accuracy.
+      \item The accuracy of SL increases as frequency error decreases;
+        due to  larger Dirichlet function $\D(v,\delta)$.  
+      \item NM approaches the CRVB when SL estimate is sufficiently accurate.
 
     \end{itemize}
 
@@ -372,8 +379,7 @@
     
       % \item The above figure shows the receiver operating characteristics (ROC) of the sequential detector.
       \item The better accuracy of SL with PCI also improves the detection performance at low SNR.
-      \item The detection performance is significantly improved by leveraging a larger size of the preamble.
-
+      \item Good detection performance at low SNR requires a longer preamble.
     \end{itemize}
 
 \end{frame}

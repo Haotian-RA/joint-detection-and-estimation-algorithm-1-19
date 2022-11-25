@@ -54,11 +54,11 @@
               \item A family of joint detection and estimation algorithm:
               
               \begin{itemize}
-                \item very low computational complexity, while
+                \item very low computational complexity, 
                 \item near-optimal accuracy.
               \end{itemize}
               % that emphasize computational complexity while maintaining near-optimal accuracy at very low SNR, and
-              \item Implementation of the proposed algorithms on a standard SDR platform.
+              \item Implementation of the proposed algorithms using a standard SDR platform.
           \end{itemize} 
         \end{itemize}
 
@@ -78,16 +78,21 @@
 \begin{frame}
   \frametitle{Prior Work}
   \begin{itemize}
-      \item Some classical works on carrier synchronization were discussed by assuming perfect time synchronization~\cite{Morelli_Mengali_98}.
+      \item Some classical work on carrier synchronization assumes
+        perfect time synchronization~\cite{Morelli_Mengali_98}. 
       \begin{itemize}
         \item  However, this is not reliable especially at low SNR.
       \end{itemize}
-      \item Some previous work also dealt with the time and carrier synchronization problem jointly with good accuracy at low SNR~\cite{purushothaman_16,kim_17}. 
+      \item Some  work on joint time and carrier synchronization
+        problem shows good accuracy at low
+        SNR~\cite{purushothaman_16,kim_17}.  
       \begin{itemize}
-        \item They were doing frame synchronization instead of sequential detection, and 
+        \item Focus on frame synchronization instead of sequential detection, and 
         \item the complexity of the algorithm is relatively high.
       \end{itemize}
-      \item Computational complexity is a major concern with the practical realization of a synchronization system discussed in~\cite{murin_16,wang_21}.
+      \item Computational complexity is a major concern with the
+        practical realization of a synchronization system discussed
+        in~\cite{murin_16,wang_21}. 
   
   \end{itemize}
 \end{frame}

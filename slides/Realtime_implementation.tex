@@ -82,16 +82,20 @@
   \end{figure}
 
     \begin{itemize}
-        \item The top graph shows the task architecture of proposed algorithm leverages high parallelism and pipelining. The throughput is approximately 
-        $ \SI[per-mode=symbol]{28.74}{\mega\sample\per\second}$.
-        \item By zooming in the very first time duration, the latency (finish time of the first burst) is observed around $ \SI[per-mode=symbol]{383.7}{\nano\second}$.
+        \item The top graph shows that the task based implementaton
+          exhibits high parallelism; all cores are used.
+          \begin{itemize}
+          \item The throughput is approximately
+            $ \SI[per-mode=symbol]{28.74}{\mega\sample\per\second}$.
+          \end{itemize}
+        \item By zooming in on the start of processing, the latency (finish time of the first burst) is observed around $ \SI[per-mode=symbol]{383.7}{\nano\second}$.
 
     \end{itemize}
   \end{frame}
 
 
   \begin{frame}
-    \frametitle{Google Benchmark: Task Measurement}
+    \frametitle{Google Benchmark: Task Duration Measurement}
 
     \begin{figure}
         \centering
@@ -119,12 +123,14 @@
     \end{figure}
 
     \begin{itemize}
-       \item Benchmark each mapping task of proposed algorithm in task system
+       \item Benchmark each task of proposed algorithm
+         (\qty{2048}{\sample} input):
        \begin{itemize}
-        \item how much the throughput of each task can achieve
-        \item adjusting the task with the slowest time to increase the throughput of entire system
+        \item measure the throughput that each task can achieve
+        \item identify the task with the longest duration for
+          potential increase of throughput of he entire system
        \end{itemize}
-       \item The throughput is calculated (bounded) by $\SI{2048}{\sample}/\SI{65397}{\nano\second}  \approx \SI[per-mode=symbol]{31.32}{\mega\sample\per\second}$.
+       \item The throughput is bounded by slowest block, $\SI{2048}{\sample}/\SI{65397}{\nano\second}  \approx \SI[per-mode=symbol]{31.32}{\mega\sample\per\second}$.
     \end{itemize}
   \end{frame}
 
@@ -138,13 +144,12 @@
       \begin{itemize}
         \item The algorithm is designed for low complexity while achieving good performance over a wide range of SNR.
       \end{itemize}
-      \item The practicality of the algorithm is validated on a Software-defined Radio platform.
+      \item The real-time practicality of the algorithm is validated via a software-defined radio platform.
       \begin{itemize}
         \item Different aspects of algorithm are mapped in a highly pipelined and parallel task architecture.
       \end{itemize}
-
-      \item The proposed algorithm can be also applied for a dispersive channel.
-      \item Package the cpp code of real-time implementation as the open source distribution.
+      \item Extend the proposed algorithm for dispersive channels.
+      \item Package the C++ code of real-time implementation as the open source distribution.
     \end{itemize}
       
   \end{frame} 
