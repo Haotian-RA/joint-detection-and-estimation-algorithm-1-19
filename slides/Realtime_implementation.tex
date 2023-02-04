@@ -82,13 +82,13 @@
   \end{figure}
 
     \begin{itemize}
-        \item The top graph shows that the task based implementaton
+        \item The top graph shows that the task based implementation
           exhibits high parallelism; all cores are used.
           \begin{itemize}
           \item The throughput is approximately
             $ \SI[per-mode=symbol]{28.74}{\mega\sample\per\second}$.
           \end{itemize}
-        \item By zooming in on the start of processing, the latency (finish time of the first burst) is observed around $ \SI[per-mode=symbol]{383.7}{\nano\second}$.
+        \item By zooming in on the start of processing, the latency (finish time of the first burst) is observed around $ \SI[per-mode=symbol]{383.7}{\micro\second}$.
 
     \end{itemize}
   \end{frame}
@@ -124,11 +124,11 @@
 
     \begin{itemize}
        \item Benchmark each task of proposed algorithm
-         (\qty{2048}{\sample} input):
+         ($\SI{2048}{\sample}$ input):
        \begin{itemize}
         \item measure the throughput that each task can achieve
         \item identify the task with the longest duration for
-          potential increase of throughput of he entire system
+          potential increase of throughput of the entire system
        \end{itemize}
        \item The throughput is bounded by slowest block, $\SI{2048}{\sample}/\SI{65397}{\nano\second}  \approx \SI[per-mode=symbol]{31.32}{\mega\sample\per\second}$.
     \end{itemize}
