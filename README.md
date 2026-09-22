@@ -13,7 +13,7 @@ LPI/LPD communication systems operate at very low SNR and rely on coherent proce
 | Directory | Contents |
 |---|---|
 | [`main_matlab/`](main_matlab/) | MATLAB simulation of the detector and estimators; `main_submit_figure_1..4.m` generate the data for each figure in the paper, and the matching `*_plot.m` scripts render them. Includes the GLRT sequential detector, the proposed joint estimators, classical baselines (Fitz and Kay frequency estimators), and theoretical bound comparisons. |
-| [`SDR_main/`](SDR_main/) | Real-time C++17 implementation of the receiver as a TBB flow graph — burst-mode detection, joint time/phase/frequency estimation, and correction. Reads captured samples from file, or streams live samples from a USRP / GNU Radio flowgraph over ZeroMQ. |
+| [`SDR_main/`](SDR_main/) | Real-time C++17 implementation of the receiver as a TBB flow graph — burst-mode detection, joint time/phase/frequency estimation, and correction. Reads streams live samples from a USRP / GNU Radio flowgraph over ZeroMQ. |
 | [`paper_3_10/`](paper_3_10/) | LaTeX source of the paper. |
 | [`slides/`](slides/) | LaTeX source of the MILCOM presentation. |
 | [`main_matlab_figures/`](main_matlab_figures/) | Generated figures: ROC curves, estimator accuracy vs. bounds, partial-preamble detection behavior, and real-time throughput/latency measurements. |
