@@ -20,9 +20,9 @@ LPI/LPD communication systems operate at very low SNR and rely on coherent proce
 
 ## Estimation performance
 
-Estimator accuracy is evaluated as the MSE of the frequency estimate versus Es/N0 and compared against the Cramér–Rao bound (CRVB); the proposed SL and NM estimators operate close to the bound:
+Estimator accuracy is evaluated as the MSE of the frequency estimate versus Es/N0, compared against classical frequency estimators (Luise & Reggiannini, Fitz, Kay) and the Cramér–Rao bound (CRVB); the proposed SL and NM estimators operate close to the bound at low SNR, where the classical estimators break down:
 
-![Estimation accuracy vs. CRB](main_matlab_figures/accuracy_NM_SL.png)
+![Estimation accuracy vs. classical estimators and CRB](main_matlab_figures/accuracy_NM_SL_traditional.png)
 
 To reproduce a figure from the paper, run the corresponding pair of scripts in MATLAB, e.g.:
 
